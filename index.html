@@ -3,100 +3,624 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WAPH Course - Sai Sandeep Vunnam</title>
+  <title>Sai Sandeep Vunnam - Portfolio</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
-    /* A little bit of styling to make the page look good */
+    /* --- General Styling & Typography --- */
     body {
-      font-family: 'Nunito Sans', sans-serif;
+      font-family: 'Nunito Sans', sans-serif; /* Updated Font */
       background-color: #f8f9fa;
       color: #333;
+      transition: background-color 0.3s;
     }
+
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      color: #182848;
     }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #182848;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #4b6cb7, #182848);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* --- Navigation Bar --- */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      transition: all 0.3s;
+    }
+
     .navbar-brand {
       font-weight: 700;
       font-size: 1.5rem;
       color: #4b6cb7 !important;
     }
+    
     .nav-link {
-      font-weight: 600;
+      font-weight: 600; /* Bolder Nav Links */
       color: #333 !important;
+      transition: color 0.3s, transform 0.2s;
     }
-    /* Style to show the active page in the nav bar */
-    .nav-link.active {
-      color: #4b6cb7 !important;
+
+    .nav-link:hover {
+      color: #182848 !important;
+      transform: translateY(-2px);
     }
+
+    /* --- Header --- */
+    header {
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+      color: #fff;
+      padding: 80px 0;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    }
+
+    .profile-pic {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.8);
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+    
+    .profile-pic:hover {
+        transform: scale(1.05);
+    }
+    
+    header h1 {
+        font-weight: 700;
+        font-size: 3.5rem;
+    }
+
+    /* --- Sections & Cards --- */
     section {
       padding: 60px 0;
     }
-    .list-group-item {
-      background-color: #fff;
-      border-color: #e0e0e0;
+    
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-title {
+      color: #4b6cb7;
+      font-weight: 600;
+    }
+
+    .card-body ul {
+      padding-left: 20px;
+    }
+    
+    /* --- Skills Section --- */
+    #skills .col-md-4 h6 {
+        font-size: 1.2rem;
+        color: #182848;
+        margin-bottom: 10px;
+    }
+
+    /* --- Footer & New Widgets --- */
+    footer {
+      background-color: #182848;
+      color: #f8f9fa;
+      padding: 40px 0;
+    }
+    
+    .footer-widget {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-widget h6 {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #4b6cb7;
+      padding-bottom: 5px;
+    }
+    
+    #digital-clock {
+        font-size: 2rem;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #analog-clock {
+        background-color: #fff;
+        border-radius: 50%;
+        border: 4px solid #4b6cb7;
+    }
+    
+    #jokeText {
+        font-style: italic;
+        color: #ccc;
+        min-height: 80px;
+    }
+
+    #weather-widget {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    #weather-widget img {
+        width: 60px;
+        height: 60px;
+    }
+    #weather-info p {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .disclaimer {
+        font-size: 0.8rem;
+        color: #aaa;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    /* --- Back to Top Button --- */
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        z-index: 1000;
     }
   </style>
 </head>
 <body>
+  <div id="welcome-message" class="container mt-3"></div>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Sai Sandeep</a>
+      <a class="navbar-brand" href="#home">Sai Sandeep</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#education">Education</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link active" href="waph.html">WAPH Course</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="waph.html">WAPH Course</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <section>
+  <header id="home">
+    <div class="container text-center">
+      <img src="saisandeep_headshot.jpg" alt="Sai Sandeep" class="profile-pic mb-4" />
+      <h1 class="display-4 fw-bold">Sai Sandeep Vunnam</h1>
+      <p class="lead mb-4">Full Stack Developer & Web Enthusiast</p>
+      <small class="text-light">Life and full-stack development follow the same rule: debug your mistakes, commit to growth, and deploy your best self every day</small>
+    </div>
+  </header>
+
+  <section id="about" class="py-5">
     <div class="container">
-      <div class="text-center mb-5">
-        <h1>Web Application Program and Hacking</h1>
-        <h2>Individual Project: Professional Profile Website</h2>
-        <p class="lead text-muted">Instructor: Phu Phung</p>
+      <h2 class="section-title">About Me</h2>
+      <p class="text-center lead">I’m a passionate web developer who loves turning ideas into engaging, user-friendly websites. Whether it’s mastering a new JavaScript library or diving into responsive design with an open-source framework like Bootstrap, I thrive on solving problems and exceeding expectations.</p>
+    </div>
+  </section>
+
+  <section id="education" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="text-center">
+        <p class="h5"><strong>Masters in Computer Science</strong>, University of Dayton, 2025</p>
       </div>
+    </div>
+  </section>
 
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-            <h3>Course Overview</h3>
-            <p>This course begins with the essentials of web application development-building the front end using HTML5, JavaScript and CSS, and the back end with PHP and MySQL. You'll then dive into common web-app vulnerabilities and attack techniques through hands-on labs. Finally, we'll cover secure-coding principles and best practices to help you write applications that resist those threats.</p>
-            <hr class="my-4">
-            <h3>Topics Covered</h3>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">Introduction to the Course - Web Application Program and Hacking</li>
-              <li class="list-group-item">Development Environment Setup</li>
-              <li class="list-group-item">HTTP Protocol and Basic Web Application Programming</li>
-              <li class="list-group-item">Front-end Web Development</li>
-              <li class="list-group-item">Client-Side Security and Server-side Technologies, Security and Standards</li>
-              <li class="list-group-item">Web Application Security and OWASP Top 10</li>
-            </ul>
-
-            <h3>Technology Requirements</h3>
-            <p>To work through the hands-on exercises, labs, and projects, make sure you have a laptop or desktop that can run a Linux VM-then install VirtualBox and set up an Ubuntu 22.04 virtual machine.</p>
+  <section id="experience" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Web Content Developer</h5>
+              <h6 class="card-subtitle mb-2 text-muted">University of Dayton, Jan 2025 – Present</h6>
+              <ul>
+                <li>Managed and updated 75+ academic websites using Cascade CMS.</li>
+                <li>Built responsive pages for 1st–4th year courses, ensuring mobile-first design.</li>
+                <li>Collaborated with an 8‑member team to streamline content workflows.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Web Archiving Specialist</h5>
+              <h6 class="card-subtitle mb-2 text-muted">University of Dayton, Oct 2024 – Mar 2025</h6>
+              <ul>
+                <li>Audited and archived 1,600+ obsolete magazine pages to maintain current content.</li>
+                <li>Structured audit logs in Excel for transparency and future reference.</li>
+                <li>Optimized asset storage by removing 800+ redundant media files.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">IT Support Engineer</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Indian School of Business, Sep 2022 – Jun 2023</h6>
+              <ul>
+                <li>Resolved login, network, and system issues via a structured ticketing system.</li>
+                <li>Ensured seamless IT operations during high-stakes placement drives.</li>
+                <li>Implemented preventive measures, reducing recurring tickets by 30%.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <section id="skills" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <h6><i class="bi bi-code-slash"></i> Programming</h6>
+          <p>JavaScript • HTML5 • CSS3 • Python • C • C++ • C#</p>
+        </div>
+        <div class="col-md-4">
+          <h6><i class="bi bi-layers"></i> Frameworks</h6>
+          <p>React • Bootstrap • Express.js • Django • ASP.NET Core</p>
+        </div>
+        <div class="col-md-4">
+          <h6><i class="bi bi-tools"></i> Tools & Platforms</h6>
+          <p>Git • Docker • AWS • Cascade CMS • Google Analytics</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <h5 class="card-title">Lung Cancer Detection by Dynamic Convolution Neural Network Using CT Scan Images</h5>
+              <p class="card-text">Designed and implemented the dynamic CNN architecture to efficiently extract features from CT scan images.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <h5 class="card-title">Ticket Booking Application (C#)</h5>
+              <p class="card-text">Designed and developed a ticket booking application using Python, providing users with a seamless and intuitive booking experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="welcomeModalLabel">Welcome!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="welcomeModalBody">
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <section id="contact" class="py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="section-title">Get In Touch</h2>
+      <p>Phone: +1 (940) 843-8351</p>
+      <p>
+        <button id="email-btn" class="btn btn-secondary"><i class="bi bi-envelope"></i> Show Email</button>
+        <span id="email-text" style="display:none;">Vunnams3@udayton.edu</span>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h6>Dayton Weather</h6>
+                    <div id="weather-widget">Loading weather...</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h6>Analog Clock</h6>
+                    <canvas id="analog-clock" width="150" height="150"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h6>Digital Clock</h6>
+                    <div id="digital-clock"></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h6>Joke of the Day</h6>
+                    <div id="jokeText">Loading joke...</div>
+                </div>
+            </div>
+        </div>
+        <div class="disclaimer">
+          <p>&copy; Sai Sandeep Vunnam</p>
+        </div>
+        <div class="my-3">
+            <a href="https://info.flagcounter.com/ab0Z"><img src="https://s11.flagcounter.com/count2/ab0Z/bg_182848/txt_F8F9FA/border_4B6CB7/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a> 
+        </div>
+    </div>
+  </footer>
+
+  <a href="#" id="back-to-top" class="btn btn-primary btn-lg rounded-circle"><i class="bi bi-arrow-up"></i></a>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+$(document).ready(function() {
 
+    // --- 1. Cookie Management for Welcome Modal ---
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // --- Logic to control the welcome modal ---
+    const lastVisit = getCookie("lastVisit");
+    const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+    const modalBody = $('#welcomeModalBody');
+
+    if (lastVisit) {
+        // Returning user
+        modalBody.html(`Welcome back! Your last visit was on <br><strong>${lastVisit}</strong>.`);
+    } else {
+        // First-time user
+        modalBody.html("Welcome to my homepage for the first time!");
+    }
+
+    // Show the modal
+    welcomeModal.show();
+
+    // Set/update the cookie for the next visit
+    setCookie("lastVisit", new Date().toLocaleString(), 365);
+
+
+    // --- 2. Clocks ---
+    // ... (The rest of your clock, email, API, and back-to-top button code remains exactly the same)
+    // Digital Clock
+    function updateDigitalClock() {
+      $('#digital-clock').text(new Date().toLocaleTimeString());
+    }
+    setInterval(updateDigitalClock, 1000);
+    updateDigitalClock();
+
+    // Analog Clock
+    const canvas = document.getElementById('analog-clock');
+    const ctx = canvas.getContext('2d');
+    const radius = canvas.height / 2;
+    ctx.translate(radius, radius);
+    const effectiveRadius = radius * 0.90;
+
+    function drawClock() {
+      drawFace(ctx, effectiveRadius);
+      drawNumbers(ctx, effectiveRadius);
+      drawTime(ctx, effectiveRadius);
+    }
+
+    function drawFace(ctx, radius) {
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        const grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+        grad.addColorStop(0, '#333');
+        grad.addColorStop(0.5, 'white');
+        grad.addColorStop(1, '#333');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = radius * 0.1;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+        ctx.fillStyle = '#333';
+        ctx.fill();
+    }
+
+    function drawNumbers(ctx, radius) {
+        ctx.font = radius * 0.15 + "px Poppins";
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        for(let num = 1; num < 13; num++){
+            let ang = num * Math.PI / 6;
+            ctx.rotate(ang);
+            ctx.translate(0, -radius * 0.85);
+            ctx.rotate(-ang);
+            ctx.fillText(num.toString(), 0, 0);
+            ctx.rotate(ang);
+            ctx.translate(0, radius * 0.85);
+            ctx.rotate(-ang);
+        }
+    }
+
+    function drawTime(ctx, radius){
+        const now = new Date();
+        let hour = now.getHours();
+        let minute = now.getMinutes();
+        let second = now.getSeconds();
+        //hour
+        hour = hour%12;
+        hour = (hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60));
+        drawHand(ctx, hour, radius*0.5, radius*0.07);
+        //minute
+        minute = (minute*Math.PI/30)+(second*Math.PI/(30*60));
+        drawHand(ctx, minute, radius*0.8, radius*0.07);
+        // second
+        second = (second*Math.PI/30);
+        drawHand(ctx, second, radius*0.9, radius*0.02);
+    }
+
+    function drawHand(ctx, pos, length, width) {
+        ctx.beginPath();
+        ctx.lineWidth = width;
+        ctx.lineCap = "round";
+        ctx.moveTo(0,0);
+        ctx.rotate(pos);
+        ctx.lineTo(0, -length);
+        ctx.stroke();
+        ctx.rotate(-pos);
+    }
+    setInterval(drawClock, 1000);
+    drawClock();
+
+
+    // --- 3. Show/Hide Email ---
+    $('#email-btn').on('click', function() {
+        const emailText = $('#email-text');
+        if (emailText.is(':visible')) {
+            emailText.hide();
+            $(this).html('<i class="bi bi-envelope"></i> Show Email');
+        } else {
+            emailText.show();
+            $(this).html('<i class="bi bi-envelope-open"></i> Hide Email');
+        }
+    });
+
+
+    // --- 4. API Integrations ---
+    // Joke API (refreshes every minute)
+    function getJoke() {
+      fetch('https://v2.jokeapi.dev/joke/Programming?type=single')
+        .then(response => response.json())
+        .then(data => {
+          $('#jokeText').text(data.joke || "Couldn't fetch a joke, but my code is no joke!");
+        })
+        .catch(() => {
+          $('#jokeText').text("Jokes are offline. Time to get serious!");
+        });
+    }
+    getJoke();
+    setInterval(getJoke, 60000); 
+
+    //Weather
+  function getWeather() {
+    const url =
+      "https://api.open-meteo.com/v1/forecast" +
+      "?latitude=39.7589&longitude=-84.1916" +
+     "&current_weather=true";
+   fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const cw = data.current_weather;
+      $('#weather-widget').html(`
+        <p><strong>${cw.temperature.toFixed(1)}°C</strong></p>
+        <p>Wind: ${cw.windspeed.toFixed(1)} km/h</p>
+      `);
+    })
+    .catch(() => {
+      $('#weather-widget').text("Weather service unavailable.");
+    });
+  }
+
+  $(document).ready(function(){
+  getWeather();
+      });
+
+    //... Back to top button code ...
+
+    // --- 5. Back to Top Button ---
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+
+    $('#back-to-top').click(function() {
+        $('html, body').animate({scrollTop: 0}, 800);
+        return false;
+    });
+  });
+  </script>
 </body>
 </html>
