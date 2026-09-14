@@ -391,3 +391,46 @@
   .project__visual--split .outcome { position: static; }
   .outcome { grid-template-columns: 1fr; }
 }
+
+/* --- Layout 05: shots -----------------------------------------------------
+   A large lead screenshot and a strip of detail shots. For work where the
+   artefact is the evidence — show it rather than describe it. */
+.project__visual--shots { display: grid; gap: clamp(0.6rem, 0.4rem + 0.8vw, 1.1rem); }
+
+.shot { margin: 0; }
+
+.shot__img {
+  border: 1px solid var(--rule);
+  border-radius: var(--r-2);
+  transition: border-color var(--dur-3) var(--ease), transform var(--dur-3) var(--ease-out);
+}
+
+.shot--lead .shot__img { aspect-ratio: 16 / 9; }
+
+.project:hover .shot--lead .shot__img { border-color: var(--rule-strong); }
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.6rem, 0.4rem + 0.8vw, 1.1rem);
+}
+
+.shots .shot__img { aspect-ratio: 16 / 10; }
+
+@media (hover: hover) and (pointer: fine) {
+  .shots .shot:hover .shot__img { border-color: var(--accent-line); transform: translateY(-2px); }
+}
+
+.shot__label {
+  padding-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+@media (max-width: 44rem) {
+  .shots { grid-template-columns: 1fr; gap: var(--s-5); }
+  .shot--lead .shot__img { aspect-ratio: 4 / 3; }
+}

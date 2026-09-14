@@ -106,15 +106,17 @@ It is in `content/*.json`. Rebuild. There is no other copy of it.
 Add an object to `items` in `content/projects.json`. The required fields are
 visible on every existing entry. Two of them matter:
 
-- **`layout`** picks the composition. Use one of the four that exist:
-  `covers` (a grid of published artefacts), `scale` (one large number plus
-  detail), `pipeline` (horizontal stages), `split` (two-column argument).
-  Each needs its own data key — `covers`, `detail`, `stages`, `splitPoints`
-  respectively. Copy the shape from the project already using that layout.
+- **`layout`** picks the composition. Use one of the five that exist:
+  `shots` (a large lead screenshot plus a strip of detail shots), `covers` (a
+  grid of published artefacts), `scale` (one large number plus detail),
+  `split` (two-column argument), `pipeline` (horizontal stages — built, unused
+  right now). Each needs its own data key — `lead`+`shots`, `covers`, `detail`,
+  `splitPoints`, `stages` respectively. Copy the shape from a project already
+  using that layout.
 - **`caseStudy: true`** also generates `/work/<slug>/` from `caseStudySections`.
   Set it to `false` and the project appears on the home page only.
 
-To invent a fifth layout, add a `_layout_*` function in
+To invent a sixth layout, add a `_layout_*` function in
 `builder/sections/work.py` and register it in the `LAYOUTS` dict at the bottom.
 
 ### Add a photograph

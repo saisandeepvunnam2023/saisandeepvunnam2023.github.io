@@ -1,10 +1,14 @@
 {
   "_comment": [
-    "Four capabilities, each holding technologies, each technology",
-    "pointing at the work where it was actually used.",
-    "`project` must match a slug in projects.json, or be null.",
-    "Only list things that appear in the resume, the old site, or shipped work.",
-    "The visualisation draws the connections; it does not invent them."
+    "Four capabilities, each holding technologies, each technology pointing at",
+    "the work where it was actually used. `project` must match a slug in",
+    "projects.json, or be null.",
+    "",
+    "SCOPE RULE: everything here is corroborated either by Sai's own résumé files",
+    "or by one of the two shipped projects (NFL Season Hub, CNR Car Zone).",
+    "Deliberately NOT listed, because nothing on file supports them: AEM, Sitecore,",
+    "Drupal, Amplitude, Looker, Jenkins, Docker, Java, AWS Lambda/RDS/DynamoDB.",
+    "Add any you can actually discuss in an interview — one object each."
   ],
 
   "eyebrow": "Capability",
@@ -13,17 +17,31 @@
 
   "capabilities": [
     {
+      "id": "operate",
+      "verb": "OPERATE",
+      "line": "Keeping live sites healthy, and fixing them when they are not.",
+      "nodes": [
+        { "name": "Website management", "use": "Owning customer-facing properties end to end, from release to incident", "project": "nfl-season-hub" },
+        { "name": "Release management", "use": "Shipping updates and campaign launches without taking the site down", "project": "site-programme" },
+        { "name": "Production QA", "use": "Responsive, functional, accessibility, browser and production checks before and after every release", "project": "site-programme" },
+        { "name": "DNS, HTTPS & SSL", "use": "Troubleshooting certificates, domains and redirects when pages stop resolving", "project": null },
+        { "name": "CDN & caching", "use": "Delivery and cache behaviour in front of the origin", "project": null },
+        { "name": "Git & GitHub Actions", "use": "Version control and the CI that builds and deploys — including this site", "project": "nfl-season-hub" },
+        { "name": "Jira & Confluence", "use": "Ticket queues, escalation, and the runbooks other people follow", "project": null }
+      ]
+    },
+    {
       "id": "build",
       "verb": "BUILD",
-      "line": "Interfaces people use without thinking about them.",
+      "line": "Front ends people use without thinking about them.",
       "nodes": [
-        { "name": "JavaScript", "use": "Interaction and front-end logic — including the skills map you are reading now", "project": null },
+        { "name": "React", "use": "Component-driven interfaces — React 19 on the NFL Season Hub", "project": "nfl-season-hub" },
+        { "name": "Next.js", "use": "Server-rendered application work — Next.js 15 on CNR Car Zone", "project": "cnr-car-zone" },
+        { "name": "TypeScript", "use": "Typed front-end code across both shipped applications", "project": "nfl-season-hub" },
+        { "name": "JavaScript", "use": "Interaction and front-end logic, including everything on this page", "project": null },
         { "name": "HTML & CSS", "use": "Semantic structure and layout systems — the part that decides whether a site is accessible", "project": "ud-magazine" },
-        { "name": "React", "use": "Component-driven front-end work", "project": null },
-        { "name": "Angular", "use": "Component-driven front-end work", "project": null },
-        { "name": "PHP", "use": "WordPress themes and plugins, and campus microsites", "project": "site-programme" },
-        { "name": "Accessibility (WCAG AA)", "use": "Contrast, focus order, document outline, enforced alt text", "project": "ud-magazine" },
-        { "name": "Figma", "use": "Wireframes and annotated prototypes, handed off to my own builds", "project": "site-programme" }
+        { "name": "Responsive & accessible UI", "use": "Mobile-first builds checked to WCAG AA before launch", "project": "ud-magazine" },
+        { "name": "Figma", "use": "Wireframes and prototypes, handed off to my own builds", "project": "site-programme" }
       ]
     },
     {
@@ -32,38 +50,26 @@
       "line": "Systems that let non-engineers ship without breaking things.",
       "nodes": [
         { "name": "Cascade CMS", "use": "Templates, structured data definitions and editorial workflows at university scale", "project": "ud-magazine" },
-        { "name": "WordPress", "use": "Custom themes and plugins, caching, SEO", "project": "site-programme" },
-        { "name": "Template architecture", "use": "Component-like consistency inside a CMS that has no components", "project": "ud-magazine" },
-        { "name": "Release QA", "use": "Responsive, functional, accessibility, browser and production checks before and after every release", "project": "site-programme" },
+        { "name": "WordPress", "use": "Custom themes and plugins, caching and SEO across departmental sites", "project": "site-programme" },
         { "name": "HubSpot", "use": "Lead capture and campaign tracking on microsites", "project": null },
-        { "name": "SEO & structured data", "use": "Schema markup and discoverability work", "project": "site-programme" }
+        { "name": "Template architecture", "use": "Component-like consistency inside a CMS that has no components", "project": "ud-magazine" },
+        { "name": "Content governance", "use": "Who may change what, and what has to be true before it goes live", "project": "site-programme" },
+        { "name": "Supabase & Postgres", "use": "Application data and auth behind CNR Car Zone", "project": "cnr-car-zone" },
+        { "name": "MySQL", "use": "Query writing and performance tuning on institutional databases", "project": null }
       ]
     },
     {
-      "id": "automate",
-      "verb": "AUTOMATE",
-      "line": "The boring half of the work, done once and then never again.",
+      "id": "measure",
+      "verb": "MEASURE",
+      "line": "Knowing whether the thing you shipped actually worked.",
       "nodes": [
-        { "name": "Python", "use": "Image pipelines, archive triage, and the static generator that built this site", "project": "image-pipeline" },
-        { "name": "OpenCV", "use": "Exposure normalisation, HDR tone mapping, content-aware crop", "project": "image-pipeline" },
-        { "name": "NumPy", "use": "The array work underneath the pipeline", "project": "image-pipeline" },
-        { "name": "MySQL", "use": "Query writing and performance tuning on institutional databases", "project": null },
+        { "name": "Technical SEO", "use": "Crawlability, metadata, schema markup and redirect strategy", "project": "site-programme" },
         { "name": "Google Analytics 4", "use": "Measuring whether a content decision actually worked", "project": "site-programme" },
+        { "name": "Core Web Vitals", "use": "Page speed and layout stability as a release gate — 100 Lighthouse on the NFL hub", "project": "nfl-season-hub" },
         { "name": "Qualtrics", "use": "Feedback instrumentation embedded in CMS pages", "project": "site-programme" },
-        { "name": "Apache Spark", "use": "Data processing", "project": null }
-      ]
-    },
-    {
-      "id": "see",
-      "verb": "SEE",
-      "line": "Teaching software to look at images, and looking at them myself.",
-      "nodes": [
-        { "name": "TensorFlow", "use": "Image classification for archive relevance scoring", "project": "archive-triage" },
-        { "name": "Computer vision", "use": "Layout analysis, text density, visual freshness across 2,500+ pages", "project": "archive-triage" },
-        { "name": "ONNX → CoreML", "use": "Converting a trained model to run on-device in an iOS preview app", "project": null },
-        { "name": "CUDA & OpenCL", "use": "GPU-accelerated diagnostic and monitoring tooling", "project": null },
-        { "name": "Photography", "use": "Two years of campus work — published in the magazine and on official channels", "project": null },
-        { "name": "Adobe Creative Cloud", "use": "Lightroom, Photoshop, Premiere Pro, After Effects", "project": null }
+        { "name": "Python", "use": "Data pipelines and image automation — polars for the NFL play-by-play parse", "project": "nfl-season-hub" },
+        { "name": "OpenCV", "use": "Exposure normalisation, HDR tone mapping and content-aware crop on campus photography", "project": null },
+        { "name": "Photography", "use": "Two years of campus work — published in the magazine and on official channels", "project": null }
       ]
     }
   ]

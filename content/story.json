@@ -66,11 +66,11 @@
     "sectionTitle": "How I got here",
     "portraitAlt": "Portrait of Sai Sandeep Vunnam",
     "paragraphs": [
-      "I am a software engineer with a master's in computer science from the University of Dayton. Most of my work has been in the unglamorous middle of the web: content systems, publishing pipelines, and the templates that a few hundred people use without ever knowing someone designed them.",
-      "The way I think about it is narrowing. A university has thousands of pages, a hundred stakeholders and no shared system — that is noise. The job is to find the small set of decisions that make the rest fall into place: one issue template instead of seven hand-built magazines, one pipeline instead of one photographer editing every frame by hand, one ranked list instead of 2,500 pages nobody has time to open.",
-      "So what I build is mostly leverage. Not features — the thing underneath the features that means the next hundred pages cost almost nothing.",
-      "Photography is where that instinct came from, and it is still where I practise it. You cannot include everything; a frame is defined entirely by what you refuse to put in it. Two years of shooting a campus taught me to wait longer than feels comfortable, to commit to one reading of a scene, and to accept that a technically perfect frame of the wrong moment is worthless. Every one of those is an engineering lesson I use more than I use any framework.",
-      "What I want next is harder inputs. Systems where the data is messy and the correct answer is genuinely arguable — recommendation, ranking, anything where software has to make a call and then justify it to a person who is accountable for the outcome. The archive triage project was the first taste of that, and it is the one I would most like to do again properly."
+      "I am a web operations and full-stack engineer with a master's in computer science from the University of Dayton. I own websites end to end: building the front end, publishing through the CMS, and keeping the thing healthy once real people are using it.",
+      "Most engineers want the build and not the operations. I find the operations more interesting, because that is where you learn what you actually shipped — which pages nobody can find, which release broke a redirect, which template an editor quietly works around every week.",
+      "So what I build is mostly leverage. One issue template instead of seven hand-built magazines. One governed publishing path instead of a hundred departments improvising. One precomputed artefact instead of shipping a browser 273,000 rows.",
+      "Photography is where that instinct came from, and it is still where I practise it. You cannot include everything; a frame is defined entirely by what you refuse to put in it. Two years of shooting a campus taught me to wait longer than feels comfortable and to accept that a technically perfect frame of the wrong moment is worthless.",
+      "What I want next is more of the hard half — production ownership of something large, where the questions are about traffic, reliability and what to do at 2am, not just what the component tree looks like."
     ]
   },
   "playground": {
@@ -81,8 +81,15 @@
       {
         "title": "Skills readout",
         "year": "2026",
-        "tech": "SVG + JS",
-        "text": "The skills matrix further down. Every entry carries what I use it for and which project it appears in, and all of it is in the HTML — the readout only changes where a pointer user sees it. On a phone, or with JavaScript off, it renders as a plain list with nothing missing.",
+        "tech": "Vanilla JS",
+        "text": "The skills matrix further up. Every entry carries what I use it for and which project it appears in, and all of it is in the HTML — the readout only changes where a pointer user sees it. On a phone, or with JavaScript off, it renders as a plain list with nothing missing.",
+        "status": "live"
+      },
+      {
+        "title": "This site's build",
+        "year": "2026",
+        "tech": "Python · stdlib",
+        "text": "No framework and no npm. Content lives in JSON, a 400-line Python generator turns it into flat HTML, and a checker fails the deploy on a dead link, a broken heading outline or a missing alt attribute. Fast because there is nothing in it.",
         "status": "live"
       },
       {
@@ -90,13 +97,6 @@
         "year": "2025",
         "tech": "ONNX · CoreML",
         "text": "Converted a trained engagement model to ONNX and into a CoreML-powered iOS preview app, so a draft post could be scored on-device before publishing rather than round-tripping to a server.",
-        "status": "archived"
-      },
-      {
-        "title": "Classical CV, by hand",
-        "year": "2024",
-        "tech": "MATLAB",
-        "text": "Graduate computer vision work implementing detection and feature analysis from first principles instead of calling a library. Slow, and the reason the OpenCV pipeline later made sense to me.",
         "status": "archived"
       }
     ],

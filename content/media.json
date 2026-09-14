@@ -17,7 +17,6 @@
       "role": "portrait",
       "src": "/Users/saisandeep/Desktop/sandeep-portfolio/static/media/_headshot-src.jpeg"
     },
-
     {
       "id": "ph-corridor",
       "role": "gallery",
@@ -53,7 +52,6 @@
       "role": "gallery",
       "src": "/Users/saisandeep/Desktop/portfolio /IMG_7851.JPG"
     },
-
     {
       "id": "mag-summer-2025",
       "role": "cover",
@@ -88,6 +86,26 @@
       "id": "mag-winter-2023-24",
       "role": "cover",
       "src": "/Users/saisandeep/Desktop/port/winter2023-24.jpg"
+    },
+    {
+      "id": "nfl-league",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/nfl projcts/cropped/nfl-league.png"
+    },
+    {
+      "id": "nfl-replay",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/nfl projcts/cropped/nfl-replay.png"
+    },
+    {
+      "id": "nfl-stats",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/nfl projcts/cropped/nfl-stats.png"
+    },
+    {
+      "id": "nfl-roster",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/nfl projcts/cropped/nfl-roster.png"
     }
   ]
 }

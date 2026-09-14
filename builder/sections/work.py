@@ -151,7 +151,38 @@ def _layout_split(p: dict, base: str) -> str:
     </div>"""
 
 
+def _layout_shots(p: dict, base: str) -> str:
+    """A large lead screenshot, then a strip of detail shots beneath it.
+
+    For work whose evidence is the artefact itself — you show the thing rather
+    than describing it.
+    """
+    lead = p["lead"]
+    strip = join(
+        f'<figure class="shot" style="--i:{i}">'
+        + picture(
+            s["id"],
+            s["alt"],
+            sizes="(max-width:700px) 92vw, 30vw",
+            cls="shot__img",
+        )
+        + f'<figcaption class="shot__label">{esc(s["label"])}</figcaption>'
+        f"</figure>"
+        for i, s in enumerate(p.get("shots", []))
+    )
+
+    return f"""
+    <div class="project__visual project__visual--shots">
+      <figure class="shot shot--lead">
+        {picture(lead["id"], lead["alt"], sizes="(max-width:700px) 92vw, 92vw", cls="shot__img")}
+      </figure>
+      <div class="shots">{strip}</div>
+    </div>
+    {_outcome(p)}"""
+
+
 LAYOUTS = {
+    "shots": _layout_shots,
     "covers": _layout_covers,
     "scale": _layout_scale,
     "pipeline": _layout_pipeline,

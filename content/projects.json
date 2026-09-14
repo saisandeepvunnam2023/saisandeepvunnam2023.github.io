@@ -1,12 +1,19 @@
 {
   "_comment": [
     "Featured work. Each project renders in the layout named by `layout`:",
-    "  covers     — a grid of published artefacts (project 01)",
-    "  scale      — a large number + evidence strip (project 02)",
-    "  pipeline   — a horizontal stage diagram (project 03)",
-    "  split      — a two-column architecture explanation (project 04)",
+    "  shots      — a large lead screenshot plus a strip of detail shots",
+    "  covers     — a grid of published artefacts",
+    "  scale      — a large number + evidence strip",
+    "  split      — a two-column architecture explanation",
+    "  pipeline   — a horizontal stage diagram (available, unused right now)",
     "Adding a project = adding an object here. Give it an existing `layout`.",
-    "If `caseStudy` is true the build also emits work/<slug>/index.html."
+    "If `caseStudy` is true the build also emits work/<slug>/index.html.",
+    "",
+    "SEE CONTENT-NOTES.md. The NFL Season Hub and CNR Car Zone entries were",
+    "added on Sai's statement that they are his work. Their figures describe the",
+    "live artefacts and are checkable; the reasoning sections a recruiter will",
+    "actually read are marked TODO, because only Sai knows why he built them",
+    "the way he did."
   ],
 
   "eyebrow": "Selected work",
@@ -14,15 +21,95 @@
 
   "items": [
     {
-      "slug": "ud-magazine",
+      "slug": "nfl-season-hub",
       "index": "01",
+      "layout": "shots",
+      "caseStudy": true,
+      "title": "NFL Season Hub",
+      "kicker": "Six seasons, drillable to a single play",
+      "problem": "Football data exists in enormous, unfriendly tables. Finding the moment a game actually turned means reading a spreadsheet with 273,000 rows in it.",
+      "built": "A React and TypeScript application over six seasons of play-by-play data — league standings down to any team, any game, and a scrubbable replay of how that game's win probability actually moved.",
+      "role": "Sole engineer",
+      "year": "2026",
+      "category": "Front-end engineering / data",
+      "stack": ["React 19", "TypeScript", "Vite", "Python", "polars", "Vitest", "Playwright", "GitHub Actions", "Vercel"],
+      "outcome": "1,693 games and 273,325 plays served at 6.8 KB per game, with a 100 Lighthouse performance score.",
+      "outcomeMetric": { "value": "6.8", "unit": "KB", "caption": "per game, 273,325 plays parsed" },
+      "links": [
+        { "label": "Open the live app", "href": "https://nfl-season-hub.vercel.app", "primary": true }
+      ],
+      "lead": {
+        "id": "nfl-league",
+        "alt": "NFL Season Hub league view showing all 32 team cards with last-season records and projected wins"
+      },
+      "shots": [
+        { "id": "nfl-replay", "label": "Win-probability replay", "alt": "A single game view with a scrubbable win probability chart and the play-by-play text beneath it" },
+        { "id": "nfl-stats", "label": "Team stats", "alt": "Team offence and defence panels showing EPA per play, points per game, success rate and explosive rate" },
+        { "id": "nfl-roster", "label": "Roster & depth chart", "alt": "Team roster grouped by position with ages, colleges and depth chart ordering" }
+      ],
+      "caseStudySections": [
+        {
+          "n": "01",
+          "title": "Context",
+          "body": [
+            "Play-by-play data for the NFL is public and enormous. Six seasons is 1,693 games and 273,325 individual plays, published as flat files that answer every question badly — you can compute anything from them and see nothing.",
+            "The interesting questions are ordinary ones. How good was this team, really. What happened in this game. At what moment did it stop being close. None of those are answerable by scrolling a table."
+          ]
+        },
+        {
+          "n": "02",
+          "title": "Challenge",
+          "body": [
+            "The data is far too large to hand to a browser. Six seasons of plays is hundreds of megabytes; a web application that downloads that is not a web application.",
+            "But the product only works if you can drill all the way down — league, to team, to game, to a single play — without a loading state at every step. So the constraint was full depth of detail at a page weight that behaves like a static site."
+          ],
+          "callout": "Every interesting question needed the whole dataset. No interesting answer needed more than a few kilobytes."
+        },
+        {
+          "n": "03",
+          "title": "Approach",
+          "body": [
+            "TODO — write this one yourself. What was the shape of the decision? Precomputing per-game artefacts at build time rather than querying at runtime, presumably — but say why you chose that over an API, and what you gave up. This is the section an engineer interviewing you will read first."
+          ]
+        },
+        {
+          "n": "05",
+          "title": "Engineering",
+          "body": [
+            "Python with polars does the heavy parse: 273,325 plays reduced ahead of time into per-game artefacts small enough to ship, so the browser never sees the raw dataset.",
+            "React 19 and TypeScript on the front end, built with Vite. The win-probability replay is a scrubbable timeline over a single game's plays — the one view where the underlying per-play data is genuinely needed, and the reason the per-game payload has to stay tight.",
+            "Vitest for unit coverage and Playwright for browser-level tests, both run in GitHub Actions on every push, deploying to Vercel.",
+            "The result holds a 100 Lighthouse performance score, which is the practical proof that the precompute decision was the right one."
+          ]
+        },
+        {
+          "n": "06",
+          "title": "Result",
+          "body": [
+            "Six seasons browsable end to end — 1,693 games — at 6.8 KB of data per game.",
+            "A full Lighthouse performance score on a data-heavy application, which is not where data-heavy applications usually land."
+          ]
+        },
+        {
+          "n": "07",
+          "title": "Reflection",
+          "body": [
+            "TODO — what would you rebuild? Be specific and be honest; 'what I would do differently' is the question that separates people who shipped something from people who describe having shipped something. If the precompute step is slow, or the replay drops frames on a phone, or the test coverage is thinner than you would like, say so here."
+          ]
+        }
+      ]
+    },
+
+    {
+      "slug": "ud-magazine",
+      "index": "02",
       "layout": "covers",
       "caseStudy": true,
       "title": "University of Dayton Magazine",
       "kicker": "Seven issues, one template",
       "problem": "A university magazine publishing on a CMS with no component model, where every new issue quietly drifted away from the last one.",
       "built": "The content architecture, the issue template and the publishing path behind seven consecutive issues — plus most of the photography inside them.",
-      "role": "Web Content & Application Developer",
+      "role": "Web Content & Digital Experience Analyst",
       "year": "2023 — 2025",
       "category": "Content infrastructure",
       "stack": ["Cascade CMS", "HTML", "CSS", "JavaScript", "GA4", "WCAG AA"],
@@ -107,203 +194,53 @@
 
     {
       "slug": "site-programme",
-      "index": "02",
+      "index": "03",
       "layout": "scale",
       "caseStudy": false,
       "title": "The academic site programme",
       "kicker": "One system, a whole university",
       "problem": "Departments across the university each needed a site. Left alone, that produces a hundred inconsistent, inaccessible, unmaintained websites.",
       "built": "The shared templates, content workflows and release QA that the sites were built and published through, working inside an eight-person team.",
-      "role": "Web Content & Application Developer",
+      "role": "Web Content & Digital Experience Analyst",
       "year": "2023 — 2025",
-      "category": "Web systems at scale",
+      "category": "Web operations at scale",
       "stack": ["Cascade CMS", "WordPress", "PHP", "HTML", "CSS", "JavaScript", "Figma", "GA4", "Qualtrics"],
       "outcome": "175+ academic and magazine sites shipped, with responsive, accessibility, cross-browser and production QA run before and after every release.",
       "outcomeMetric": { "value": "175+", "unit": "sites", "caption": "built and launched" },
       "detail": [
         { "label": "Templating", "text": "Pre-defined Cascade templates and custom WordPress themes and plugins, so a new department site starts from a known-good baseline instead of a blank page." },
-        { "label": "Design handoff", "text": "Figma wireframes and annotated prototypes handed off to responsive HTML/CSS/JS builds — I worked both sides of that handoff." },
+        { "label": "Governance", "text": "Who may change what, and what has to be true before a page goes live — the part that stops a hundred sites drifting apart." },
         { "label": "Quality gate", "text": "Responsive, functional, accessibility, browser and production QA performed before and after each release." },
+        { "label": "Technical SEO", "text": "Metadata, schema markup and redirect strategy applied across the estate rather than page by page." },
         { "label": "Measurement", "text": "GA4 and Qualtrics wired into pages so content decisions were made against real engagement data rather than opinion." }
       ],
       "links": []
     },
 
     {
-      "slug": "image-pipeline",
-      "index": "03",
-      "layout": "pipeline",
-      "caseStudy": true,
-      "title": "The image pipeline",
-      "kicker": "Python and OpenCV, doing the boring half",
-      "problem": "Every campus photograph was hand-corrected before publishing — exposure, colour, crop, resize — once per image, per person, forever.",
-      "built": "A Python and OpenCV pipeline that normalises exposure and colour, tone-maps bracketed exposures, crops content-aware to each required ratio, and emits the responsive sizes the CMS needs.",
-      "role": "Sole author",
-      "year": "2024 — 2025",
-      "category": "Automation / computer vision",
-      "stack": ["Python", "OpenCV", "NumPy", "Cascade CMS"],
-      "outcome": "Cut manual editing time by roughly 40% and made the look of campus photography consistent across cameras, photographers and lighting conditions.",
-      "outcomeMetric": { "value": "~40%", "unit": "less", "caption": "manual editing time" },
-      "stages": [
-        { "n": "1", "title": "Ingest", "text": "Read the shoot, normalise colour space, strip what should not be published." },
-        { "n": "2", "title": "Normalise", "text": "Exposure and white-balance correction so a gym, a snowstorm and a lecture hall end up in the same tonal family." },
-        { "n": "3", "title": "Tone-map", "text": "HDR tone mapping on bracketed sets — hold the highlight in a window without crushing the room." },
-        { "n": "4", "title": "Frame", "text": "Content-aware crop to every ratio the template needs, anchored so subjects survive the crop." },
-        { "n": "5", "title": "Emit", "text": "Dynamic resizing into the responsive ladder, named and shaped for the CMS to pick up." }
-      ],
-      "links": [],
-      "caseStudySections": [
-        {
-          "n": "01",
-          "title": "Context",
-          "body": [
-            "A university publishes a great deal of photography: events, campus, sport, portraits, seasons. It arrives from several cameras, several photographers and wildly inconsistent light — a February snowstorm at noon and a basketball arena at night are not the same photographic problem.",
-            "Before it can go on a page, each frame gets corrected, cropped to whatever ratios the layout needs, and exported at several sizes. Done by hand, that is a few minutes per image. Multiply by an event shoot."
-          ]
-        },
-        {
-          "n": "02",
-          "title": "Challenge",
-          "body": [
-            "Three things made this harder than a batch-resize script.",
-            "First, correction is not a single transform. The right exposure adjustment for an arena is wrong for a snow scene; a fixed curve makes half the library worse.",
-            "Second, cropping is where naive automation fails most visibly. A centre crop to a 21:9 banner reliably removes people's heads. A crop is only acceptable if it knows where the subject is.",
-            "Third, the output had to drop into an existing CMS convention. A pipeline that produces beautiful files the publishing system cannot find is not a pipeline."
-          ],
-          "callout": "Automation that is right 90% of the time is worse than no automation, because someone now has to check 100% of it to find the 10%."
-        },
-        {
-          "n": "03",
-          "title": "Approach",
-          "body": [
-            "I split correction from framing, and made both measurable rather than aesthetic.",
-            "Correction works off the image's own histogram: normalise exposure and white balance toward a target the whole library shares, so consistency is a property of the pipeline rather than of the photographer's mood that afternoon. Bracketed sets go through HDR tone mapping instead of being flattened.",
-            "Framing is content-aware. The crop window is chosen from where the visual content actually is, not from the geometric centre, then anchored so that the subject survives every ratio the template asks for.",
-            "And the pipeline is not permitted to be the last word. It writes derivatives alongside the original and never over it, so a bad automated decision costs one re-run, not one photograph."
-          ]
-        },
-        {
-          "n": "04",
-          "title": "Architecture",
-          "diagram": "pipeline",
-          "body": [
-            "Every stage is independent and re-runnable. Originals are immutable; everything downstream is a derivative that can be thrown away and regenerated."
-          ]
-        },
-        {
-          "n": "05",
-          "title": "Engineering",
-          "body": [
-            "Python and OpenCV throughout, with NumPy doing the array work — histogram analysis for exposure and white-balance normalisation, tone mapping for bracketed exposures, and content-aware crop-window selection for framing.",
-            "Dynamic resizing produces the responsive ladder in one pass rather than per-size re-decoding, which is where a naive implementation spends most of its time.",
-            "Output naming follows the CMS convention exactly, so publishing needs no manual step between the pipeline and the page.",
-            "The same discipline runs this portfolio: optimize_images.py in this repository is the small, public descendant of that pipeline."
-          ]
-        },
-        {
-          "n": "06",
-          "title": "Result",
-          "body": [
-            "Manual editing time fell by roughly 40%.",
-            "The less measurable result mattered more: campus photography started to look like it came from one publication instead of eleven different afternoons."
-          ]
-        },
-        {
-          "n": "07",
-          "title": "Reflection",
-          "body": [
-            "The content-aware crop is the part I would rebuild. It reasons about visual content generally; it should reason about people specifically, because people are what the crop destroys. A face and body detector gating the crop window would remove nearly every remaining failure case.",
-            "I would also keep a rejection log. I know how much time the pipeline saved. I do not know which images humans overrode afterwards, and that log is exactly the training signal needed to make the next version better."
-          ]
-        }
-      ]
-    },
-
-    {
-      "slug": "archive-triage",
+      "slug": "cnr-car-zone",
       "index": "04",
       "layout": "split",
-      "caseStudy": true,
-      "title": "Archive triage",
-      "kicker": "Deciding what to delete, and proving it",
-      "problem": "Over 2,500 digital magazine pages had accumulated across years of publishing, and nobody could say which of them were still worth keeping.",
-      "built": "A computer-vision and analytics pipeline that scored every page for relevance — layout, text density, visual freshness, real usage — and produced a ranked retirement list with a full audit trail behind every recommendation.",
-      "role": "Sole author",
-      "year": "2024 — 2025",
-      "category": "Decision systems / computer vision",
-      "stack": ["Python", "OpenCV", "TensorFlow", "Analytics", "Excel reporting"],
-      "outcome": "1,600+ obsolete pages and assets retired under university archival policy, every removal documented and reviewable.",
-      "outcomeMetric": { "value": "2,500+", "unit": "pages", "caption": "evaluated, 1,600+ retired" },
+      "caseStudy": false,
+      "title": "CNR Car Zone",
+      "kicker": "The whole business, on a phone",
+      "problem": "A pre-owned vehicle business tracked every car from first phone call to ready-for-sale across notebooks, messages and memory. Nothing could be searched and nothing could be audited.",
+      "built": "A mobile-first operations platform covering the full path — enquiry, conversion to inventory, document checklist, photo pipeline, and exports with an audit trail behind them.",
+      "role": "Sole engineer, designer and product owner",
+      "year": "2026",
+      "category": "Product / full-stack",
+      "stack": ["Next.js 15", "Supabase", "Postgres", "TypeScript"],
+      "outcome": "TODO — what changed for the business once it was running? Time per vehicle, cars tracked, mistakes avoided. One honest sentence beats a metric you cannot defend.",
+      "outcomeMetric": { "value": "18", "unit": "checks", "caption": "per vehicle, 22 photo categories" },
       "splitPoints": [
-        { "label": "Signal 1 — Layout", "text": "Page structure, analysed visually. Old templates look old; that is a measurable property of the rendered page, not a guess." },
-        { "label": "Signal 2 — Text density", "text": "How much substance the page actually carries, distinguishing a real article from an orphaned index or a stub." },
-        { "label": "Signal 3 — Visual freshness", "text": "Image classification across the page's media, flagging redundant, superseded or low-utility photographs." },
-        { "label": "Signal 4 — Usage", "text": "Real traffic and usage metrics, because a visually dated page that people still read is not obsolete." },
-        { "label": "The gate", "text": "Nothing was deleted by the pipeline. It ranked and recommended; a human approved. Deletion under archival policy is irreversible, so the system was built to never be the last word." },
-        { "label": "The record", "text": "Every processing step and content action written to structured audit reports, so any individual removal could be explained months later to the people accountable for the archive." }
+        { "label": "Operations dashboard", "text": "Global search across every vehicle and enquiry, because the first question is always 'where is that car' and it used to take a phone call to answer." },
+        { "label": "Opportunity → inventory", "text": "The conversion step from enquiry to a tracked vehicle, which is the moment the business actually commits money." },
+        { "label": "Document checklist", "text": "Eighteen items per vehicle. A car that is missing one of them cannot be sold, and before this nobody found out until a buyer was standing there." },
+        { "label": "Photo pipeline", "text": "Twenty-two categories per vehicle, so listings are complete and comparable rather than whatever someone happened to shoot." },
+        { "label": "Exports and audit trail", "text": "CSV exports with a record of who changed what and when — the difference between a tool a business uses and a tool a business trusts." },
+        { "label": "Mobile-first, deliberately", "text": "The people using it are standing next to a car in a yard, not sitting at a desk. That decided the entire interface." }
       ],
-      "links": [],
-      "caseStudySections": [
-        {
-          "n": "01",
-          "title": "Context",
-          "body": [
-            "Years of magazine publishing leaves sediment. Over 2,500 digital pages had accumulated — feature articles, department pages, issue indexes, orphaned drafts, and a great deal of photography attached to all of it.",
-            "Some of it was still read. Some of it had not been visited in years. Nobody could tell you which was which without opening pages one at a time, and nobody had time to open 2,500 pages."
-          ]
-        },
-        {
-          "n": "02",
-          "title": "Challenge",
-          "body": [
-            "'Obsolete' is not a property you can read off a page. It is a judgement combining how the page looks, what it contains, and whether anyone wants it — three signals that live in three different places.",
-            "And the stakes were asymmetric. Under university archival policy, removal is irreversible. A false positive destroys something a person is accountable for; a false negative costs a few kilobytes. Those are not remotely equal errors, and the system had to be designed around that asymmetry rather than around accuracy."
-          ],
-          "callout": "When one kind of mistake is permanent and the other is cheap, the correct system is not the most accurate one. It is the one that refuses to act alone."
-        },
-        {
-          "n": "03",
-          "title": "Approach",
-          "body": [
-            "I made the pipeline an advisor, never an actor. It reads, scores, ranks and explains. A human decides.",
-            "Relevance was scored from four independent signals — page layout, text density, visual freshness of the attached media, and actual usage — precisely so that no single weak signal could condemn a page on its own. A dated-looking page that people still read scores as keep. That is the case the whole design exists to protect.",
-            "Everything the pipeline did was written down as it happened, not reconstructed afterwards."
-          ]
-        },
-        {
-          "n": "04",
-          "title": "Architecture",
-          "diagram": "triage",
-          "body": [
-            "Four signals in, one ranked recommendation out, a human gate before anything is touched, and an audit record written at every step."
-          ]
-        },
-        {
-          "n": "05",
-          "title": "Engineering",
-          "body": [
-            "OpenCV and TensorFlow for the visual side: scanning rendered pages to analyse layout structure and text density, and image classification across the attached media to detect redundant or superseded photographs.",
-            "Usage metrics joined against the visual scores, so the ranking reflected both what a page was and whether anyone wanted it.",
-            "Structured audit reporting as a first-class output rather than an afterthought — every processing step and every content action logged, and progress reported to department heads in a form they could actually review."
-          ]
-        },
-        {
-          "n": "06",
-          "title": "Result",
-          "body": [
-            "More than 1,600 obsolete magazines, pages and assets were retired, each one traceable to the evidence that justified it.",
-            "The archive got smaller and the parts people actually use got easier to find. Nothing was lost that anyone came looking for."
-          ]
-        },
-        {
-          "n": "07",
-          "title": "Reflection",
-          "body": [
-            "The scoring weights were set by judgement and tuned by inspection. With the review decisions captured as labels, the weights should have been learned from the humans overriding them — the review queue was a training set and I used it as a spreadsheet.",
-            "I would also have made the recommendations reversible for a fixed window rather than routing straight to permanent deletion. A thirty-day quarantine would have turned the most expensive possible error into an inconvenience, and would have let the system act far more confidently."
-          ]
-        }
-      ]
+      "links": []
     }
   ]
 }
