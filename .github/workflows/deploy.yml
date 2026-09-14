@@ -39,13 +39,12 @@ jobs:
       - name: Check output
         run: python3 check.py
 
-      # enablement: true asks GitHub to switch the Pages source to Actions
-      # itself, so this repo does not need the manual Settings -> Pages click.
-      # If your account policy blocks that, this step fails and you set it by
-      # hand once: Settings -> Pages -> Source -> GitHub Actions.
+      # Pages must already be set to the "GitHub Actions" source for this to
+      # work: Settings -> Pages -> Source -> GitHub Actions. That is a one-time
+      # click. (Doing it from here with `enablement: true` is possible in
+      # principle but fails on accounts without the permission, which takes the
+      # whole build down with it.)
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
