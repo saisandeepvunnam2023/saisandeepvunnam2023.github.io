@@ -1,0 +1,313 @@
+/* ==========================================================================
+   Hero.
+
+   The photograph sits behind everything at four resolutions at once; the type
+   sits in front of it and is never obscured. That order matters: the signature
+   interaction is allowed to be clever, the name is not allowed to be hidden.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-block: clamp(6rem, 5rem + 4vw, 9rem) clamp(2.5rem, 2rem + 2vw, 4rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* --- Stage --------------------------------------------------------------- */
+.hero__stage {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero__fallback,
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__fallback-img { height: 100%; aspect-ratio: auto; }
+.hero__fallback-img img { filter: saturate(0.55) contrast(1.05) brightness(0.62); }
+
+/* Once the canvas takes over it paints the photograph itself, so the static
+   fallback underneath is redundant and only costs compositing. */
+.hero__canvas { opacity: 0; transition: opacity var(--dur-4) var(--ease); }
+.hero__canvas.is-live { opacity: 1; }
+.hero.has-canvas .hero__fallback { opacity: 0; transition: opacity var(--dur-4) var(--ease); }
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(100deg, var(--bg) 6%, color-mix(in srgb, var(--bg) 72%, transparent) 42%, transparent 78%),
+    linear-gradient(to top, var(--bg) 2%, transparent 42%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--bg-deep) 70%, transparent), transparent 26%);
+}
+
+.hero__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* --- Inner grid ----------------------------------------------------------
+   Stacked on a phone; name and positioning side by side from tablet up. Stacked
+   at every width would push the call to action below the fold on any laptop
+   with a short viewport, which is exactly the wrong thing to lose. */
+.hero__inner {
+  position: relative;
+  display: grid;
+  flex: 1;
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  grid-template-areas: 'top' 'name' 'body' 'foot';
+  grid-template-rows: auto 1fr auto auto;
+}
+
+.hero__top  { grid-area: top; }
+.hero__name { grid-area: name; }
+.hero__body { grid-area: body; }
+.hero__foot { grid-area: foot; }
+
+@media (min-width: 64rem) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 33rem);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'top  top'
+      'name body'
+      'foot foot';
+    column-gap: clamp(2rem, 1rem + 3vw, 4.5rem);
+    align-items: end;
+  }
+}
+
+.hero__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+}
+
+.hero__top-right {
+  display: grid;
+  justify-items: end;
+  gap: var(--s-3);
+  text-align: right;
+}
+
+/* --- Status --------------------------------------------------------------
+   Location and availability, above the name. It is the second thing a
+   recruiter needs and it costs one line. */
+.hero__status {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.2em 0.55em;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+/* The status wraps to two lines on a phone. Pin the dot to the first line
+   rather than letting it float in the vertical centre of the block. */
+.hero__status > span:not(.hero__status-dot) { white-space: nowrap; }
+
+.hero__status-dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  margin-top: 0.45em;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-line);
+  animation: pulse 2.8s var(--ease-in-out) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-line); }
+  55%      { box-shadow: 0 0 0 5px transparent; }
+}
+
+.hero__status-open { color: var(--fg); }
+.hero__status-sep { color: var(--fg-faint); }
+
+.hero__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  transition: opacity var(--dur-3) var(--ease);
+}
+
+.hero__hint.is-done { opacity: 0; }
+
+.hero__hint-pointer {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--accent-line);
+  border-radius: 50%;
+  position: relative;
+}
+.hero__hint-pointer::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --- Name ---------------------------------------------------------------- */
+.hero__name {
+  font-size: clamp(2.9rem, 0.6rem + 8.4vw, 8.2rem);
+  align-self: end;
+}
+
+/* Visible by default, always. The entrance is added on top of a readable
+   state, never used to produce one — if the animation never runs, for any
+   reason at all, the name is still on the screen. */
+.hero__name-line { display: block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__name-line {
+    animation: rise var(--dur-4) var(--ease-out) both;
+    animation-delay: calc(80ms + var(--i) * 90ms);
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translate3d(0, 0.22em, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --- Body ---------------------------------------------------------------- */
+.hero__body {
+  display: grid;
+  gap: clamp(1.2rem, 0.8rem + 1.4vw, 2.2rem);
+  align-self: end;
+}
+
+.hero__role {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35em 0.9em;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule-strong);
+}
+
+.hero__role-main {
+  font-size: var(--step-1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.hero__role-sub {
+  color: var(--fg-dim);
+  font-size: var(--step-0);
+}
+
+.hero__statement {
+  font-size: clamp(1.25rem, 0.9rem + 1.5vw, 2.15rem);
+  font-weight: 500;
+  font-stretch: 88%;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.hero__statement-line { display: block; }
+.hero__statement-line:last-child { color: var(--accent); }
+
+.hero__positioning {
+  max-width: 54ch;
+  color: var(--fg-dim);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* --- Foot ---------------------------------------------------------------- */
+.hero__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-6);
+  margin-top: auto;
+  padding-top: var(--s-5);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.hero__socials { display: flex; gap: var(--s-5); }
+
+.hero__social {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
+}
+.hero__social:hover { color: var(--fg); border-bottom-color: var(--accent); }
+
+/* --- Photo credit -------------------------------------------------------- */
+.hero__caption {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-3);
+  max-width: 34ch;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--fg-faint);
+  text-align: right;
+}
+
+.hero__caption-rule { width: var(--s-6); height: 1px; background: var(--rule-strong); flex: none; }
+
+@media (min-width: 64rem) {
+  .hero__caption { display: flex; }
+}
+
+/* --- Mobile -------------------------------------------------------------- */
+@media (max-width: 56rem) {
+  .hero { min-height: auto; padding-block: 6.25rem 3rem; }
+  .hero__inner { gap: 1.15rem; }
+  .hero__positioning { font-size: var(--step--1); }
+  .hero__name { margin-block: var(--s-6) var(--s-5); }
+  .hero__hint { display: none; }
+  .hero__foot { flex-direction: column; align-items: flex-start; }
+  .hero__actions { width: 100%; }
+  .hero__actions .btn { flex: 1 1 auto; justify-content: center; }
+  .hero__actions .btn--ghost { flex-basis: 100%; justify-content: flex-start; }
+  .hero__scrim {
+    background:
+      linear-gradient(to top, var(--bg) 14%, color-mix(in srgb, var(--bg) 78%, transparent) 55%, color-mix(in srgb, var(--bg) 46%, transparent) 100%),
+      linear-gradient(to bottom, var(--bg-deep), transparent 30%);
+  }
+}

@@ -1,0 +1,200 @@
+/* ==========================================================================
+   The Signal Field.
+
+   Capabilities on the left, technologies on the right, connector lines drawn
+   between them by JS. The lines are a layer on top of a layout that is already
+   complete and readable without them — dim states are opacity only, so nothing
+   is ever hidden from a crawler, a screen reader, or a print stylesheet.
+   ========================================================================== */
+
+.field {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.55fr);
+  gap: clamp(1.5rem, 1rem + 3vw, 4.5rem);
+  margin-top: var(--s-8);
+}
+
+.field__wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.field__wires path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+  opacity: 0;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+}
+
+.field__wires path.is-drawn {
+  opacity: 0.75;
+  stroke-dashoffset: 0;
+  transition:
+    stroke-dashoffset var(--dur-3) var(--ease-out),
+    opacity var(--dur-1) var(--ease);
+  transition-delay: calc(var(--i) * 28ms);
+}
+
+/* --- Capability keys ------------------------------------------------------ */
+.field__keys {
+  position: sticky;
+  top: 7rem;
+  align-self: start;
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border-block: 1px solid var(--rule);
+  z-index: 2;
+}
+
+.cap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-4);
+  padding: clamp(0.9rem, 0.7rem + 0.8vw, 1.4rem) 0;
+  background: var(--bg);
+  transition: background-color var(--dur-2) var(--ease), padding-left var(--dur-2) var(--ease-out);
+}
+
+.cap::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.cap:hover,
+.cap[aria-pressed='true'] { background: var(--surface); padding-left: var(--s-4); }
+.cap:hover::before,
+.cap[aria-pressed='true']::before { transform: scaleY(1); }
+
+.cap__verb {
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: 0.1em;
+  transition: color var(--dur-1) var(--ease);
+}
+
+.cap[aria-pressed='true'] .cap__verb { color: var(--accent); }
+
+.cap__count { grid-row: 1; grid-column: 2; }
+
+.cap__line {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  color: var(--fg-dim);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.cap__count {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--fg-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.cap--reset { grid-template-columns: 1fr; }
+.cap--reset .cap__verb { font-size: var(--step--1); color: var(--fg-dim); letter-spacing: var(--tracking-label); text-transform: uppercase; font-family: var(--font-mono); }
+
+/* --- Nodes --------------------------------------------------------------- */
+.field__nodes { display: grid; gap: var(--s-7); position: relative; z-index: 2; }
+
+.node-group { display: grid; gap: var(--s-3); }
+
+.node-group__title {
+  color: var(--fg-faint);
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--rule);
+  transition: color var(--dur-2) var(--ease);
+}
+
+.nodes { display: grid; }
+
+.node {
+  display: grid;
+  grid-template-columns: auto minmax(0, 11rem) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-4);
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  transition: opacity var(--dur-2) var(--ease), background-color var(--dur-1) var(--ease);
+}
+
+.node__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--fg-faint);
+  align-self: center;
+  transition: background-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease-out);
+}
+
+.node__name { font-weight: 500; font-size: var(--step-0); }
+
+.node__use {
+  color: var(--fg-dim);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.node__where {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+  color: var(--fg-faint);
+  white-space: nowrap;
+  transition: color var(--dur-1) var(--ease);
+}
+
+.node__where-arrow { margin-right: 0.4em; color: var(--accent); }
+
+a.node__where:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 0.25em; }
+
+/* --- Active state --------------------------------------------------------
+   Dimming is opacity, never display:none. Everything stays selectable,
+   findable with ctrl-F, and present in the accessibility tree. */
+.field.is-filtering .node,
+.field.is-filtering .node-group__title { opacity: 0.34; }
+
+.field.is-filtering .node.is-lit { opacity: 1; }
+.field.is-filtering .node-group.is-lit .node-group__title { opacity: 1; color: var(--accent); }
+
+.node.is-lit .node__dot { background: var(--accent); transform: scale(1.5); }
+
+@media (hover: hover) and (pointer: fine) {
+  .node:hover { background: var(--surface); }
+  .node:hover .node__dot { background: var(--accent); }
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 68rem) {
+  .node { grid-template-columns: auto minmax(0, 1fr); }
+  .node__use { grid-column: 2; }
+  .node__where { grid-column: 2; }
+}
+
+@media (max-width: 56rem) {
+  .field { grid-template-columns: 1fr; }
+  .field__keys { position: static; }
+  .field__wires { display: none; }
+  .cap { grid-template-columns: 1fr auto; }
+}

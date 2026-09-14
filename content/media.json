@@ -1,0 +1,93 @@
+{
+  "_comment": [
+    "Source photographs live outside this repo (they are 15-35 MB camera files).",
+    "`src` points at the original; `id` is the name the site refers to.",
+    "After editing this file run:  python3 optimize_images.py",
+    "That writes responsive AVIF/WebP/JPEG derivatives into static/media/ and",
+    "regenerates media.derived.json. Only the derivatives get committed."
+  ],
+  "images": [
+    {
+      "id": "hero-rain",
+      "role": "hero",
+      "src": "/Users/saisandeep/Desktop/portfolio /241114_RainyDayAtUD_Vunnam_12.jpg"
+    },
+    {
+      "id": "portrait",
+      "role": "portrait",
+      "src": "/Users/saisandeep/Desktop/sandeep-portfolio/static/media/_headshot-src.jpeg"
+    },
+
+    {
+      "id": "ph-corridor",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/portfolio /IMG_7714 2.jpg"
+    },
+    {
+      "id": "ph-fountain",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/portfolio /DSC_2656-Enhanced-NR.JPEG"
+    },
+    {
+      "id": "ph-drive",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/portfolio /DSC_5432.JPEG"
+    },
+    {
+      "id": "ph-nest",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/portfolio /DSC_8313-Enhanced-NR.JPEG"
+    },
+    {
+      "id": "ph-snowfall",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/port/241121_SnowFallAtUD_Vunnam_40.jpg"
+    },
+    {
+      "id": "ph-lift",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/portfolio /IMG_2357.JPG"
+    },
+    {
+      "id": "ph-grass",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/portfolio /IMG_7851.JPG"
+    },
+
+    {
+      "id": "mag-summer-2025",
+      "role": "cover",
+      "src": "/Users/saisandeep/Desktop/port/summer2025.jpg"
+    },
+    {
+      "id": "mag-spring-2025",
+      "role": "cover",
+      "src": "/Users/saisandeep/Desktop/port/spring2025.jpg"
+    },
+    {
+      "id": "mag-winter-2024-25",
+      "role": "cover",
+      "src": "/Users/saisandeep/Desktop/port/winter2024-25.jpg"
+    },
+    {
+      "id": "mag-autumn-2024",
+      "role": "cover",
+      "src": "/Users/saisandeep/Desktop/port/fall2024.jpg"
+    },
+    {
+      "id": "mag-summer-2024",
+      "role": "cover",
+      "src": "/Users/saisandeep/Desktop/port/summer2024.jpg"
+    },
+    {
+      "id": "mag-spring-2024",
+      "role": "cover",
+      "src": "/Users/saisandeep/Desktop/port/spring2024.jpg"
+    },
+    {
+      "id": "mag-winter-2023-24",
+      "role": "cover",
+      "src": "/Users/saisandeep/Desktop/port/winter2023-24.jpg"
+    }
+  ]
+}

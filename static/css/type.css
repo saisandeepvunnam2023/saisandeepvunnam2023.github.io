@@ -1,0 +1,132 @@
+/* ==========================================================================
+   Typography.
+
+   One family does the whole site. The contrast a design like this needs comes
+   from Archivo's width axis, not from a second typeface: display type runs at
+   ~78% width and weight 800, interface type at 100% width and 400-500. A serif
+   italic appears exactly twice, as punctuation rather than as a voice.
+   ========================================================================== */
+
+.display,
+.hero__name,
+.contact__headline {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-stretch: 78%;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.section__title,
+.cs__title,
+.nf__title {
+  font-family: var(--font-sans);
+  font-size: var(--step-3);
+  font-weight: 500;
+  font-stretch: 96%;
+  line-height: 1.08;
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+  max-width: 22ch;
+}
+
+.section__title--sm { font-size: var(--step-2); max-width: 26ch; }
+
+/* --- Labels --------------------------------------------------------------
+   Every small uppercase label on the site is mono. It reads as instrumentation
+   rather than as ornament, which is the whole idea. */
+.eyebrow,
+.project__label,
+.nav__index,
+.cap__verb,
+.node-group__title,
+.role__dates,
+.credentials__title,
+.exp__status,
+.frame__title,
+.note__label,
+.detail__label,
+.point__label,
+.cs__facts-list dt,
+.outcome__caption,
+.diagram__caption {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  color: var(--fg-dim);
+  margin-bottom: var(--s-5);
+}
+
+.eyebrow__index {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow__index::after {
+  content: '';
+  display: inline-block;
+  width: var(--s-6);
+  height: 1px;
+  margin-left: var(--s-3);
+  vertical-align: 0.28em;
+  background: var(--accent-line);
+}
+
+.section__intro {
+  max-width: var(--measure);
+  margin-top: var(--s-5);
+  color: var(--fg-dim);
+  font-size: var(--step-1);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.section__intro--wide { max-width: var(--measure-wide); }
+
+/* --- Prose --------------------------------------------------------------- */
+.prose p + p { margin-top: var(--s-5); }
+.prose { max-width: var(--measure); text-wrap: pretty; }
+
+/* --- The serif accent ---------------------------------------------------- */
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* --- TODO markers --------------------------------------------------------
+   Deliberately loud. Unfinished content should be impossible to ship by
+   accident, so it is styled to be noticed rather than to blend in. */
+.todo {
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  background: var(--accent-soft);
+  border: 1px dashed var(--accent-line);
+  border-radius: var(--r-1);
+  color: var(--accent-bright);
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.todo--inline { margin-left: var(--s-2); font-size: var(--step--2); }
+
+.todo--flag {
+  margin-left: var(--s-3);
+  font-size: var(--step--2);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  vertical-align: middle;
+}

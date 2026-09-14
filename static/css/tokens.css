@@ -1,0 +1,132 @@
+/* ==========================================================================
+   Design tokens.
+
+   One accent colour, chosen deliberately: #FF4A24 is darkroom safelight —
+   the one light you can work under without destroying the image. It is used
+   for state and emphasis only, never for decoration.
+
+   Everything below is the vocabulary. Nothing in the component files should
+   introduce a raw colour, a magic duration, or an arbitrary font size.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('../fonts/archivo-var-latin.woff2') format('woff2');
+  font-weight: 300 800;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('../fonts/instrument-serif-italic-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* --- Colour ------------------------------------------------------------ */
+  --bg:            #0B0C0D;
+  --bg-deep:       #070809;
+  --surface:       #111315;
+  --surface-2:     #161719;
+  --surface-3:     #1D1F21;
+
+  --fg:            #F4EFE9;
+  --fg-dim:        #9A9691;
+  --fg-faint:      #7E7A75;
+
+  --accent:        #FF4A24;
+  --accent-bright: #FF6A46;
+  --accent-ink:    #140704;
+  --accent-soft:   rgba(255, 74, 36, 0.13);
+  --accent-line:   rgba(255, 74, 36, 0.42);
+
+  --rule:          rgba(244, 239, 233, 0.09);
+  --rule-strong:   rgba(244, 239, 233, 0.22);
+  --overlay:       rgba(7, 8, 9, 0.86);
+
+  --focus-ring:    var(--accent-bright);
+
+  /* --- Type -------------------------------------------------------------- */
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  --step--2: clamp(0.69rem, 0.68rem + 0.06vw, 0.74rem);
+  --step--1: clamp(0.79rem, 0.77rem + 0.1vw, 0.86rem);
+  --step-0:  clamp(0.94rem, 0.91rem + 0.16vw, 1.05rem);
+  --step-1:  clamp(1.12rem, 1.04rem + 0.36vw, 1.35rem);
+  --step-2:  clamp(1.4rem, 1.22rem + 0.8vw, 2rem);
+  --step-3:  clamp(1.85rem, 1.5rem + 1.6vw, 3rem);
+  --step-4:  clamp(2.4rem, 1.7rem + 3.1vw, 4.6rem);
+  --step-5:  clamp(3rem, 1.6rem + 6vw, 7rem);
+
+  /* The hero name and the contact headline. Deliberately outside the scale:
+     these are graphics made of letters, not text in a hierarchy. */
+  --display:  clamp(3.4rem, 0.5rem + 12.6vw, 13.5rem);
+  --display-2: clamp(2.6rem, 0.8rem + 8.2vw, 8.5rem);
+
+  --leading-tight: 0.86;
+  --leading-snug: 1.12;
+  --leading-body: 1.62;
+  --tracking-display: -0.035em;
+  --tracking-tight: -0.018em;
+  --tracking-label: 0.14em;
+
+  /* --- Space ------------------------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+  --s-10: 10rem;
+  --section-y: clamp(5rem, 3rem + 9vw, 11rem);
+  --gutter: clamp(1.15rem, 0.6rem + 2.6vw, 3.5rem);
+
+  /* --- Measure ----------------------------------------------------------- */
+  --shell: 78rem;
+  --shell-wide: 94rem;
+  --measure: 40rem;
+  --measure-wide: 52rem;
+
+  /* --- Radii ------------------------------------------------------------- */
+  --r-0: 0px;
+  --r-1: 2px;
+  --r-2: 4px;
+  --r-3: 10px;
+  --r-pill: 999px;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --dur-1: 160ms;
+  --dur-2: 320ms;
+  --dur-3: 620ms;
+  --dur-4: 1000ms;
+  --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* --- Layers ------------------------------------------------------------ */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 50;
+  --z-nav: 100;
+  --z-panel: 200;
+  --z-top: 300;
+}
+
+/* The site is committed to one look. Declaring it explicitly stops the host
+   painting a light ground behind a transparent body. */
+:root { color-scheme: dark; }

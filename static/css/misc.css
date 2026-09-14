@@ -1,0 +1,77 @@
+/* ==========================================================================
+   404, print, and the last few odds.
+   ========================================================================== */
+
+.nf {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding-block: var(--s-9);
+}
+
+.nf__inner { width: 100%; max-width: var(--shell); }
+
+.nf__code {
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 2rem + 9vw, 9rem);
+  font-weight: 300;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--rule-strong);
+}
+
+.nf__title {
+  margin-top: var(--s-4);
+  font-size: var(--step-4);
+  font-weight: 700;
+  font-stretch: 84%;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.nf__body {
+  margin-top: var(--s-4);
+  max-width: var(--measure);
+  color: var(--fg-dim);
+  font-size: var(--step-1);
+  text-wrap: pretty;
+}
+
+.nf__links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1px;
+  margin-top: var(--s-7);
+}
+
+.nf__links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  height: 100%;
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  background: var(--bg);
+  box-shadow: 0 0 0 1px var(--rule);
+  transition: padding-left var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease);
+}
+.nf__links a:hover { padding-left: var(--s-4); background: var(--surface); }
+
+.nf__arrow { color: var(--accent); }
+
+.nf__sign { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-7); }
+
+/* --- Print ---------------------------------------------------------------
+   A recruiter printing this page should get a readable document, not fifteen
+   pages of black ink. */
+@media print {
+  :root { --bg: #fff; --fg: #111; --fg-dim: #444; --fg-faint: #666; --rule: #ccc; --rule-strong: #999; --accent: #b3310f; }
+  body { background: #fff; color: #111; }
+  .nav, .nav-panel, .hero__stage, .cursor-dot, .skip-link, .footer__top,
+  .hero__hint, .field__wires, .playground__footnote { display: none !important; }
+  .hero { min-height: auto; padding-block: 0 var(--s-6); }
+  .section { padding-block: var(--s-6); page-break-inside: avoid; }
+  .role__more[open] .role__list, .role__list { display: grid !important; }
+  .media img { filter: none !important; }
+  a[href^='http']::after { content: ' (' attr(href) ')'; font-size: 0.75em; color: #666; }
+}

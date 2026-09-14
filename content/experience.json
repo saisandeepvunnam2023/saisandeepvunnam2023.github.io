@@ -1,0 +1,135 @@
+{
+  "_comment": [
+    "Chronological, newest first. `highlight` is the one line a scanning recruiter reads.",
+    "See CONTENT-NOTES.md — several dates and titles differ between your resume",
+    "variants and your old site. Anything marked verify:true needs your confirmation."
+  ],
+
+  "eyebrow": "Experience",
+  "sectionTitle": "Six years, one throughline: make the system do the repetitive part.",
+
+  "roles": [
+    {
+      "company": "Unity Technologies",
+      "role": "IT Service Desk & Technical Operations Specialist",
+      "period": "Jan 2026 — May 2026",
+      "location": "TODO — add location",
+      "verify": true,
+      "highlight": "Ran Tier 1 and Tier 2 support for internal users across Windows, macOS, Microsoft 365 and production publishing systems.",
+      "contributions": [
+        "Owned service desk tickets end to end — intake, troubleshooting, escalation, testing, user communication, resolution.",
+        "Triaged by real business impact: urgency, production deadlines and number of users affected, not queue order.",
+        "Diagnosed application access, permissions, publishing failures, broken links, VPN and production issues using logs, dev tools and system state.",
+        "Escalated to engineering with reproduction steps, screenshots, impact and the troubleshooting already done — so the receiving team started from something useful.",
+        "Wrote the Confluence knowledge base: troubleshooting guides, release instructions and SOPs.",
+        "Spotted recurring ticket patterns and took them to engineering as fixes rather than re-answering them."
+      ],
+      "stack": ["Jira Service Management", "Confluence", "Microsoft 365", "Windows", "macOS", "Slack"]
+    },
+    {
+      "company": "University of Dayton",
+      "role": "Web Content & Application Developer",
+      "period": "Nov 2023 — Dec 2025",
+      "location": "Dayton, Ohio",
+      "verify": false,
+      "highlight": "Built and launched 175+ academic and magazine sites, and wrote the Python that cut manual image editing by 40%.",
+      "contributions": [
+        "Built and launched 175+ academic and magazine sites in Cascade CMS — templating, content workflows, responsive deployment.",
+        "Developed custom WordPress themes and plugins with SEO, caching and analytics dashboards.",
+        "Designed Figma wireframes and prototypes, then built them out in responsive HTML, CSS and JavaScript.",
+        "Automated image workflows in Python and OpenCV — HDR pipelines, content-aware crop, dynamic resizing — cutting manual editing time by 40%.",
+        "Applied computer vision across 2,500+ archived magazine pages to score relevance, retiring 1,600+ obsolete assets with a full audit trail.",
+        "Lifted content engagement roughly 15% using A/B testing, Qualtrics surveys and GA4.",
+        "Ran responsive, functional, accessibility, browser and production QA before and after every release.",
+        "Supported faculty and campus partners on Microsoft 365, Cascade CMS and endpoint issues alongside the development work."
+      ],
+      "stack": ["Cascade CMS", "WordPress", "PHP", "Python", "OpenCV", "TensorFlow", "JavaScript", "Figma", "GA4"]
+    },
+    {
+      "company": "University of Dayton",
+      "role": "Photographer & Multimedia Creator",
+      "period": "Oct 2023 — Mar 2025",
+      "location": "Dayton, Ohio",
+      "verify": false,
+      "highlight": "Two years of campus photography, published in the University of Dayton Magazine and on official university channels.",
+      "contributions": [
+        "Shot campus and event photography across every season and every kind of weather.",
+        "Official event photographer for the NCAA Men's Basketball Championship First Four in March 2025, shooting courtside.",
+        "Produced marketing visuals, infographics and animated banners in Photoshop, Illustrator and After Effects.",
+        "Integrated multimedia into Cascade CMS and WordPress alongside the sites I was building."
+      ],
+      "stack": ["Lightroom", "Photoshop", "Illustrator", "Premiere Pro", "After Effects"]
+    },
+    {
+      "company": "Indian School of Business",
+      "role": "Web Content Developer & Campaign Designer",
+      "period": "Sep 2022 — May 2023",
+      "location": "Hyderabad, India",
+      "verify": true,
+      "highlight": "Managed 40+ academic and campaign microsites in WordPress, and was named Employee of the Month.",
+      "contributions": [
+        "Managed 40+ academic and campaign microsites in WordPress (PHP/MySQL), with HubSpot wired in for lead capture and tracking.",
+        "Designed UX wireframes in Figma and converted them into CMS-ready templates for responsive publishing.",
+        "Customised themes and optimised for SEO and accessibility, with Google Analytics for performance monitoring.",
+        "Built GPU-accelerated diagnostic scripts in CUDA and OpenCL to automate detection of login, network and system issues, cutting ticket turnaround.",
+        "Kept IT services running through high-priority events such as placement drives."
+      ],
+      "stack": ["WordPress", "PHP", "MySQL", "HubSpot", "Figma", "CUDA", "OpenCL"]
+    },
+    {
+      "company": "KIMS Hospitals",
+      "role": "Web Designer",
+      "period": "Aug 2020 — May 2023",
+      "location": "Hyderabad, India",
+      "verify": true,
+      "highlight": "Built patient-facing booking portals and provider search flows to WCAG/ADA standards.",
+      "contributions": [
+        "Designed and developed responsive booking portals, provider search flows and service-line microsites, mobile-first.",
+        "Built front-end components — forms, navigation, interactive cards — with real validation, states and error handling.",
+        "Implemented schema.org markup and WCAG/ADA compliance with the marketing and SEO teams.",
+        "Ran UX research using GA4, heatmaps and usability testing, iterating layouts and CTAs on the appointment funnel.",
+        "Optimised page performance, load times and cross-browser compatibility."
+      ],
+      "stack": ["HTML", "CSS", "JavaScript", "Figma", "Adobe XD", "GA4"]
+    },
+    {
+      "company": "BSCPL Infrastructure Ltd.",
+      "role": "Web Designer",
+      "period": "Jan 2020 — Mar 2021",
+      "location": "Hyderabad, India",
+      "verify": true,
+      "highlight": "Corporate site, investor pages and project showcase microsites, built responsive from scratch.",
+      "contributions": [
+        "Designed and launched corporate layouts, investor pages and project showcase microsites.",
+        "Built responsive front-end interfaces in HTML5, CSS3 and JavaScript for cross-browser and multi-device support.",
+        "Built interactive UI components — sliders, forms, navigation, project galleries.",
+        "Integrated SEO best practice, analytics tracking and structured data markup.",
+        "Established scalable templates for later digital work."
+      ],
+      "stack": ["HTML5", "CSS3", "JavaScript", "Adobe Creative Suite", "Figma"]
+    }
+  ],
+
+  "education": [
+    {
+      "institution": "University of Dayton",
+      "credential": "M.S. Computer Science",
+      "period": "August 2025",
+      "location": "Dayton, Ohio"
+    },
+    {
+      "institution": "VNR VJIET",
+      "credential": "TODO — add your undergraduate degree and dates",
+      "period": "TODO",
+      "location": "Hyderabad, India"
+    }
+  ],
+
+  "recognition": [
+    "Finalist — Convergence Hackathon, VNR VJIET, for an automation-focused solution aimed at workflow efficiency and content quality.",
+    "Employee of the Month — Indian School of Business.",
+    "Official event photographer, NCAA Men's Basketball Championship First Four 2025 — work published on the University of Dayton's official channels.",
+    "Published feature article, “Where Passion Meets Play”, on March Madness.",
+    "Authored and published a photo essay, “A Thanksgiving of Growth and Gratitude”."
+  ]
+}

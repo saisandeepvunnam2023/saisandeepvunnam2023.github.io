@@ -1,0 +1,70 @@
+{
+  "_comment": [
+    "The Signal Field. Four capabilities, each holding technologies, each technology",
+    "pointing at the work where it was actually used.",
+    "`project` must match a slug in projects.json, or be null.",
+    "Only list things that appear in the resume, the old site, or shipped work.",
+    "The visualisation draws the connections; it does not invent them."
+  ],
+
+  "eyebrow": "Capability",
+  "sectionTitle": "Not a list of logos. A map of what connects to what.",
+  "intro": "Four things I do. Hover or focus any capability to see which technologies serve it, and which piece of work each one actually shows up in.",
+
+  "capabilities": [
+    {
+      "id": "build",
+      "verb": "BUILD",
+      "line": "Interfaces people use without thinking about them.",
+      "nodes": [
+        { "name": "JavaScript", "use": "Interaction, front-end logic, and the one canvas at the top of this page", "project": null },
+        { "name": "HTML & CSS", "use": "Semantic structure and layout systems — the part that decides whether a site is accessible", "project": "ud-magazine" },
+        { "name": "React", "use": "Component-driven front-end work", "project": null },
+        { "name": "Angular", "use": "Component-driven front-end work", "project": null },
+        { "name": "PHP", "use": "WordPress themes and plugins, and campus microsites", "project": "site-programme" },
+        { "name": "Accessibility (WCAG AA)", "use": "Contrast, focus order, document outline, enforced alt text", "project": "ud-magazine" },
+        { "name": "Figma", "use": "Wireframes and annotated prototypes, handed off to my own builds", "project": "site-programme" }
+      ]
+    },
+    {
+      "id": "publish",
+      "verb": "PUBLISH",
+      "line": "Systems that let non-engineers ship without breaking things.",
+      "nodes": [
+        { "name": "Cascade CMS", "use": "Templates, structured data definitions and editorial workflows at university scale", "project": "ud-magazine" },
+        { "name": "WordPress", "use": "Custom themes and plugins, caching, SEO", "project": "site-programme" },
+        { "name": "Template architecture", "use": "Component-like consistency inside a CMS that has no components", "project": "ud-magazine" },
+        { "name": "Release QA", "use": "Responsive, functional, accessibility, browser and production checks before and after every release", "project": "site-programme" },
+        { "name": "HubSpot", "use": "Lead capture and campaign tracking on microsites", "project": null },
+        { "name": "SEO & structured data", "use": "Schema markup and discoverability work", "project": "site-programme" }
+      ]
+    },
+    {
+      "id": "automate",
+      "verb": "AUTOMATE",
+      "line": "The boring half of the work, done once and then never again.",
+      "nodes": [
+        { "name": "Python", "use": "Image pipelines, archive triage, and the static generator that built this site", "project": "image-pipeline" },
+        { "name": "OpenCV", "use": "Exposure normalisation, HDR tone mapping, content-aware crop", "project": "image-pipeline" },
+        { "name": "NumPy", "use": "The array work underneath the pipeline", "project": "image-pipeline" },
+        { "name": "MySQL", "use": "Query writing and performance tuning on institutional databases", "project": null },
+        { "name": "Google Analytics 4", "use": "Measuring whether a content decision actually worked", "project": "site-programme" },
+        { "name": "Qualtrics", "use": "Feedback instrumentation embedded in CMS pages", "project": "site-programme" },
+        { "name": "Apache Spark", "use": "Data processing", "project": null }
+      ]
+    },
+    {
+      "id": "see",
+      "verb": "SEE",
+      "line": "Teaching software to look at images, and looking at them myself.",
+      "nodes": [
+        { "name": "TensorFlow", "use": "Image classification for archive relevance scoring", "project": "archive-triage" },
+        { "name": "Computer vision", "use": "Layout analysis, text density, visual freshness across 2,500+ pages", "project": "archive-triage" },
+        { "name": "ONNX → CoreML", "use": "Converting a trained model to run on-device in an iOS preview app", "project": null },
+        { "name": "CUDA & OpenCL", "use": "GPU-accelerated diagnostic and monitoring tooling", "project": null },
+        { "name": "Photography", "use": "Two years of campus work — published in the magazine and on official channels", "project": null },
+        { "name": "Adobe Creative Cloud", "use": "Lightroom, Photoshop, Premiere Pro, After Effects", "project": null }
+      ]
+    }
+  ]
+}

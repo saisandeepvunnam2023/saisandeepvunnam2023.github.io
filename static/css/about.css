@@ -1,0 +1,175 @@
+/* ==========================================================================
+   About, field notes, playground.
+   ========================================================================== */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+  gap: clamp(2rem, 1.5rem + 4vw, 5rem);
+  align-items: start;
+}
+
+/* --- Portrait -------------------------------------------------------------
+   Framed rather than cropped round: a photograph presented the way the rest of
+   the photography on this site is presented. */
+.about__portrait {
+  position: relative;
+  padding: var(--s-3);
+  border: 1px solid var(--rule);
+}
+
+.about__img {
+  aspect-ratio: 4 / 5;
+  filter: grayscale(0.5) contrast(1.05) brightness(0.92);
+  transition: filter var(--dur-4) var(--ease);
+}
+.about__portrait:hover .about__img { filter: none; }
+
+.about__portrait-mark {
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline-start: -1px;
+  width: var(--s-6);
+  height: var(--s-6);
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+
+/* --- Copy ----------------------------------------------------------------- */
+.about__copy {
+  display: grid;
+  gap: var(--s-5);
+  max-width: var(--measure-wide);
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--fg-dim);
+  text-wrap: pretty;
+}
+
+.about__copy p:first-child {
+  font-size: var(--step-2);
+  line-height: 1.32;
+  color: var(--fg);
+  letter-spacing: var(--tracking-tight);
+}
+
+.about__copy p:nth-child(3) { color: var(--fg); }
+
+/* --- Field notes ---------------------------------------------------------- */
+.notes {
+  margin-top: var(--s-8);
+  padding-top: var(--s-7);
+  border-top: 1px solid var(--rule-strong);
+}
+
+.notes__title {
+  display: grid;
+  gap: var(--s-2);
+  font-size: var(--step-2);
+  font-weight: 500;
+  font-stretch: 94%;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--s-6);
+}
+
+.notes__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.notes__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1px;
+}
+
+.note {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding: clamp(1.1rem, 0.8rem + 1vw, 1.7rem);
+  background: var(--bg);
+  box-shadow: 0 0 0 1px var(--rule);
+  transition: background-color var(--dur-2) var(--ease);
+}
+.note:hover { background: var(--surface); }
+
+.note__label { color: var(--accent); }
+.note__text { color: var(--fg-dim); font-size: var(--step--1); line-height: 1.55; text-wrap: pretty; }
+
+/* --- Playground ----------------------------------------------------------- */
+.experiments {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: clamp(1rem, 0.7rem + 1.4vw, 1.8rem);
+  margin-top: var(--s-6);
+}
+
+.exp {
+  display: grid;
+  align-content: start;
+  gap: var(--s-3);
+  padding: clamp(1.2rem, 0.9rem + 1.2vw, 1.9rem);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-2);
+  transition: border-color var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease);
+}
+
+.exp:hover { border-color: var(--rule-strong); background: var(--surface); }
+
+.exp__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.exp__title {
+  font-size: var(--step-1);
+  font-weight: 600;
+  font-stretch: 92%;
+  letter-spacing: var(--tracking-tight);
+}
+
+.exp__status {
+  padding: 0.2em 0.6em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  color: var(--fg-faint);
+  flex: none;
+}
+
+.exp--live .exp__status { color: var(--accent); border-color: var(--accent-line); }
+
+.exp__text { color: var(--fg-dim); font-size: var(--step--1); line-height: 1.55; text-wrap: pretty; }
+
+.exp__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-top: var(--s-3);
+  margin-top: auto;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+  color: var(--fg-faint);
+}
+
+.playground__footnote {
+  margin-top: var(--s-6);
+  color: var(--fg-faint);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.03em;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 56rem) {
+  .about { grid-template-columns: 1fr; }
+  .about__portrait { max-width: 20rem; }
+}

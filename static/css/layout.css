@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Shell, sections, buttons, media, reveals.
+   The primitives every section is built from.
+   ========================================================================== */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.shell--wide { max-width: var(--shell-wide); }
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+/* A hairline between sections, inset to the shell so it reads as an editorial
+   rule rather than a full-bleed divider. */
+.section + .section::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: var(--gutter);
+  height: 1px;
+  background: var(--rule);
+}
+
+.section__head { margin-bottom: var(--s-8); }
+/* An intro paragraph belongs to the heading above it, not to the content
+   below. Close the gap when one follows. */
+.section__head:has(+ .section__intro) { margin-bottom: var(--s-5); }
+.section__head--compact { margin-bottom: var(--s-7); }
+
+/* --- Media ---------------------------------------------------------------
+   Aspect ratio is always declared and width/height always emitted, so no
+   image on this site can cause layout shift. The LQIP sits behind as a
+   background and is covered the moment the real file paints. */
+.media {
+  position: relative;
+  display: block;
+  aspect-ratio: var(--aspect, 3 / 2);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface-2);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.media--missing {
+  display: grid;
+  place-items: center;
+  padding: var(--s-6);
+  border: 1px dashed var(--accent-line);
+  aspect-ratio: 3 / 2;
+  text-align: center;
+}
+
+/* --- Buttons -------------------------------------------------------------
+   The magnetic effect is a 4px translate driven from JS. It is small enough to
+   feel like weight rather than like a toy, and it is skipped entirely under
+   reduced-motion and on touch. */
+.btn {
+  --btn-pad-y: 0.72em;
+  --btn-pad-x: 1.25em;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+  color: var(--fg);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition:
+    border-color var(--dur-1) var(--ease),
+    background-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    transform var(--dur-2) var(--ease-out);
+  will-change: transform;
+}
+
+.btn:hover { border-color: var(--fg); }
+
+.btn__arrow {
+  width: 0.72em;
+  height: 0.72em;
+  flex: none;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.btn:hover .btn__arrow { transform: translate(2px, -2px); }
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.btn--primary:hover { background: var(--accent-bright); border-color: var(--accent-bright); }
+.btn--primary:hover .btn__arrow { transform: translate(0, 2px); }
+
+.btn--ghost { border-color: transparent; color: var(--fg-dim); padding-inline: 0.4em; }
+.btn--ghost:hover { color: var(--fg); border-color: transparent; text-decoration: underline; text-underline-offset: 0.3em; }
+
+.btn--sm { --btn-pad-y: 0.55em; --btn-pad-x: 1em; font-size: var(--step--2); }
+.btn--lg { --btn-pad-y: 0.9em; --btn-pad-x: 1.6em; font-size: var(--step-0); }
+
+/* --- Tags ---------------------------------------------------------------- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+
+.tags li {
+  padding: 0.28em 0.7em;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  color: var(--fg-dim);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+}
+
+/* --- Reveals -------------------------------------------------------------
+   An 18px rise that tells you a block has arrived, then the observer lets go of
+   the element. Nothing keeps running after it has been seen.
+
+   Two failsafes, because hiding content behind script is how a portfolio ends
+   up blank in front of the one person who mattered:
+     1. Without JS the .js guard never applies and everything is simply visible.
+     2. If .js is set but the module never arrives — CDN blocked, parse error,
+        an old browser choking on a module — the delayed animation below brings
+        every block back after 2.5s anyway. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  animation: reveal-failsafe 1ms linear 2500ms forwards;
+}
+
+@keyframes reveal-failsafe {
+  to { opacity: 1; transform: none; }
+}
+
+.js [data-reveal].is-revealed {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 45ms);
+}
+
+/* --- Custom cursor affordance -------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 7px; height: 7px;
+    margin: -3.5px 0 0 -3.5px;
+    border-radius: 50%;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: var(--z-top);
+    opacity: 0;
+    transition: opacity var(--dur-2) var(--ease), transform var(--dur-1) var(--ease-out);
+    will-change: transform;
+  }
+  .cursor-dot.is-active { opacity: 1; }
+  .cursor-dot.is-over-link { transform: scale(3.2); background: transparent; box-shadow: inset 0 0 0 1px var(--accent); }
+}

@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Photography.
+
+   An asymmetric editorial grid — seven photographs, no two the same size, no
+   grid of thumbnails. Images sit desaturated until hovered or scrolled into
+   view, so colour arrives as an event rather than as wallpaper.
+   ========================================================================== */
+
+.frames {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.8rem, 0.5rem + 1.6vw, 2rem);
+  margin-top: var(--s-7);
+}
+
+.frame { position: relative; margin: 0; }
+
+.frame--full { grid-column: span 12; }
+.frame--wide { grid-column: span 8; }
+.frame--half { grid-column: span 4; }
+.frame--tall { grid-column: span 4; grid-row: span 2; }
+
+.frame__img {
+  filter: grayscale(0.72) contrast(1.06) brightness(0.9);
+  transition: filter var(--dur-4) var(--ease), transform var(--dur-4) var(--ease-out);
+}
+
+.frame.is-revealed .frame__img { filter: grayscale(0.35) contrast(1.03) brightness(0.95); }
+
+@media (hover: hover) and (pointer: fine) {
+  .frame:hover .frame__img { filter: none; transform: scale(1.015); }
+}
+
+/* Touch devices get colour immediately — there is no hover to earn it with. */
+@media (hover: none) {
+  .frame__img { filter: grayscale(0.15) contrast(1.02); }
+  .frame.is-revealed .frame__img { filter: none; }
+}
+
+/* --- Caption -------------------------------------------------------------- */
+.frame__caption {
+  display: grid;
+  gap: var(--s-2);
+  padding-top: var(--s-3);
+  max-width: 44ch;
+}
+
+.frame__title { color: var(--accent); }
+
+.frame__text {
+  color: var(--fg-dim);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.frames__outro {
+  max-width: var(--measure);
+  margin: var(--s-7) 0 0 auto;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+  color: var(--fg-dim);
+  font-size: var(--step--1);
+  text-align: right;
+  text-wrap: pretty;
+}
+
+/* --- Responsive -----------------------------------------------------------
+   Two columns at tablet, one on a phone. A tall frame stops spanning rows
+   before it can strand a gap. */
+@media (max-width: 60rem) {
+  .frames { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .frame--full,
+  .frame--wide { grid-column: span 6; }
+  .frame--half,
+  .frame--tall { grid-column: span 3; grid-row: auto; }
+}
+
+@media (max-width: 40rem) {
+  .frames { grid-template-columns: 1fr; gap: var(--s-6); }
+  .frame--full,
+  .frame--wide,
+  .frame--half,
+  .frame--tall { grid-column: 1 / -1; grid-row: auto; }
+  .frames__outro { margin-left: 0; text-align: left; }
+}
