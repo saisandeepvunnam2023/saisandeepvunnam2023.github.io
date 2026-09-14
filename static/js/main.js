@@ -5,9 +5,8 @@
  * markup that already works: the page is complete, readable and navigable before
  * a byte of this runs.
  *
- * The two heavy modules — the hero canvas and the skills visualisation — are
- * dynamically imported, and only when their section is about to matter. Nobody
- * downloads the skills code to read the hero.
+ * The skills visualisation is dynamically imported, and only when that section
+ * is near the viewport — nobody downloads it to read the hero.
  */
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -210,22 +209,6 @@ function initCursor() {
    Lazy module loading
    ---------------------------------------------------------------------- */
 
-function initFocusField() {
-  const canvas = $('[data-focus-field]');
-  if (!canvas) return;
-
-  // A tiny screen with a slow CPU gets the static photograph and nothing else.
-  // The interaction is worth having; it is not worth a janky first paint.
-  const weak = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-  if (weak) return;
-
-  import('./focus-field.js')
-    .then((m) => m.init(canvas, { reducedMotion: REDUCED }))
-    .catch(() => {
-      /* static <picture> fallback stays in place — nothing to do */
-    });
-}
-
 function initSignalField() {
   const field = $('[data-signal-field]');
   if (!field || !('IntersectionObserver' in window)) return;
@@ -264,7 +247,6 @@ function boot() {
   initMagnetic();
   initCursor();
   initYear();
-  initFocusField();
   initSignalField();
 }
 

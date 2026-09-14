@@ -1,19 +1,15 @@
-"""The hero, and the one signature interaction.
+"""The hero.
 
-The photograph behind the type is rendered by a canvas at four resolutions at
-once: coarse mosaic at the edges, resolving to full detail under the pointer.
-Noise becomes signal, which is the whole argument of the site.
+The photograph is shown plainly behind the type, graded only enough that the
+headline stays legible over it.
 
-Everything a recruiter needs — name, role, location, availability, work, résumé,
-GitHub, LinkedIn — is real HTML in this section. If the canvas never runs, a
-static <picture> sits behind the type and nothing is lost.
+Everything a recruiter needs — name, role, location, availability, work, GitHub,
+LinkedIn — is real HTML in this section, so it survives with JavaScript off.
 """
 
 from __future__ import annotations
 
-import json
-
-from ..render import canvas_sources, esc, is_todo, join, picture
+from ..render import esc, is_todo, join, picture
 
 
 def render(site: dict) -> str:
@@ -26,9 +22,6 @@ def render(site: dict) -> str:
         f'<span class="hero__statement-line" style="--i:{i}">{esc(line)}</span>'
         for i, line in enumerate(site["headline"])
     )
-
-    # Source ladder handed to the canvas; it picks by viewport width and DPR.
-    sources = json.dumps(canvas_sources("hero-rain"), separators=(",", ":"))
 
     status = ""
     if site.get("statusActive"):
@@ -56,26 +49,26 @@ def render(site: dict) -> str:
         for label, href in social
     )
 
-    resume_flag = (
-        '<span class="todo todo--inline">résumé PDF not added yet</span>'
-        if is_todo(site.get("resumeNote", ""))
-        else ""
-    )
+    resume_btn = ""
+    if site.get("showResume"):
+        resume_btn = (
+            f'<a class="btn btn--lg" href="{esc(links["resume"])}" data-magnetic>'
+            f"<span>Résumé</span></a>"
+        )
 
     return f"""
 <header class="hero" id="top">
   <div class="hero__stage" aria-hidden="true">
-    <div class="hero__fallback">
+    <div class="hero__photo">
       {picture(
         "hero-rain",
         "",
         sizes="100vw",
-        cls="hero__fallback-img",
+        cls="hero__photo-img",
         priority=True,
         blur_up=True,
       )}
     </div>
-    <canvas class="hero__canvas" data-focus-field data-sources='{sources}'></canvas>
     <div class="hero__scrim"></div>
     <div class="hero__grain"></div>
   </div>
@@ -84,10 +77,6 @@ def render(site: dict) -> str:
     <div class="hero__top">
       {status}
       <div class="hero__top-right">
-        <p class="hero__hint">
-          <span class="hero__hint-pointer" aria-hidden="true"></span>
-          <span data-hero-hint>Move to focus</span>
-        </p>
         <p class="hero__caption">
           <span class="hero__caption-rule" aria-hidden="true"></span>
           Photograph mine — UD campus, in the rain.
@@ -120,9 +109,7 @@ def render(site: dict) -> str:
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
           </svg>
         </a>
-        <a class="btn btn--lg" href="{esc(links['resume'])}" data-magnetic>
-          <span>Résumé</span>{resume_flag}
-        </a>
+        {resume_btn}
         <a class="btn btn--ghost btn--lg" href="mailto:{esc(site['email'])}" data-magnetic>
           <span>{esc(site['email'])}</span>
         </a>

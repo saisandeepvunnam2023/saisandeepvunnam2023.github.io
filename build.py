@@ -23,6 +23,7 @@ import socketserver
 import sys
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
@@ -55,7 +56,7 @@ CSS_ORDER = [
     "misc.css",
 ]
 
-JS_FILES = ["main.js", "focus-field.js", "signal-field.js"]
+JS_FILES = ["main.js", "signal-field.js"]
 
 
 def minify_css(css: str) -> str:
@@ -98,19 +99,32 @@ FAVICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
 """
 
 
+def base_path(site: dict) -> str:
+    """The URL path the site is served under, with leading and trailing slashes.
+
+    "/" for a user site at a domain root; "/repo-name/" for a GitHub project
+    page. Anything that must be root-absolute — the 404 page, which is served
+    for arbitrary unmatched paths, and the web manifest — is built from this
+    rather than assuming "/".
+    """
+    path = urlparse(site["meta"]["siteUrl"]).path.strip("/")
+    return f"/{path}/" if path else "/"
+
+
 def manifest(site: dict) -> str:
+    base = base_path(site)
     return json.dumps(
         {
             "name": site["name"],
             "short_name": "SSV",
             "description": site["meta"]["description"],
-            "start_url": "/",
+            "start_url": base,
             "display": "standalone",
             "background_color": site["meta"]["themeColor"],
             "theme_color": site["meta"]["themeColor"],
             "icons": [
-                {"src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml"},
-                {"src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"},
+                {"src": f"{base}favicon.svg", "sizes": "any", "type": "image/svg+xml"},
+                {"src": f"{base}apple-touch-icon.png", "sizes": "180x180", "type": "image/png"},
             ],
         },
         indent=2,
@@ -146,8 +160,14 @@ def robots(site: dict) -> str:
 # Build
 # --------------------------------------------------------------------------
 
+SHOW_RESUME = False  # set from content/site.json in main()
+
+
 def copy_static() -> None:
-    for folder in ("media", "fonts", "files"):
+    folders = ["media", "fonts"]
+    if SHOW_RESUME:
+        folders.append("files")
+    for folder in folders:
         src = STATIC / folder
         if src.exists():
             shutil.copytree(src, DIST / folder, dirs_exist_ok=True)
@@ -194,6 +214,9 @@ def main() -> int:
         shutil.rmtree(DIST)
     DIST.mkdir(parents=True)
 
+    global SHOW_RESUME
+    SHOW_RESUME = bool(site.get("showResume"))
+
     css = build_css()
     copy_static()
 
@@ -228,7 +251,13 @@ def main() -> int:
 
     write(
         DIST / "404.html",
-        notfound.render(site=site, projects=projects, css=css, scripts=script_tags("/")),
+        notfound.render(
+            site=site,
+            projects=projects,
+            css=css,
+            scripts=script_tags(base_path(site)),
+            base=base_path(site),
+        ),
     )
 
     write(DIST / "favicon.svg", FAVICON_SVG)
@@ -239,8 +268,11 @@ def main() -> int:
 
     # Warn loudly about anything still unresolved rather than shipping it quietly.
     warnings = []
-    if not (DIST / "files" / "Sai-Sandeep-Vunnam-Resume.pdf").exists():
-        warnings.append("résumé PDF missing → static/files/Sai-Sandeep-Vunnam-Resume.pdf")
+    if not site.get("showResume"):
+        warnings.append(
+            'résumé is hidden site-wide (showResume: false in content/site.json) — '
+            "set it to true once a real PDF is at static/files/"
+        )
     if not site["links"]["linkedin"].startswith("http"):
         warnings.append("LinkedIn URL not set → content/site.json")
     if not (DIST / "media" / "og-image.jpg").exists():

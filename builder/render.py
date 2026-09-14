@@ -135,30 +135,6 @@ def preload_srcset(image_id: str, base: str = "") -> tuple[str, str]:
     return srcset, "100vw"
 
 
-def canvas_sources(image_id: str, base: str = "") -> dict:
-    """The ladder handed to the hero canvas so it can pick by viewport and DPR.
-
-    The JPEG list is shorter than the AVIF list — see JPEG_MAX_WIDTH in
-    optimize_images.py — so it has to be read from the manifest rather than
-    assumed to match, or the fallback path requests files that do not exist.
-    """
-    meta = DERIVED.get(image_id)
-    if not meta:
-        return {"avif": [], "jpg": [], "widths": []}
-
-    widths = meta["widths"]
-    jpeg_widths = meta.get("jpegWidths", widths)
-
-    def nearest_jpeg(w: int) -> int:
-        return min(jpeg_widths, key=lambda j: abs(j - w))
-
-    return {
-        "avif": [f"{base}media/{image_id}-{w}.avif" for w in widths],
-        "jpg": [f"{base}media/{image_id}-{nearest_jpeg(w)}.jpg" for w in widths],
-        "widths": widths,
-    }
-
-
 def image_src(image_id: str, width: int, base: str = "") -> str:
     """A single concrete URL — for preloads, OG tags and the canvas source."""
     meta = DERIVED.get(image_id)

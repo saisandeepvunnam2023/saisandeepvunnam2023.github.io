@@ -4,7 +4,6 @@
     "Photograph `id` values must exist in media.json. `span` controls the editorial",
     "grid: full | wide | half | tall. Captions should describe, not perform."
   ],
-
   "photography": {
     "eyebrow": "Frames",
     "sectionTitle": "Through another lens",
@@ -62,7 +61,6 @@
       }
     ]
   },
-
   "about": {
     "eyebrow": "About",
     "sectionTitle": "How I got here",
@@ -75,7 +73,6 @@
       "What I want next is harder inputs. Systems where the data is messy and the correct answer is genuinely arguable — recommendation, ranking, anything where software has to make a call and then justify it to a person who is accountable for the outcome. The archive triage project was the first taste of that, and it is the one I would most like to do again properly."
     ]
   },
-
   "notes": {
     "eyebrow": "Field notes",
     "sectionTitle": "Off the clock",
@@ -102,19 +99,11 @@
       }
     ]
   },
-
   "playground": {
     "eyebrow": "Playground",
     "sectionTitle": "Experiments",
     "intro": "Small things, built to understand something. Nothing here is a product.",
     "items": [
-      {
-        "title": "Focus Field",
-        "year": "2026",
-        "tech": "Canvas 2D",
-        "text": "The interaction at the top of this page. A photograph held at four resolutions at once, with the pointer acting as a focal plane — three composited draws per frame, no WebGL, no library. The cheapest honest way I could find to say noise becomes signal.",
-        "status": "live"
-      },
       {
         "title": "Signal Field",
         "year": "2026",
@@ -139,10 +128,13 @@
     ],
     "footnote": "This section is a list in content/story.json. Adding an experiment is adding an object to it."
   },
-
   "contact": {
     "eyebrow": "Contact",
-    "headline": ["BRING ME", "SOMETHING", "BLURRY."],
+    "headline": [
+      "BRING ME",
+      "SOMETHING",
+      "BLURRY."
+    ],
     "body": "A publishing process that keeps breaking. A pile of data nobody has looked at. A system that works but nobody can explain. That is the part I want.",
     "emailLabel": "Email me",
     "availability": "Currently open to software engineering roles, and reading every message myself."

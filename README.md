@@ -81,13 +81,21 @@ dist/                    build output. Never edit; it is deleted on every build.
 
 ## How to change things
 
-### Change your résumé
+### Turn the résumé back on
 
-Replace `static/files/Sai-Sandeep-Vunnam-Resume.pdf`, keeping the filename, and
-rebuild. Every Résumé link on the site — nav, hero, contact, footer, mobile menu —
-points at that one path, so there is nothing else to update.
+The résumé is currently hidden site-wide: `showResume` is `false` in
+`content/site.json`, so no Résumé button is rendered in the nav, the hero, the
+mobile menu or the contact section, and no PDF is copied into the build. That is
+deliberate — a button leading to a placeholder is worse than no button.
 
-If you want a different filename, change `links.resume` in `content/site.json`.
+To bring it back:
+
+1. Put the real PDF at `static/files/Sai-Sandeep-Vunnam-Resume.pdf`
+2. Set `"showResume": true` in `content/site.json`
+3. `python3 build.py`
+
+All four buttons reappear pointing at that one path. For a different filename,
+change `links.resume` in the same file.
 
 ### Change wording anywhere
 
@@ -179,24 +187,7 @@ the output and eating the underscore-prefixed paths.
 
 ---
 
-## The two interactive pieces
-
-### Focus Field — the hero
-
-`static/js/focus-field.js`. One photograph held at three resolutions at once:
-a coarse mosaic everywhere, a finer one under the pointer, full detail at the
-centre. The pointer is a focal plane; moving it resolves noise into signal.
-
-It is Canvas 2D, not WebGL, because the effect is three composited draws and a
-shader would have cost a context, a program and a fallback path for nothing.
-All the expensive work — downsampling, desaturation, mosaicing — happens once
-per resize. Per frame it does one full-canvas blit and a few operations inside
-a 520px square.
-
-It refuses to run under `prefers-reduced-motion` (drawing one static resolved
-frame instead), stops when the tab is hidden or the hero scrolls out of view,
-skips devices reporting ≤2 cores, drifts on its own where there is no pointer,
-and falls back to a plain `<picture>` if anything at all goes wrong.
+## The interactive piece
 
 ### Signal Field — the skills map
 
@@ -208,6 +199,9 @@ It is an emphasis layer over a list that is already complete: nothing is hidden,
 dimming is opacity only, and with JavaScript off you lose the lines and keep all
 the information.
 
+The hero photograph is shown plainly, with no interaction attached to it.
+
+
 ---
 
 ## Performance and accessibility notes
@@ -218,7 +212,8 @@ the information.
   and explicit `width`/`height` so nothing shifts as it loads.
 - The hero preload offers the browser the same candidate list as the `<picture>`,
   so a retina screen does not download it twice.
-- `signal-field.js` only downloads when the skills section is near the viewport.
+- `signal-field.js` only downloads when the skills section is near the viewport;
+  it is the only script beyond the 7 KB entry point.
 - Reveal animations disconnect their observer once an element has been seen, and
   have a 2.5s CSS failsafe so content still appears if the module never loads.
 - One `<h1>`, no heading-level skips, real landmarks, visible focus rings,

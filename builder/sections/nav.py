@@ -24,6 +24,22 @@ def render(site: dict, base: str = "", active: str | None = None) -> str:
 
     home = f"{base}index.html" if base else "#top"
 
+    resume_btn = ""
+    if site.get("showResume"):
+        resume_btn = f'''<a class="btn btn--primary btn--sm" href="{esc(resume)}" data-magnetic>
+        <span>Résumé</span>
+        <svg class="btn__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+          <path d="M6 1.5 V9 M2.8 6 L6 9.3 L9.2 6 M2 10.5 H10" fill="none"
+                stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+        </svg>
+      </a>'''
+
+    panel_resume = (
+        f'<a class="btn btn--primary" href="{esc(resume)}"><span>Résumé</span></a>'
+        if site.get("showResume")
+        else ""
+    )
+
     return f"""
 <nav class="nav" id="nav" aria-label="Primary">
   <div class="nav__bar">
@@ -43,13 +59,7 @@ def render(site: dict, base: str = "", active: str | None = None) -> str:
     <ul class="nav__list">{items}</ul>
 
     <div class="nav__actions">
-      <a class="btn btn--primary btn--sm" href="{esc(resume)}" data-magnetic>
-        <span>Résumé</span>
-        <svg class="btn__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
-          <path d="M6 1.5 V9 M2.8 6 L6 9.3 L9.2 6 M2 10.5 H10" fill="none"
-                stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
-        </svg>
-      </a>
+      {resume_btn}
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
         <span class="nav__toggle-lines" aria-hidden="true"><i></i><i></i></span>
         <span class="sr-only">Menu</span>
@@ -69,8 +79,8 @@ def render(site: dict, base: str = "", active: str | None = None) -> str:
     )}
   </ul>
   <div class="nav-panel__foot">
-    <a class="btn btn--primary" href="{esc(resume)}"><span>Résumé</span></a>
-    <a class="btn" href="mailto:{esc(site['email'])}"><span>Email</span></a>
+    {panel_resume}
+    <a class="btn btn--primary" href="mailto:{esc(site['email'])}"><span>Email</span></a>
   </div>
 </div>
 """

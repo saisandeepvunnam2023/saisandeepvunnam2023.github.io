@@ -19,6 +19,33 @@ from pathlib import Path
 
 DIST = Path(__file__).parent / "dist"
 
+
+def site_base() -> str:
+    """The path prefix the site is served under, read from content/site.json.
+
+    Root-absolute URLs in the output (the 404 page, the manifest) are correct
+    for the deployed site but are not filesystem paths inside dist/, so they
+    have to have this prefix stripped before they can be resolved on disk.
+    """
+    import json
+    from urllib.parse import urlparse
+
+    data = json.loads((Path(__file__).parent / "content" / "site.json").read_text())
+    path = urlparse(data["meta"]["siteUrl"]).path.strip("/")
+    return f"/{path}/" if path else "/"
+
+
+BASE = site_base()
+
+
+def local(url: str, relative_to: Path) -> Path:
+    """Map a URL in the output to the file it should resolve to inside dist/."""
+    if url.startswith("/"):
+        if BASE != "/" and url.startswith(BASE):
+            url = url[len(BASE):]
+        return DIST / url.lstrip("/")
+    return relative_to / url
+
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
         "meta", "param", "source", "track", "wbr", "path", "circle", "rect",
         "line", "polygon", "polyline", "ellipse", "use", "stop"}
@@ -128,7 +155,7 @@ def check(path: Path, problems: list, notes: list) -> None:
             url = url.strip().split(" ")[0]
             if not url or url.startswith(("http", "data:", "mailto:", "#", "tel:")):
                 continue
-            target = (DIST / url.lstrip("/")) if url.startswith("/") else (base / url)
+            target = local(url, base)
             if not target.exists():
                 bad(f"{tag} {attr} -> missing file: {url}")
 
@@ -149,7 +176,7 @@ def check(path: Path, problems: list, notes: list) -> None:
         if not path_part:
             continue
 
-        target = (DIST / path_part.lstrip("/")) if path_part.startswith("/") else (base / path_part)
+        target = local(path_part, base)
         if target.is_dir():
             target = target / "index.html"
         if not target.exists():

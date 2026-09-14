@@ -17,7 +17,10 @@ def render(site: dict, contact: dict) -> str:
         for i, line in enumerate(contact["headline"])
     )
 
-    rows = [("Résumé", links["resume"]), ("GitHub", links["github"])]
+    rows = []
+    if site.get("showResume"):
+        rows.append(("Résumé", links["resume"]))
+    rows.append(("GitHub", links["github"]))
     if links["linkedin"].startswith("http"):
         rows.append(("LinkedIn", links["linkedin"]))
     else:

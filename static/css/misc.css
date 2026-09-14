@@ -68,7 +68,7 @@
   :root { --bg: #fff; --fg: #111; --fg-dim: #444; --fg-faint: #666; --rule: #ccc; --rule-strong: #999; --accent: #b3310f; }
   body { background: #fff; color: #111; }
   .nav, .nav-panel, .hero__stage, .cursor-dot, .skip-link, .footer__top,
-  .hero__hint, .field__wires, .playground__footnote { display: none !important; }
+  .field__wires, .playground__footnote { display: none !important; }
   .hero { min-height: auto; padding-block: 0 var(--s-6); }
   .section { padding-block: var(--s-6); page-break-inside: avoid; }
   .role__more[open] .role__list, .role__list { display: grid !important; }

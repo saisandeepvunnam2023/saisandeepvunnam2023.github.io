@@ -17,7 +17,7 @@
       "verb": "BUILD",
       "line": "Interfaces people use without thinking about them.",
       "nodes": [
-        { "name": "JavaScript", "use": "Interaction, front-end logic, and the one canvas at the top of this page", "project": null },
+        { "name": "JavaScript", "use": "Interaction and front-end logic — including the skills map you are reading now", "project": null },
         { "name": "HTML & CSS", "use": "Semantic structure and layout systems — the part that decides whether a site is accessible", "project": "ud-magazine" },
         { "name": "React", "use": "Component-driven front-end work", "project": null },
         { "name": "Angular", "use": "Component-driven front-end work", "project": null },

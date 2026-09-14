@@ -10,12 +10,13 @@ from ..layout import document, head
 from ..render import esc, join
 
 
-def render(*, site, projects, css, scripts) -> str:
+def render(*, site, projects, css, scripts, base: str = "/") -> str:
     meta = site["meta"]
 
-    routes = [("Home", "/"), ("Selected work", "/#work"), ("Experience", "/#experience"),
-              ("Contact", "/#contact")]
-    routes += [(p["title"], f"/work/{p['slug']}/") for p in projects["items"] if p.get("caseStudy")]
+    routes = [("Home", base), ("Selected work", f"{base}#work"),
+              ("Experience", f"{base}#experience"), ("Contact", f"{base}#contact")]
+    routes += [(p["title"], f"{base}work/{p['slug']}/")
+               for p in projects["items"] if p.get("caseStudy")]
 
     links = join(
         f'<li><a href="{esc(href)}"><span>{esc(label)}</span>'
@@ -34,7 +35,7 @@ def render(*, site, projects, css, scripts) -> str:
     </p>
     <ul class="nf__links">{links}</ul>
     <p class="nf__sign">
-      <a class="btn btn--primary" href="/"><span>Back to the start</span></a>
+      <a class="btn btn--primary" href="{esc(base)}"><span>Back to the start</span></a>
       <a class="btn" href="mailto:{esc(site['email'])}"><span>{esc(site['email'])}</span></a>
     </p>
   </div>
@@ -47,7 +48,7 @@ def render(*, site, projects, css, scripts) -> str:
         title=f"Page not found — {site['name']}",
         description="That page does not exist.",
         canonical=meta["siteUrl"] + "/404.html",
-        base="/",
+        base=base,
     ).replace("</head>", '<meta name="robots" content="noindex">\n</head>')
 
-    return document(head_html=head_html, body=body, base="/", scripts=scripts)
+    return document(head_html=head_html, body=body, base=base, scripts=scripts)
