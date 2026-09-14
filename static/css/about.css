@@ -1,5 +1,5 @@
 /* ==========================================================================
-   About, field notes, playground.
+   About and playground.
    ========================================================================== */
 
 .about {
@@ -54,52 +54,6 @@
 }
 
 .about__copy p:nth-child(3) { color: var(--fg); }
-
-/* --- Field notes ---------------------------------------------------------- */
-.notes {
-  margin-top: var(--s-8);
-  padding-top: var(--s-7);
-  border-top: 1px solid var(--rule-strong);
-}
-
-.notes__title {
-  display: grid;
-  gap: var(--s-2);
-  font-size: var(--step-2);
-  font-weight: 500;
-  font-stretch: 94%;
-  letter-spacing: var(--tracking-tight);
-  margin-bottom: var(--s-6);
-}
-
-.notes__eyebrow {
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.notes__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-  gap: 1px;
-}
-
-.note {
-  display: grid;
-  gap: var(--s-3);
-  align-content: start;
-  padding: clamp(1.1rem, 0.8rem + 1vw, 1.7rem);
-  background: var(--bg);
-  box-shadow: 0 0 0 1px var(--rule);
-  transition: background-color var(--dur-2) var(--ease);
-}
-.note:hover { background: var(--surface); }
-
-.note__label { color: var(--accent); }
-.note__text { color: var(--fg-dim); font-size: var(--step--1); line-height: 1.55; text-wrap: pretty; }
 
 /* --- Playground ----------------------------------------------------------- */
 .experiments {

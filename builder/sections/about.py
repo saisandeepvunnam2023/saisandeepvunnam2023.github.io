@@ -1,8 +1,8 @@
-"""About, field notes and the playground.
+"""About and the playground.
 
-The about copy is a short story with an argument in it, not a biography. Field
-notes are the human layer. Playground is deliberately a plain list so that
-adding an experiment later costs one object in story.json.
+The about copy is a short story with an argument in it, not a biography.
+Playground is deliberately a plain list so that adding an experiment later
+costs one object in story.json.
 """
 
 from __future__ import annotations
@@ -10,15 +10,8 @@ from __future__ import annotations
 from ..render import esc, is_todo, join, picture, section_heading, text_or_todo
 
 
-def render_about(about: dict, notes: dict) -> str:
+def render_about(about: dict) -> str:
     paras = join(f"<p>{esc(p)}</p>" for p in about["paragraphs"])
-
-    note_items = join(
-        f'<div class="note" data-reveal style="--i:{i}">'
-        f'<dt class="note__label">{esc(n["label"])}</dt>'
-        f'<dd class="note__text">{text_or_todo(n["text"])}</dd></div>'
-        for i, n in enumerate(notes["items"])
-    )
 
     return f"""
 <section class="section section--about" id="about" aria-labelledby="about-title">
@@ -35,14 +28,6 @@ def render_about(about: dict, notes: dict) -> str:
         <span class="about__portrait-mark" aria-hidden="true"></span>
       </div>
       <div class="about__copy">{paras}</div>
-    </div>
-
-    <div class="notes">
-      <h3 class="notes__title">
-        <span class="notes__eyebrow">{esc(notes['eyebrow'])}</span>
-        {esc(notes['sectionTitle'])}
-      </h3>
-      <dl class="notes__list">{note_items}</dl>
     </div>
   </div>
 </section>

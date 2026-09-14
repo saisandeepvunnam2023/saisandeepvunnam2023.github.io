@@ -1,6 +1,6 @@
 {
   "_comment": [
-    "Photography section, About, field notes, playground and contact.",
+    "Photography section, About, playground and contact.",
     "Photograph `id` values must exist in media.json. `span` controls the editorial",
     "grid: full | wide | half | tall. Captions should describe, not perform."
   ],
@@ -71,32 +71,6 @@
       "So what I build is mostly leverage. Not features — the thing underneath the features that means the next hundred pages cost almost nothing.",
       "Photography is where that instinct came from, and it is still where I practise it. You cannot include everything; a frame is defined entirely by what you refuse to put in it. Two years of shooting a campus taught me to wait longer than feels comfortable, to commit to one reading of a scene, and to accept that a technically perfect frame of the wrong moment is worthless. Every one of those is an engineering lesson I use more than I use any framework.",
       "What I want next is harder inputs. Systems where the data is messy and the correct answer is genuinely arguable — recommendation, ranking, anything where software has to make a call and then justify it to a person who is accountable for the outcome. The archive triage project was the first taste of that, and it is the one I would most like to do again properly."
-    ]
-  },
-  "notes": {
-    "eyebrow": "Field notes",
-    "sectionTitle": "Off the clock",
-    "items": [
-      {
-        "label": "Currently",
-        "text": "TODO — what are you building or learning right now? One sentence, specific. This is the line that makes you a person rather than a résumé."
-      },
-      {
-        "label": "Published",
-        "text": "Wrote and published “Where Passion Meets Play” on March Madness, and a photo essay, “A Thanksgiving of Growth and Gratitude” — both searchable under my full name."
-      },
-      {
-        "label": "Best shoot",
-        "text": "Courtside at the NCAA First Four. Arena light, no retakes, and a rule that if you are looking at the camera you have already missed it."
-      },
-      {
-        "label": "Hackathon",
-        "text": "Finalist at Convergence, VNR VJIET, with an automation tool for workflow efficiency — which in hindsight is exactly what I have been building ever since."
-      },
-      {
-        "label": "Reading",
-        "text": "TODO — a book, paper or blog you would actually recommend."
-      }
     ]
   },
   "playground": {
