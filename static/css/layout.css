@@ -59,9 +59,8 @@
   display: grid;
   place-items: center;
   padding: var(--s-6);
-  border: 1px dashed var(--accent-line);
   aspect-ratio: 3 / 2;
-  text-align: center;
+  background: var(--surface-2);
 }
 
 /* --- Buttons -------------------------------------------------------------

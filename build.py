@@ -152,6 +152,31 @@ def sitemap(site: dict, projects: dict) -> str:
     )
 
 
+def find_todos(trees: dict) -> list[tuple[str, str]]:
+    """Walk the content and collect every value still starting with TODO.
+
+    Nothing marked TODO reaches the page — the renderers skip it. This is how
+    the person who has to resolve it finds out, rather than a marker sitting on
+    the live site telling visitors the page is unfinished.
+    """
+    found: list[tuple[str, str]] = []
+
+    def walk(node, path: str) -> None:
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if not k.startswith("_"):
+                    walk(v, f"{path}.{k}")
+        elif isinstance(node, list):
+            for i, v in enumerate(node):
+                walk(v, f"{path}[{i}]")
+        elif isinstance(node, str) and node.strip().upper().startswith("TODO"):
+            found.append((path, node.strip()))
+
+    for name, tree in trees.items():
+        walk(tree, f"{name}.json")
+    return found
+
+
 def robots(site: dict) -> str:
     return f"User-agent: *\nAllow: /\n\nSitemap: {site['meta']['siteUrl']}/sitemap.xml\n"
 
@@ -278,18 +303,29 @@ def main() -> int:
     if not (DIST / "media" / "og-image.jpg").exists():
         warnings.append("social preview image missing → run python3 optimize_images.py")
 
-    blob = json.dumps([site, projects, skills, experience, story])
-    todo_count = len(re.findall(r'"TODO', blob)) + blob.count("TODO —")
+    unresolved = find_todos(
+        {"site": site, "projects": projects, "skills": skills,
+         "experience": experience, "story": story}
+    )
 
     size = sum(f.stat().st_size for f in DIST.rglob("*") if f.is_file())
     pages = 2 + case_count
 
     print(f"\n  dist/  {pages} pages · {len(css) / 1024:.1f} KB CSS inlined · {size / 1024 / 1024:.1f} MB total")
     print(f"         index.html, {case_count} case studies, 404.html, sitemap, robots, manifest")
-    if todo_count:
-        print(f"\n  {todo_count} TODO markers still in content/ — they render visibly on the page.")
     for w in warnings:
         print(f"  !  {w}")
+
+    if unresolved:
+        print(f"\n  {len(unresolved)} unresolved item(s) — omitted from the page, not shown on it:")
+        for path, text in unresolved:
+            print(f"     {path}")
+            print(f"       {text[:96]}{'…' if len(text) > 96 else ''}")
+
+    flagged = [r["company"] for r in experience["roles"] if r.get("verify")]
+    if flagged:
+        print(f"\n  verify (your own sources disagree): {', '.join(sorted(set(flagged)))}")
+        print("     see CONTENT-NOTES.md — nothing about this is visible on the page")
     print()
 
     if "--serve" in sys.argv:

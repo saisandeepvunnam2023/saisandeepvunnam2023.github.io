@@ -34,13 +34,12 @@ def render(site: dict) -> str:
             f"</p>"
         )
 
-    social = []
-    if links["github"].startswith("http"):
-        social.append(("GitHub", links["github"]))
-    if links["linkedin"].startswith("http"):
-        social.append(("LinkedIn", links["linkedin"]))
-    else:
-        social.append(("LinkedIn — TODO", "#contact"))
+    # Only real links. A dead LinkedIn is worse than no LinkedIn.
+    social = [
+        (label, href)
+        for label, href in (("GitHub", links["github"]), ("LinkedIn", links["linkedin"]))
+        if href.startswith("http")
+    ]
 
     social_html = join(
         f'<li><a class="hero__social" href="{esc(href)}"'

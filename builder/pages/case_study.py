@@ -10,15 +10,21 @@ from __future__ import annotations
 import json
 
 from ..layout import document, head
-from ..render import esc, join, link_out, section_heading, tags
+from ..render import esc, is_todo, join, link_out, section_heading, tags
 from ..sections import nav
 from . import diagrams
 
 BASE = "../../"
 
 
-def _section(s: dict) -> str:
-    paras = join(f"<p>{esc(p)}</p>" for p in s.get("body", []))
+def _written(s: dict) -> bool:
+    """A section with nothing but TODOs in it is not a section yet."""
+    body = [p for p in s.get("body", []) if not is_todo(p)]
+    return bool(body or s.get("diagram") or s.get("callout"))
+
+
+def _section(s: dict, n: int) -> str:
+    paras = join(f"<p>{esc(p)}</p>" for p in s.get("body", []) if not is_todo(p))
     callout = (
         f'<aside class="cs__callout"><p>{esc(s["callout"])}</p></aside>'
         if s.get("callout")
@@ -27,9 +33,9 @@ def _section(s: dict) -> str:
     diagram = diagrams.render(s["diagram"]) if s.get("diagram") else ""
 
     return f"""
-  <section class="cs__section" id="cs-{esc(s['n'])}" data-reveal>
+  <section class="cs__section" id="cs-{n:02d}" data-reveal>
     <div class="cs__section-head">
-      <p class="cs__n" aria-hidden="true">{esc(s['n'])}</p>
+      <p class="cs__n" aria-hidden="true">{n:02d}</p>
       <h2 class="cs__section-title">{esc(s['title'])}</h2>
     </div>
     <div class="cs__section-body">{paras}{callout}{diagram}</div>
@@ -105,7 +111,12 @@ def render(*, site, project, projects, css, scripts) -> str:
   </header>
 
   <div class="shell cs__sections">
-    {join(_section(s) for s in p.get('caseStudySections', []))}
+    {join(
+        _section(s, i)
+        for i, s in enumerate(
+            [x for x in p.get('caseStudySections', []) if _written(x)], start=1
+        )
+    )}
   </div>
 
   <div class="shell">{next_html}</div>

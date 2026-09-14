@@ -7,7 +7,7 @@ reveals role, stack, year and category, which is information, not decoration.
 
 from __future__ import annotations
 
-from ..render import esc, join, link_out, picture, section_heading, tags
+from ..render import esc, is_todo, join, link_out, picture, section_heading, tags
 
 
 def _meta_row(p: dict) -> str:
@@ -70,11 +70,16 @@ def _outcome(p: dict) -> str:
     m = p.get("outcomeMetric")
     if not m:
         return ""
+    full = (
+        f'<p class="outcome__full">{esc(p["outcome"])}</p>'
+        if not is_todo(p["outcome"])
+        else ""
+    )
     return f"""
     <div class="outcome">
       <p class="outcome__value">{esc(m['value'])}<span class="outcome__unit">{esc(m['unit'])}</span></p>
       <p class="outcome__caption">{esc(m['caption'])}</p>
-      <p class="outcome__full">{esc(p['outcome'])}</p>
+      {full}
     </div>"""
 
 

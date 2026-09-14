@@ -93,8 +93,7 @@
   margin-top: var(--s-8);
 }
 
-.channel > a,
-.channel__inner {
+.channel > a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -118,9 +117,6 @@
 .channel__arrow { color: var(--accent); transition: transform var(--dur-2) var(--ease-out); }
 .channel a:hover .channel__arrow { transform: translateX(4px); }
 
-.channel__inner { flex-wrap: wrap; row-gap: var(--s-2); }
-.channel--todo .channel__label { color: var(--fg-faint); }
-.channel--todo .todo { margin-left: 0; }
 
 /* --- Footer --------------------------------------------------------------- */
 .footer {

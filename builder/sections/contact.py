@@ -7,7 +7,7 @@ fourth place on the site the résumé appears.
 
 from __future__ import annotations
 
-from ..render import esc, is_todo, join
+from ..render import esc, join
 
 
 def render(site: dict, contact: dict) -> str:
@@ -23,22 +23,14 @@ def render(site: dict, contact: dict) -> str:
     rows.append(("GitHub", links["github"]))
     if links["linkedin"].startswith("http"):
         rows.append(("LinkedIn", links["linkedin"]))
-    else:
-        rows.append(("LinkedIn", None))
     if site.get("showPhone"):
         rows.append(("Phone", f"tel:{site['phone'].replace(' ', '').replace('(', '').replace(')', '').replace('-', '')}"))
 
     row_html = join(
-        (
-            f'<li class="channel"><a href="{esc(href)}"'
-            f'{" target=_blank rel=noopener" if str(href).startswith("http") else ""} data-magnetic>'
-            f'<span class="channel__label">{esc(label)}</span>'
-            f'<span class="channel__arrow" aria-hidden="true">→</span></a></li>'
-            if href
-            else f'<li class="channel channel--todo"><span class="channel__inner">'
-            f'<span class="channel__label">{esc(label)}</span>'
-            f'<span class="todo">add URL in content/site.json</span></span></li>'
-        )
+        f'<li class="channel"><a href="{esc(href)}"'
+        f'{" target=_blank rel=noopener" if str(href).startswith("http") else ""} data-magnetic>'
+        f'<span class="channel__label">{esc(label)}</span>'
+        f'<span class="channel__arrow" aria-hidden="true">→</span></a></li>'
         for label, href in rows
     )
 

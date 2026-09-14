@@ -105,28 +105,3 @@
   text-transform: none;
 }
 
-/* --- TODO markers --------------------------------------------------------
-   Deliberately loud. Unfinished content should be impossible to ship by
-   accident, so it is styled to be noticed rather than to blend in. */
-.todo {
-  display: inline-block;
-  padding: 0.1em 0.5em;
-  background: var(--accent-soft);
-  border: 1px dashed var(--accent-line);
-  border-radius: var(--r-1);
-  color: var(--accent-bright);
-  font-family: var(--font-mono);
-  font-size: 0.82em;
-  letter-spacing: 0.04em;
-  text-transform: none;
-}
-
-.todo--inline { margin-left: var(--s-2); font-size: var(--step--2); }
-
-.todo--flag {
-  margin-left: var(--s-3);
-  font-size: var(--step--2);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-label);
-  vertical-align: middle;
-}

@@ -199,9 +199,8 @@ def check(path: Path, problems: list, notes: list) -> None:
                 bad(f"canvas source -> missing file: {url}")
 
     # --- content warnings ---------------------------------------------------
-    todos = html.count('class="todo')
-    if todos:
-        notes.append(f"{rel}: {todos} TODO marker(s) visible on the page")
+    if 'class="todo' in html:
+        bad("a TODO marker reached the rendered page — it should have been omitted")
 
     size = len(html.encode()) / 1024
     notes.append(f"{rel}: {size:.0f} KB html · {len(doc.imgs)} img · {len(doc.links)} links")

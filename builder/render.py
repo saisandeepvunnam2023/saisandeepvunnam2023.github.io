@@ -45,13 +45,20 @@ def is_todo(value) -> bool:
     return isinstance(value, str) and value.strip().upper().startswith("TODO")
 
 
-def todo(value) -> str:
-    """Render a TODO marker that is impossible to miss but never fabricates content."""
-    return f'<span class="todo" title="Unresolved content">{esc(value)}</span>'
-
-
 def text_or_todo(value) -> str:
-    return todo(value) if is_todo(value) else esc(value)
+    """Escape a value, or render nothing at all if it is still a TODO.
+
+    Unresolved content is omitted from the page rather than marked on it. A
+    visitor should never see the seams of how the site was made; build.py
+    reports every TODO in the terminal instead, which is where the person who
+    has to fix it is actually looking.
+    """
+    return "" if is_todo(value) else esc(value)
+
+
+def unresolved(*values) -> bool:
+    """True if any of these is still a TODO — callers use it to skip a block."""
+    return any(is_todo(v) for v in values)
 
 
 # --------------------------------------------------------------------------
@@ -76,10 +83,10 @@ def picture(
     """
     meta = DERIVED.get(image_id)
     if not meta:
+        # A build-time fault, not content: the page should still be valid.
         return (
             f'<div class="media media--missing {esc(cls)}" role="img" '
-            f'aria-label="{esc(alt)}"><span class="todo">Missing image: '
-            f"{esc(image_id)} — run python3 optimize_images.py</span></div>"
+            f'aria-label="{esc(alt)}"></div>'
         )
 
     widths = meta["widths"]
