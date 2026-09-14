@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Static site generator for saisandeepvunnam.github.io.
+Static site generator for saisandeepvunnam2023.github.io.
 
 Python standard library only — no Node, no npm, no framework, nothing to install
 and nothing to go stale. Content lives in content/*.json, layout lives in
