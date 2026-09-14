@@ -54,7 +54,7 @@ optimize_images.py       photo pipeline + icons + social card (needs Pillow)
 content/                 ALL editable content. You should rarely leave this folder.
   site.json              name, role, positioning, links, nav, SEO metadata
   projects.json          featured work + full case-study text
-  skills.json            the Signal Field: capabilities → technologies → projects
+  skills.json            capabilities → technologies → the projects they appear in
   experience.json        roles, education, recognition
   story.json             photography, about, field notes, playground, contact
   media.json             where your photograph originals live on disk
@@ -189,15 +189,21 @@ the output and eating the underscore-prefixed paths.
 
 ## The interactive piece
 
-### Signal Field — the skills map
+### The skills readout
 
-`static/js/signal-field.js`. Point at a capability and hairlines are drawn to the
-technologies that serve it. Every line comes from the same JSON the list is
-rendered from, so a connection can only ever be true.
+`static/js/skills.js`. Four capability columns, and one readout underneath that
+fills in with whatever you point at — what the technology is used for, and which
+project on the page it appears in.
 
-It is an emphasis layer over a list that is already complete: nothing is hidden,
-dimming is opacity only, and with JavaScript off you lose the lines and keep all
-the information.
+It is a mirror and nothing more. Every technology's description and project link
+already sit beside its name in the DOM; the module only changes *where* a
+sighted pointer user sees them. On a phone, or with JavaScript off, that same
+markup renders inline and the section becomes a plain readable list with nothing
+missing. That is also why the readout is `aria-hidden` — a screen reader gets the
+real markup rather than a duplicate.
+
+One delegated listener on the container, not twenty-six on the names, and the
+names are plain spans so they add no tab stops.
 
 The hero photograph is shown plainly, with no interaction attached to it.
 
@@ -212,12 +218,12 @@ The hero photograph is shown plainly, with no interaction attached to it.
   and explicit `width`/`height` so nothing shifts as it loads.
 - The hero preload offers the browser the same candidate list as the `<picture>`,
   so a retina screen does not download it twice.
-- `signal-field.js` only downloads when the skills section is near the viewport;
+- `skills.js` only downloads when the skills section is near the viewport;
   it is the only script beyond the 7 KB entry point.
 - Reveal animations disconnect their observer once an element has been seen, and
   have a 2.5s CSS failsafe so content still appears if the module never loads.
 - One `<h1>`, no heading-level skips, real landmarks, visible focus rings,
-  keyboard-operable skills map, and a print stylesheet.
+  a skills section that is fully readable without scripting, and a print stylesheet.
 
 `check.py` enforces the structural half of that list on every build.
 

@@ -56,7 +56,7 @@ CSS_ORDER = [
     "misc.css",
 ]
 
-JS_FILES = ["main.js", "signal-field.js"]
+JS_FILES = ["main.js", "skills.js"]
 
 
 def minify_css(css: str) -> str:

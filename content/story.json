@@ -79,10 +79,10 @@
     "intro": "Small things, built to understand something. Nothing here is a product.",
     "items": [
       {
-        "title": "Signal Field",
+        "title": "Skills readout",
         "year": "2026",
         "tech": "SVG + JS",
-        "text": "The skills map further down. Connections drawn from real data rather than decoration — every line is a technology that genuinely appears in a named project. Works with JavaScript disabled; the lines are the enhancement, the information is the HTML.",
+        "text": "The skills matrix further down. Every entry carries what I use it for and which project it appears in, and all of it is in the HTML — the readout only changes where a pointer user sees it. On a phone, or with JavaScript off, it renders as a plain list with nothing missing.",
         "status": "live"
       },
       {

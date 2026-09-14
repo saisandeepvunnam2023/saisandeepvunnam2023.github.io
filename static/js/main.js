@@ -5,8 +5,8 @@
  * markup that already works: the page is complete, readable and navigable before
  * a byte of this runs.
  *
- * The skills visualisation is dynamically imported, and only when that section
- * is near the viewport — nobody downloads it to read the hero.
+ * The skills readout is dynamically imported, and only when that section is near
+ * the viewport on a device that can hover — nobody downloads it to read the hero.
  */
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -209,22 +209,24 @@ function initCursor() {
    Lazy module loading
    ---------------------------------------------------------------------- */
 
-function initSignalField() {
-  const field = $('[data-signal-field]');
-  if (!field || !('IntersectionObserver' in window)) return;
+function initSkills() {
+  const root = $('[data-skills]');
+  if (!root || !('IntersectionObserver' in window)) return;
+
+  // The readout only exists on pointer devices; on touch the detail is already
+  // rendered inline, so there is nothing for this module to do.
+  if (!FINE_POINTER) return;
 
   const io = new IntersectionObserver(
     (entries, observer) => {
       if (!entries[0].isIntersecting) return;
       observer.disconnect();
-      import('./signal-field.js')
-        .then((m) => m.init(field, { reducedMotion: REDUCED }))
-        .catch(() => {});
+      import('./skills.js').then((m) => m.init(root)).catch(() => {});
     },
     { rootMargin: '300px' },
   );
 
-  io.observe(field);
+  io.observe(root);
 }
 
 /* -------------------------------------------------------------------------
@@ -247,7 +249,7 @@ function boot() {
   initMagnetic();
   initCursor();
   initYear();
-  initSignalField();
+  initSkills();
 }
 
 if (document.readyState === 'loading') {

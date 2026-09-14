@@ -1,6 +1,6 @@
 {
   "_comment": [
-    "The Signal Field. Four capabilities, each holding technologies, each technology",
+    "Four capabilities, each holding technologies, each technology",
     "pointing at the work where it was actually used.",
     "`project` must match a slug in projects.json, or be null.",
     "Only list things that appear in the resume, the old site, or shipped work.",
@@ -8,8 +8,8 @@
   ],
 
   "eyebrow": "Capability",
-  "sectionTitle": "Not a list of logos. A map of what connects to what.",
-  "intro": "Four things I do. Hover or focus any capability to see which technologies serve it, and which piece of work each one actually shows up in.",
+  "sectionTitle": "Grouped by what they are for, not by what they are.",
+  "intro": "Four things I do, and what I do them with. Every technology here appears in work described elsewhere on this page.",
 
   "capabilities": [
     {
