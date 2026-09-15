@@ -4,16 +4,20 @@
 
 .about {
   display: grid;
-  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-  gap: clamp(2rem, 1.5rem + 4vw, 5rem);
+  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 1.25rem + 3vw, 4rem);
   align-items: start;
 }
 
 /* --- Portrait -------------------------------------------------------------
    Framed rather than cropped round: a photograph presented the way the rest of
    the photography on this site is presented. */
+/* The copy runs about three times the height of the portrait, which left the
+   left column empty for most of the section. Sticky keeps it in the frame for
+   as long as there is something to read beside it. */
 .about__portrait {
-  position: relative;
+  position: sticky;
+  top: 7rem;
   padding: var(--s-3);
   border: 1px solid var(--rule);
 }
@@ -58,5 +62,6 @@
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 56rem) {
   .about { grid-template-columns: 1fr; }
-  .about__portrait { max-width: 20rem; }
+  /* One column, so there is nothing beside it to stay level with. */
+  .about__portrait { position: static; max-width: 20rem; }
 }

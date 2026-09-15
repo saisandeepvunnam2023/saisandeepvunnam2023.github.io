@@ -6,7 +6,7 @@
    ========================================================================== */
 
 .section--contact {
-  padding-block: clamp(6rem, 4rem + 10vw, 13rem);
+  padding-block: clamp(4rem, 3rem + 5vw, 8rem);
   text-align: left;
 }
 
@@ -31,7 +31,7 @@
 .contact__links {
   display: grid;
   gap: var(--s-6);
-  margin-top: var(--s-8);
+  margin-top: var(--s-7);
   justify-items: start;
 }
 

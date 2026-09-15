@@ -11,7 +11,7 @@
      JS + fine pointer — names only, detail mirrored into the readout below
    ========================================================================== */
 
-.matrix { margin-top: var(--s-8); }
+.matrix { margin-top: var(--s-7); }
 
 .matrix__cols {
   display: grid;

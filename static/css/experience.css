@@ -156,8 +156,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: clamp(2rem, 1.5rem + 3vw, 4rem);
-  margin-top: var(--s-8);
-  padding-top: var(--s-7);
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
   border-top: 1px solid var(--rule-strong);
 }
 

@@ -93,7 +93,7 @@
   --s-8: 4.5rem;
   --s-9: 7rem;
   --s-10: 10rem;
-  --section-y: clamp(5rem, 3rem + 9vw, 11rem);
+  --section-y: clamp(3.25rem, 2.2rem + 4.4vw, 6.5rem);
   --gutter: clamp(1.15rem, 0.6rem + 2.6vw, 3.5rem);
 
   /* --- Measure ----------------------------------------------------------- */

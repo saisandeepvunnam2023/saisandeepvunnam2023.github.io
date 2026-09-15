@@ -28,7 +28,7 @@
   background: var(--rule);
 }
 
-.section__head { margin-bottom: var(--s-8); }
+.section__head { margin-bottom: var(--s-7); }
 /* An intro paragraph belongs to the heading above it, not to the content
    below. Close the gap when one follows. */
 .section__head:has(+ .section__intro) { margin-bottom: var(--s-5); }
