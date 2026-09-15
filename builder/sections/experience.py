@@ -1,8 +1,9 @@
 """Experience, education and recognition.
 
-An editorial column rather than a timeline widget. Each role leads with the one
-line worth scanning; the detail sits underneath for anyone who wants it. Roles
-still awaiting your confirmation carry a visible verify flag.
+An editorial column rather than a timeline widget. The company is the heading;
+job titles stay in experience.json but are deliberately not rendered. Each entry
+leads with the one line worth scanning, and the detail sits underneath for
+anyone who wants it.
 """
 
 from __future__ import annotations
@@ -29,8 +30,7 @@ def _role(r: dict, i: int) -> str:
         {place}
       </div>
       <div class="role__body">
-        <h3 class="role__title">{esc(r['role'])}</h3>
-        <p class="role__company">{esc(r['company'])}</p>
+        <h3 class="role__company">{esc(r['company'])}</h3>
         <p class="role__highlight">{esc(r['highlight'])}</p>
         <details class="role__more">
           <summary><span class="role__more-open">What I did</span><span class="role__more-close">Less</span></summary>
