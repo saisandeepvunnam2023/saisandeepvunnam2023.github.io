@@ -20,7 +20,7 @@
   "statusActive": true,
   "email": "saisandeepvunnam2023@gmail.com",
   "phone": "+1 (940) 843-8351",
-  "showPhone": false,
+  "showPhone": true,
   "links": {
     "github": "https://github.com/vunnamsaisandeep",
     "linkedin": "TODO — paste your LinkedIn profile URL here",
@@ -69,5 +69,6 @@
     "themeColor": "#0B0C0D",
     "locale": "en_US"
   },
-  "footer": {}
+  "footer": {},
+  "_showPhone": "Renders the number as a second large contact link beside the email. Set false to hide it."
 }

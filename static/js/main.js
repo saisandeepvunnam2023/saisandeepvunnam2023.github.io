@@ -137,8 +137,7 @@ function initReveals() {
 }
 
 /* -------------------------------------------------------------------------
-   Magnetic buttons + cursor dot
-   Pointer-device only, and skipped entirely under reduced motion.
+   Magnetic buttons. Pointer-device only, skipped under reduced motion.
    ---------------------------------------------------------------------- */
 
 function initMagnetic() {
@@ -171,38 +170,6 @@ function initMagnetic() {
     el.addEventListener('pointerleave', reset);
     el.addEventListener('blur', reset);
   });
-}
-
-function initCursor() {
-  if (!FINE_POINTER || REDUCED) return;
-
-  const dot = document.createElement('div');
-  dot.className = 'cursor-dot';
-  dot.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(dot);
-
-  let x = 0;
-  let y = 0;
-  let raf = 0;
-
-  window.addEventListener(
-    'pointermove',
-    (e) => {
-      x = e.clientX;
-      y = e.clientY;
-      dot.classList.add('is-active');
-      const interactive = e.target.closest('a, button, summary, [data-magnetic]');
-      dot.classList.toggle('is-over-link', Boolean(interactive));
-
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        dot.style.translate = `${x}px ${y}px`;
-      });
-    },
-    { passive: true },
-  );
-
-  document.addEventListener('pointerleave', () => dot.classList.remove('is-active'));
 }
 
 /* -------------------------------------------------------------------------
@@ -247,7 +214,6 @@ function boot() {
   initMobilePanel();
   initReveals();
   initMagnetic();
-  initCursor();
   initYear();
   initSkills();
 }

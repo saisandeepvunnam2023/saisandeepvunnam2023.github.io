@@ -1,8 +1,8 @@
 """Contact and footer.
 
-The email address is the loudest element on the page and is a real mailto link,
-not a click-to-reveal. Résumé, GitHub and LinkedIn sit beside it, which is the
-fourth place on the site the résumé appears.
+The email address is the largest interactive element on the site, and the phone
+number sits beside it at the same weight. Both are plain mailto/tel links: no
+reveal, no form, no copy-to-clipboard puzzle. On a phone the number dials.
 """
 
 from __future__ import annotations
@@ -10,29 +10,30 @@ from __future__ import annotations
 from ..render import esc, join
 
 
+def _tel(phone: str) -> str:
+    """A tel: href keeps only the digits and a leading +."""
+    digits = "".join(c for c in phone if c.isdigit())
+    return "tel:+" + digits if phone.strip().startswith("+") else "tel:" + digits
+
+
+def _big_link(href: str, label: str, value: str) -> str:
+    return f"""
+    <a class="contact__line-link" href="{esc(href)}" data-magnetic>
+      <span class="contact__link-label">{esc(label)}</span>
+      <span class="contact__link-value">{esc(value)}</span>
+      <span class="contact__link-rule" aria-hidden="true"></span>
+    </a>"""
+
+
 def render(site: dict, contact: dict) -> str:
-    links = site["links"]
     headline = join(
         f'<span class="contact__line" style="--i:{i}">{esc(line)}</span>'
         for i, line in enumerate(contact["headline"])
     )
 
-    rows = []
-    if site.get("showResume"):
-        rows.append(("Résumé", links["resume"]))
-    rows.append(("GitHub", links["github"]))
-    if links["linkedin"].startswith("http"):
-        rows.append(("LinkedIn", links["linkedin"]))
-    if site.get("showPhone"):
-        rows.append(("Phone", f"tel:{site['phone'].replace(' ', '').replace('(', '').replace(')', '').replace('-', '')}"))
-
-    row_html = join(
-        f'<li class="channel"><a href="{esc(href)}"'
-        f'{" target=_blank rel=noopener" if str(href).startswith("http") else ""} data-magnetic>'
-        f'<span class="channel__label">{esc(label)}</span>'
-        f'<span class="channel__arrow" aria-hidden="true">→</span></a></li>'
-        for label, href in rows
-    )
+    links = [_big_link(f"mailto:{site['email']}", contact["emailLabel"], site["email"])]
+    if site.get("showPhone") and site.get("phone"):
+        links.append(_big_link(_tel(site["phone"]), "Or call", site["phone"]))
 
     return f"""
 <section class="section section--contact" id="contact" aria-labelledby="contact-title">
@@ -41,18 +42,12 @@ def render(site: dict, contact: dict) -> str:
     <h2 class="contact__headline" id="contact-title">{headline}</h2>
     <p class="contact__body">{esc(contact['body'])}</p>
 
-    <a class="contact__email" href="mailto:{esc(site['email'])}" data-magnetic>
-      <span class="contact__email-label">{esc(contact['emailLabel'])}</span>
-      <span class="contact__email-address">{esc(site['email'])}</span>
-      <span class="contact__email-rule" aria-hidden="true"></span>
-    </a>
+    <div class="contact__links">{join(links)}</div>
 
     <p class="contact__availability">
       <span class="hero__status-dot" aria-hidden="true"></span>
       {esc(contact['availability'])}
     </p>
-
-    <ul class="channels">{row_html}</ul>
   </div>
 </section>
 """
