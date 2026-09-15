@@ -20,21 +20,15 @@
 .frame--half { grid-column: span 4; }
 .frame--tall { grid-column: span 4; grid-row: span 2; }
 
+/* These are photographs, so they are shown as photographs. Draining the colour
+   out of someone's photography to make a page feel moody is the wrong trade. */
 .frame__img {
-  filter: grayscale(0.72) contrast(1.06) brightness(0.9);
-  transition: filter var(--dur-4) var(--ease), transform var(--dur-4) var(--ease-out);
+  filter: brightness(0.94);
+  transition: filter var(--dur-3) var(--ease), transform var(--dur-4) var(--ease-out);
 }
-
-.frame.is-revealed .frame__img { filter: grayscale(0.35) contrast(1.03) brightness(0.95); }
 
 @media (hover: hover) and (pointer: fine) {
-  .frame:hover .frame__img { filter: none; transform: scale(1.015); }
-}
-
-/* Touch devices get colour immediately — there is no hover to earn it with. */
-@media (hover: none) {
-  .frame__img { filter: grayscale(0.15) contrast(1.02); }
-  .frame.is-revealed .frame__img { filter: none; }
+  .frame:hover .frame__img { filter: brightness(1.02); transform: scale(1.012); }
 }
 
 /* --- Caption -------------------------------------------------------------- */
@@ -54,14 +48,22 @@
   text-wrap: pretty;
 }
 
-.frames__outro {
-  max-width: var(--measure);
-  margin: var(--s-7) 0 0 auto;
+.frames__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-6);
+  margin-top: var(--s-7);
   padding-top: var(--s-5);
   border-top: 1px solid var(--rule);
+}
+
+.frames__outro {
+  max-width: var(--measure);
+  margin: 0;
   color: var(--fg-dim);
   font-size: var(--step--1);
-  text-align: right;
   text-wrap: pretty;
 }
 
@@ -82,5 +84,5 @@
   .frame--wide,
   .frame--half,
   .frame--tall { grid-column: 1 / -1; grid-row: auto; }
-  .frames__outro { margin-left: 0; text-align: left; }
+  .frames__foot { flex-direction: column; align-items: flex-start; }
 }

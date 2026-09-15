@@ -159,6 +159,18 @@ because they are not web operations.
 
 ## 6. Photographs
 
+The photography section now mirrors your own portfolio at
+`saisandeepvunnam2023.github.io/sai-sandeep-photography`, using the eight genres
+you curated there (Sports, Portrait, Candid, Wildlife, Event, Nature, Street,
+Lifestyle) and linking out to the full roll. The seven Desktop photographs that
+were here before have been retired.
+
+The photography site lists `vunnamsaisandeep20@gmail.com`; this site lists
+`saisandeepvunnam2023@gmail.com`. Both are Sai's, and the difference is
+intentional. Not a defect, recorded here so it does not get "fixed" later.
+
+### Sources
+
 Seven photographs from `Desktop/portfolio /` and `Desktop/port/`, chosen for
 range. The seven magazine covers in project 02 are the files in `Desktop/port/`,
 matching the issue images on your old site.

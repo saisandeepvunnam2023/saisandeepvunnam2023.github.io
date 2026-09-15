@@ -7,56 +7,67 @@
   "photography": {
     "eyebrow": "Frames",
     "sectionTitle": "Through another lens",
-    "intro": "Two years photographing a campus in every kind of weather. It is not a side interest sitting next to the engineering. It is where I learned the habits I actually rely on: watch longer than feels necessary, decide what to leave out, and know that the frame is the argument.",
-    "outro": "A large share of these ran in the University of Dayton Magazine, the same magazine I built the publishing system for.",
+    "intro": "Photography is not a hobby sitting next to the engineering. It is where I learned the habits I actually rely on: watch longer than feels necessary, decide what to leave out, and know that the frame is the argument. Eight kinds of work, from a separate portfolio.",
+    "outro": "The full roll, and the rest of what I shoot, lives on its own site.",
+    "link": {
+      "label": "Sai Sandeep Photography",
+      "href": "https://saisandeepvunnam2023.github.io/sai-sandeep-photography/"
+    },
     "photographs": [
       {
-        "id": "ph-corridor",
+        "id": "ph-sports",
         "span": "wide",
-        "title": "Corridor",
-        "caption": "Backlight doing the composition. Two students, a dog, and a hallway that lines everything up for you if you wait at the right end of it.",
-        "alt": "Two students walking away down a sunlit school corridor with a dog beside them, silhouetted against bright windows at the far end"
+        "title": "Sports",
+        "caption": "NCAA tournament basketball. Arena light, one attempt at everything.",
+        "alt": "Two college basketball players competing for the ball during a packed NCAA tournament game"
       },
       {
-        "id": "ph-snowfall",
-        "span": "half",
-        "title": "Snowfall",
-        "caption": "Falling snow is a depth cue. Shoot it wrong and you get grey; shoot it right and the building sits back three hundred feet.",
-        "alt": "University of Dayton campus during heavy snowfall, bare trees and a building fading into white haze"
-      },
-      {
-        "id": "ph-nest",
+        "id": "ph-portrait",
         "span": "tall",
-        "title": "Nest",
-        "caption": "Magnolia in full bloom, and a nest in the fork of it. Nobody walking past had seen it. Attention is most of the job.",
+        "title": "Portrait",
+        "caption": "Open shade, shallow depth, and enough time that the person stops performing.",
+        "alt": "Outdoor portrait of a young woman in soft daylight against a blurred green background"
+      },
+      {
+        "id": "ph-candid",
+        "span": "half",
+        "title": "Candid",
+        "caption": "A child looking up in a dark room. The only light in the frame is on her face.",
+        "alt": "A young child looking upward, lit by a single shaft of light in an otherwise dark room"
+      },
+      {
+        "id": "ph-wildlife",
+        "span": "half",
+        "title": "Wildlife",
+        "caption": "A squirrel on a branch, backlit through spring leaves. Patience, mostly.",
+        "alt": "A squirrel sitting on a tree branch, backlit through bright green spring foliage"
+      },
+      {
+        "id": "ph-event",
+        "span": "wide",
+        "title": "Event",
+        "caption": "A crowded room, one private moment in the middle of it.",
+        "alt": "A couple embracing during a ceremony, surrounded by a crowd of guests"
+      },
+      {
+        "id": "ph-nature",
+        "span": "tall",
+        "title": "Nature",
+        "caption": "Magnolia in full bloom, and a nest in the fork of it that nobody walking past had seen.",
         "alt": "A bird's nest resting in the fork of a magnolia branch surrounded by pink blossoms"
       },
       {
-        "id": "ph-fountain",
+        "id": "ph-street",
         "span": "half",
-        "title": "Fountain",
-        "caption": "One frame out of a long burst. The water had to be a shape, not a blur, and he had to still be running.",
-        "alt": "A young child in a red shirt running past a fountain, water frozen mid-arc around him"
+        "title": "Street",
+        "caption": "Two people on a suburban footpath, reacting to the camera a half second too late.",
+        "alt": "Two people posing on a suburban pavement outside a white porch on a bright day"
       },
       {
-        "id": "ph-drive",
-        "span": "wide",
-        "title": "Courtside",
-        "caption": "NCAA First Four, 2025. Courtside, arena light, no second attempt at anything.",
-        "alt": "A college basketball player driving toward the basket during a packed NCAA tournament game"
-      },
-      {
-        "id": "ph-lift",
+        "id": "ph-lifestyle",
         "span": "half",
-        "title": "Lift",
-        "caption": "The top of the arc is the only readable moment. You release a fraction before it, because you are not fast enough to react to it.",
-        "alt": "Cheerleaders performing a stunt at a basketball game, one flyer inverted at the top of a lift"
-      },
-      {
-        "id": "ph-grass",
-        "span": "half",
-        "title": "Afternoon",
-        "caption": "Low sun, long grass, someone reading. The quiet frames are the ones the magazine actually used.",
+        "title": "Lifestyle",
+        "caption": "Low sun, long grass, someone reading. The quiet frames are the ones that get used.",
         "alt": "A student lying on sunlit grass reading, warm late-afternoon light across the lawn"
       }
     ]

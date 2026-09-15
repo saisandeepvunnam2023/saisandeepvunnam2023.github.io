@@ -7,7 +7,7 @@ story.json drive the composition, so reordering the section is a content edit.
 
 from __future__ import annotations
 
-from ..render import esc, join, picture, section_heading
+from ..render import esc, join, link_out, picture, section_heading
 
 SIZES = {
     "full": "(max-width:900px) 100vw, 92vw",
@@ -41,7 +41,10 @@ def render(photography: dict) -> str:
   </div>
   <div class="shell shell--wide">
     <div class="frames">{frames}</div>
-    <p class="frames__outro">{esc(photography['outro'])}</p>
+    <div class="frames__foot">
+      <p class="frames__outro">{esc(photography['outro'])}</p>
+      {link_out(photography['link']['label'], photography['link']['href'], primary=True)}
+    </div>
   </div>
 </section>
 """

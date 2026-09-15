@@ -1,6 +1,7 @@
 {
   "_comment": [
-    "Source photographs live outside this repo (they are 15-35 MB camera files).",
+    "Source photographs live outside this repo. The photography set mirrors",
+    "saisandeepvunnam2023.github.io/sai-sandeep-photography, saved to Desktop/photography-site-src.",
     "`src` points at the original; `id` is the name the site refers to.",
     "After editing this file run:  python3 optimize_images.py",
     "That writes responsive AVIF/WebP/JPEG derivatives into static/media/ and",
@@ -18,39 +19,44 @@
       "src": "/Users/saisandeep/Desktop/sandeep-portfolio/static/media/_headshot-src.jpeg"
     },
     {
-      "id": "ph-corridor",
+      "id": "ph-sports",
       "role": "gallery",
-      "src": "/Users/saisandeep/Desktop/portfolio /IMG_7714 2.jpg"
+      "src": "/Users/saisandeep/Desktop/photography-site-src/p11.jpg"
     },
     {
-      "id": "ph-fountain",
+      "id": "ph-portrait",
       "role": "gallery",
-      "src": "/Users/saisandeep/Desktop/portfolio /DSC_2656-Enhanced-NR.JPEG"
+      "src": "/Users/saisandeep/Desktop/photography-site-src/n14.jpg"
     },
     {
-      "id": "ph-drive",
+      "id": "ph-candid",
       "role": "gallery",
-      "src": "/Users/saisandeep/Desktop/portfolio /DSC_5432.JPEG"
+      "src": "/Users/saisandeep/Desktop/photography-site-src/p1.jpg"
     },
     {
-      "id": "ph-nest",
+      "id": "ph-wildlife",
       "role": "gallery",
-      "src": "/Users/saisandeep/Desktop/portfolio /DSC_8313-Enhanced-NR.JPEG"
+      "src": "/Users/saisandeep/Desktop/photography-site-src/n15.jpg"
     },
     {
-      "id": "ph-snowfall",
+      "id": "ph-event",
       "role": "gallery",
-      "src": "/Users/saisandeep/Desktop/port/241121_SnowFallAtUD_Vunnam_40.jpg"
+      "src": "/Users/saisandeep/Desktop/photography-site-src/n5.jpg"
     },
     {
-      "id": "ph-lift",
+      "id": "ph-nature",
       "role": "gallery",
-      "src": "/Users/saisandeep/Desktop/portfolio /IMG_2357.JPG"
+      "src": "/Users/saisandeep/Desktop/photography-site-src/p10.jpg"
     },
     {
-      "id": "ph-grass",
+      "id": "ph-street",
       "role": "gallery",
-      "src": "/Users/saisandeep/Desktop/portfolio /IMG_7851.JPG"
+      "src": "/Users/saisandeep/Desktop/photography-site-src/n17.jpg"
+    },
+    {
+      "id": "ph-lifestyle",
+      "role": "gallery",
+      "src": "/Users/saisandeep/Desktop/photography-site-src/n16.jpg"
     },
     {
       "id": "mag-summer-2025",
