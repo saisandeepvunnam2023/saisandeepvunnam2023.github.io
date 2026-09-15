@@ -26,7 +26,7 @@
         { "name": "Production QA", "use": "Responsive, functional, accessibility, browser and production checks before and after every release", "project": "site-programme" },
         { "name": "DNS, HTTPS & SSL", "use": "Troubleshooting certificates, domains and redirects when pages stop resolving", "project": null },
         { "name": "CDN & caching", "use": "Delivery and cache behaviour in front of the origin", "project": null },
-        { "name": "Git & GitHub Actions", "use": "Version control and the CI that builds and deploys — including this site", "project": "nfl-season-hub" },
+        { "name": "Git & GitHub Actions", "use": "Version control, and the CI that builds and deploys this site", "project": "nfl-season-hub" },
         { "name": "Jira & Confluence", "use": "Ticket queues, escalation, and the runbooks other people follow", "project": null }
       ]
     },
@@ -35,11 +35,11 @@
       "verb": "BUILD",
       "line": "Front ends people use without thinking about them.",
       "nodes": [
-        { "name": "React", "use": "Component-driven interfaces — React 19 on the NFL Season Hub", "project": "nfl-season-hub" },
-        { "name": "Next.js", "use": "Server-rendered application work — Next.js 15 on CNR Car Zone", "project": "cnr-car-zone" },
+        { "name": "React", "use": "Component-driven interfaces. React 19 on the NFL Season Hub", "project": "nfl-season-hub" },
+        { "name": "Next.js", "use": "Server-rendered application work. Next.js 15 on CNR Car Zone", "project": "cnr-car-zone" },
         { "name": "TypeScript", "use": "Typed front-end code across both shipped applications", "project": "nfl-season-hub" },
         { "name": "JavaScript", "use": "Interaction and front-end logic, including everything on this page", "project": null },
-        { "name": "HTML & CSS", "use": "Semantic structure and layout systems — the part that decides whether a site is accessible", "project": "ud-magazine" },
+        { "name": "HTML & CSS", "use": "Semantic structure and layout systems, the part that decides whether a site is accessible", "project": "ud-magazine" },
         { "name": "Responsive & accessible UI", "use": "Mobile-first builds checked to WCAG AA before launch", "project": "ud-magazine" },
         { "name": "Figma", "use": "Wireframes and prototypes, handed off to my own builds", "project": "site-programme" }
       ]
@@ -65,11 +65,11 @@
       "nodes": [
         { "name": "Technical SEO", "use": "Crawlability, metadata, schema markup and redirect strategy", "project": "site-programme" },
         { "name": "Google Analytics 4", "use": "Measuring whether a content decision actually worked", "project": "site-programme" },
-        { "name": "Core Web Vitals", "use": "Page speed and layout stability as a release gate — 100 Lighthouse on the NFL hub", "project": "nfl-season-hub" },
+        { "name": "Core Web Vitals", "use": "Page speed and layout stability as a release gate. 100 Lighthouse on the NFL hub", "project": "nfl-season-hub" },
         { "name": "Qualtrics", "use": "Feedback instrumentation embedded in CMS pages", "project": "site-programme" },
-        { "name": "Python", "use": "Data pipelines and image automation — polars for the NFL play-by-play parse", "project": "nfl-season-hub" },
+        { "name": "Python", "use": "Data pipelines and image automation, including the polars parse behind the NFL hub", "project": "nfl-season-hub" },
         { "name": "OpenCV", "use": "Exposure normalisation, HDR tone mapping and content-aware crop on campus photography", "project": null },
-        { "name": "Photography", "use": "Two years of campus work — published in the magazine and on official channels", "project": null }
+        { "name": "Photography", "use": "Two years of campus work, published in the magazine and on official channels", "project": null }
       ]
     }
   ]

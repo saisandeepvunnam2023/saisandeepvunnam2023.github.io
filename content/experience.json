@@ -10,10 +10,10 @@
     {
       "company": "Unity Technologies",
       "role": "Web Operations Specialist · Full-Stack Web Engineer",
-      "period": "Jan 2026 — May 2026",
+      "period": "Jan 2026 – May 2026",
       "location": "TODO — add location",
       "verify": true,
-      "highlight": "Owned customer-facing web properties — shipping campaign launches, auditing 100+ pages, and troubleshooting production when DNS, SSL or a publish broke.",
+      "highlight": "Owned customer-facing web properties. Shipped campaign launches, audited 100+ pages, and troubleshot production when DNS, SSL or a publish broke.",
       "contributions": [
         "Managed customer-facing web properties supporting global product and campaign experiences.",
         "Shipped updates and campaign launches through CMS and component workflows.",
@@ -22,7 +22,7 @@
         "Applied technical SEO across crawlability, metadata and redirects.",
         "Monitored Core Web Vitals, page speed and accessibility as release gates.",
         "Troubleshot production issues across DNS, HTTPS and SSL certificates.",
-        "Ran service desk tickets end to end — intake, triage by business impact, escalation with reproduction steps, and resolution.",
+        "Ran service desk tickets end to end: intake, triage by business impact, escalation with reproduction steps, and resolution.",
         "Wrote the Confluence knowledge base: troubleshooting guides, release instructions and SOPs."
       ],
       "stack": [
@@ -40,19 +40,19 @@
     {
       "company": "University of Dayton",
       "role": "Web Content & Digital Experience Analyst · Full-Stack Web Developer",
-      "period": "Nov 2023 — Dec 2025",
+      "period": "Nov 2023 – Dec 2025",
       "location": "Dayton, Ohio",
       "verify": false,
       "highlight": "Managed 175+ digital initiatives across institutional websites, built the templates they publish through, and gated every launch on accessibility and Core Web Vitals.",
       "contributions": [
         "Managed 175+ digital initiatives across institutional websites.",
         "Built responsive pages in HTML, CSS and JavaScript from Figma designs I also produced.",
-        "Published with governance — creating, reviewing and launching content through Cascade CMS.",
+        "Published with governance, creating, reviewing and launching content through Cascade CMS.",
         "Developed custom WordPress themes and plugins with caching and SEO for departmental sites.",
         "Used GA4 and Qualtrics to monitor engagement and inform content decisions.",
         "Implemented technical SEO across metadata, schema markup and redirects.",
         "Applied Core Web Vitals and accessibility checks before every launch.",
-        "Automated image workflows in Python and OpenCV — HDR, content-aware crop, dynamic resizing — cutting manual editing time by 40%.",
+        "Automated image workflows in Python and OpenCV, covering HDR, content-aware crop and dynamic resizing, cutting manual editing time by 40%.",
         "Ran responsive, functional, accessibility, browser and production QA before and after every release."
       ],
       "stack": [
@@ -70,7 +70,7 @@
     {
       "company": "University of Dayton",
       "role": "Photographer & Multimedia Creator",
-      "period": "Oct 2023 — Mar 2025",
+      "period": "Oct 2023 – Mar 2025",
       "location": "Dayton, Ohio",
       "verify": false,
       "highlight": "Two years of campus photography, published in the University of Dayton Magazine and on official university channels.",
@@ -91,13 +91,13 @@
     {
       "company": "KIMS Hospitals",
       "role": "Web Designer",
-      "period": "Aug 2020 — May 2023",
+      "period": "Aug 2020 – May 2023",
       "location": "Hyderabad, India",
       "verify": true,
       "highlight": "Built patient-facing booking portals and provider search flows to WCAG/ADA standards.",
       "contributions": [
         "Designed and developed responsive booking portals, provider search flows and service-line microsites, mobile-first.",
-        "Built front-end components — forms, navigation, interactive cards — with real validation, states and error handling.",
+        "Built front-end components such as forms, navigation and interactive cards, with real validation, states and error handling.",
         "Implemented schema.org markup and WCAG/ADA compliance with the marketing and SEO teams.",
         "Ran UX research using GA4, heatmaps and usability testing, iterating layouts and CTAs on the appointment funnel.",
         "Optimised page performance, load times and cross-browser compatibility."
@@ -114,14 +114,14 @@
     {
       "company": "BSCPL Infrastructure Ltd.",
       "role": "Web Designer",
-      "period": "Jan 2020 — Mar 2021",
+      "period": "Jan 2020 – Mar 2021",
       "location": "Hyderabad, India",
       "verify": true,
       "highlight": "Corporate site, investor pages and project showcase microsites, built responsive from scratch.",
       "contributions": [
         "Designed and launched corporate layouts, investor pages and project showcase microsites.",
         "Built responsive front-end interfaces in HTML5, CSS3 and JavaScript for cross-browser and multi-device support.",
-        "Built interactive UI components — sliders, forms, navigation, project galleries.",
+        "Built interactive UI components: sliders, forms, navigation and project galleries.",
         "Integrated SEO best practice, analytics tracking and structured data markup.",
         "Established scalable templates for later digital work."
       ],
@@ -149,8 +149,8 @@
     }
   ],
   "recognition": [
-    "Finalist — Convergence Hackathon, VNR VJIET, for an automation-focused solution aimed at workflow efficiency and content quality.",
-    "Official event photographer, NCAA Men's Basketball Championship First Four 2025 — work published on the University of Dayton's official channels.",
+    "Finalist at the Convergence Hackathon, VNR VJIET, for an automation-focused solution aimed at workflow efficiency and content quality.",
+    "Official event photographer, NCAA Men's Basketball Championship First Four 2025, with work published on the University of Dayton's official channels.",
     "Published feature article, “Where Passion Meets Play”, on March Madness.",
     "Authored and published a photo essay, “A Thanksgiving of Growth and Gratitude”."
   ]

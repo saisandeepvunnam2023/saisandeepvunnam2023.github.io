@@ -28,7 +28,7 @@
       "title": "NFL Season Hub",
       "kicker": "Six seasons, drillable to a single play",
       "problem": "Football data exists in enormous, unfriendly tables. Finding the moment a game actually turned means reading a spreadsheet with 273,000 rows in it.",
-      "built": "A React and TypeScript application over six seasons of play-by-play data — league standings down to any team, any game, and a scrubbable replay of how that game's win probability actually moved.",
+      "built": "A React and TypeScript application over six seasons of play-by-play data. League standings down to any team, any game, and a scrubbable replay of how that game's win probability actually moved.",
       "role": "Sole engineer",
       "year": "2026",
       "category": "Front-end engineering / data",
@@ -52,7 +52,7 @@
           "n": "01",
           "title": "Context",
           "body": [
-            "Play-by-play data for the NFL is public and enormous. Six seasons is 1,693 games and 273,325 individual plays, published as flat files that answer every question badly — you can compute anything from them and see nothing.",
+            "Play-by-play data for the NFL is public and enormous. Six seasons is 1,693 games and 273,325 individual plays, published as flat files that answer every question badly. You can compute anything from them and see nothing.",
             "The interesting questions are ordinary ones. How good was this team, really. What happened in this game. At what moment did it stop being close. None of those are answerable by scrolling a table."
           ]
         },
@@ -61,7 +61,7 @@
           "title": "Challenge",
           "body": [
             "The data is far too large to hand to a browser. Six seasons of plays is hundreds of megabytes; a web application that downloads that is not a web application.",
-            "But the product only works if you can drill all the way down — league, to team, to game, to a single play — without a loading state at every step. So the constraint was full depth of detail at a page weight that behaves like a static site."
+            "But the product only works if you can drill all the way down, league to team to game to a single play, without a loading state at every step. So the constraint was full depth of detail at a page weight that behaves like a static site."
           ],
           "callout": "Every interesting question needed the whole dataset. No interesting answer needed more than a few kilobytes."
         },
@@ -77,7 +77,7 @@
           "title": "Engineering",
           "body": [
             "Python with polars does the heavy parse: 273,325 plays reduced ahead of time into per-game artefacts small enough to ship, so the browser never sees the raw dataset.",
-            "React 19 and TypeScript on the front end, built with Vite. The win-probability replay is a scrubbable timeline over a single game's plays — the one view where the underlying per-play data is genuinely needed, and the reason the per-game payload has to stay tight.",
+            "React 19 and TypeScript on the front end, built with Vite. The win-probability replay is a scrubbable timeline over a single game's plays. It is the one view where the underlying per-play data is genuinely needed, and the reason the per-game payload has to stay tight.",
             "Vitest for unit coverage and Playwright for browser-level tests, both run in GitHub Actions on every push, deploying to Vercel.",
             "The result holds a 100 Lighthouse performance score, which is the practical proof that the precompute decision was the right one."
           ]
@@ -86,7 +86,7 @@
           "n": "06",
           "title": "Result",
           "body": [
-            "Six seasons browsable end to end — 1,693 games — at 6.8 KB of data per game.",
+            "Six seasons browsable end to end, 1,693 games, at 6.8 KB of data per game.",
             "A full Lighthouse performance score on a data-heavy application, which is not where data-heavy applications usually land."
           ]
         },
@@ -108,9 +108,9 @@
       "title": "University of Dayton Magazine",
       "kicker": "Seven issues, one template",
       "problem": "A university magazine publishing on a CMS with no component model, where every new issue quietly drifted away from the last one.",
-      "built": "The content architecture, the issue template and the publishing path behind seven consecutive issues — plus most of the photography inside them.",
+      "built": "The content architecture, the issue template and the publishing path behind seven consecutive issues, plus most of the photography inside them.",
       "role": "Web Content & Digital Experience Analyst",
-      "year": "2023 — 2025",
+      "year": "2023 – 2025",
       "category": "Content infrastructure",
       "stack": ["Cascade CMS", "HTML", "CSS", "JavaScript", "GA4", "WCAG AA"],
       "outcome": "Seven issues published and still live, from Winter 2023–24 through Summer 2025.",
@@ -132,7 +132,7 @@
           "n": "01",
           "title": "Context",
           "body": [
-            "The University of Dayton Magazine publishes a few times a year to an audience of alumni, staff and prospective students. It runs on Cascade CMS — an enterprise system built around templates and structured data blocks rather than components.",
+            "The University of Dayton Magazine publishes a few times a year to an audience of alumni, staff and prospective students. It runs on Cascade CMS, an enterprise system built around templates and structured data blocks rather than components.",
             "Each issue had historically been assembled by hand. That works once. Across seven issues it produces seven subtly different magazines: headings that shift a few pixels, image crops that change ratio, navigation that behaves differently on a phone depending on which issue you landed in."
           ]
         },
@@ -140,7 +140,7 @@
           "n": "02",
           "title": "Challenge",
           "body": [
-            "Cascade has no notion of a reusable component in the way a modern framework does. There is no import, no props, no composition. What it has is templates, regions, and structured data definitions — and non-technical editors who need to publish without touching any of it.",
+            "Cascade has no notion of a reusable component in the way a modern framework does. There is no import, no props, no composition. What it has is templates, regions and structured data definitions, plus non-technical editors who need to publish without touching any of it.",
             "So the constraint was: produce component-like consistency using a system that has no components, for people who will never open a code editor."
           ],
           "callout": "The hard part was never the markup. It was designing a system that stays consistent when the person using it does not know it is a system."
@@ -149,7 +149,7 @@
           "n": "03",
           "title": "Approach",
           "body": [
-            "I treated the issue itself as the unit. One issue template, one structured data definition describing what an issue *is* — cover image, feature articles, departments, credits — and every page in an issue rendered from that.",
+            "I treated the issue itself as the unit. One issue template, and one structured data definition describing what an issue actually is: cover image, feature articles, departments, credits. Every page in an issue renders from that.",
             "Anything an editor could get wrong, I removed from their hands. Image ratios became fixed by the template rather than chosen at upload. Heading levels were emitted by the template, so the document outline could not be broken by someone bolding a line of text.",
             "Where a choice genuinely belonged to the editor, it became an explicit field with a constrained set of options, not a free-text box."
           ]
@@ -167,7 +167,7 @@
           "title": "Engineering",
           "body": [
             "Semantic HTML with a single document outline per page, so the magazine reads correctly in a screen reader and in a search index.",
-            "CSS built on a small set of layout primitives rather than per-issue stylesheets — a feature spread and a department page differ by class, not by file.",
+            "CSS built on a small set of layout primitives rather than per-issue stylesheets. A feature spread and a department page differ by class, not by file.",
             "Responsive images driven from the template so that a photograph uploaded once serves correctly on a phone and on a desktop.",
             "Accessibility checked to WCAG AA: contrast, focus order, alt text enforced as a required field rather than an optional one.",
             "GA4 wired in per issue so we could see which features were actually read."
@@ -185,7 +185,7 @@
           "n": "07",
           "title": "Reflection",
           "body": [
-            "I would push harder on the preview loop. Editors still discovered layout problems after publishing rather than before, because Cascade's preview does not faithfully represent the responsive output. A lightweight standalone preview — even a static page fed by the same structured data — would have caught most of it.",
+            "I would push harder on the preview loop. Editors still discovered layout problems after publishing rather than before, because Cascade's preview does not faithfully represent the responsive output. A lightweight standalone preview, even a static page fed by the same structured data, would have caught most of it.",
             "I would also instrument the template itself. I know which articles people read; I do not know which template regions editors struggled with, and that is the data that would have improved the system fastest."
           ]
         }
@@ -202,14 +202,14 @@
       "problem": "Departments across the university each needed a site. Left alone, that produces a hundred inconsistent, inaccessible, unmaintained websites.",
       "built": "The shared templates, content workflows and release QA that the sites were built and published through, working inside an eight-person team.",
       "role": "Web Content & Digital Experience Analyst",
-      "year": "2023 — 2025",
+      "year": "2023 – 2025",
       "category": "Web operations at scale",
       "stack": ["Cascade CMS", "WordPress", "PHP", "HTML", "CSS", "JavaScript", "Figma", "GA4", "Qualtrics"],
       "outcome": "175+ academic and magazine sites shipped, with responsive, accessibility, cross-browser and production QA run before and after every release.",
       "outcomeMetric": { "value": "175+", "unit": "sites", "caption": "built and launched" },
       "detail": [
         { "label": "Templating", "text": "Pre-defined Cascade templates and custom WordPress themes and plugins, so a new department site starts from a known-good baseline instead of a blank page." },
-        { "label": "Governance", "text": "Who may change what, and what has to be true before a page goes live — the part that stops a hundred sites drifting apart." },
+        { "label": "Governance", "text": "Who may change what, and what has to be true before a page goes live. This is the part that stops a hundred sites drifting apart." },
         { "label": "Quality gate", "text": "Responsive, functional, accessibility, browser and production QA performed before and after each release." },
         { "label": "Technical SEO", "text": "Metadata, schema markup and redirect strategy applied across the estate rather than page by page." },
         { "label": "Measurement", "text": "GA4 and Qualtrics wired into pages so content decisions were made against real engagement data rather than opinion." }
@@ -225,7 +225,7 @@
       "title": "CNR Car Zone",
       "kicker": "The whole business, on a phone",
       "problem": "A pre-owned vehicle business tracked every car from first phone call to ready-for-sale across notebooks, messages and memory. Nothing could be searched and nothing could be audited.",
-      "built": "A mobile-first operations platform covering the full path — enquiry, conversion to inventory, document checklist, photo pipeline, and exports with an audit trail behind them.",
+      "built": "A mobile-first operations platform covering the full path: enquiry, conversion to inventory, document checklist, photo pipeline, and exports with an audit trail behind them.",
       "role": "Sole engineer, designer and product owner",
       "year": "2026",
       "category": "Product / full-stack",
@@ -235,9 +235,9 @@
       "splitPoints": [
         { "label": "Operations dashboard", "text": "Global search across every vehicle and enquiry, because the first question is always 'where is that car' and it used to take a phone call to answer." },
         { "label": "Opportunity → inventory", "text": "The conversion step from enquiry to a tracked vehicle, which is the moment the business actually commits money." },
-        { "label": "Document checklist", "text": "Eighteen items per vehicle. A car that is missing one of them cannot be sold, and before this nobody found out until a buyer was standing there." },
+        { "label": "Document checklist", "text": "Eighteen items per vehicle. A car missing one of them cannot be sold, and before this nobody found out until a buyer was standing there." },
         { "label": "Photo pipeline", "text": "Twenty-two categories per vehicle, so listings are complete and comparable rather than whatever someone happened to shoot." },
-        { "label": "Exports and audit trail", "text": "CSV exports with a record of who changed what and when — the difference between a tool a business uses and a tool a business trusts." },
+        { "label": "Exports and audit trail", "text": "CSV exports with a record of who changed what and when. That is the difference between a tool a business uses and a tool a business trusts." },
         { "label": "Mobile-first, deliberately", "text": "The people using it are standing next to a car in a yard, not sitting at a desk. That decided the entire interface." }
       ],
       "links": []

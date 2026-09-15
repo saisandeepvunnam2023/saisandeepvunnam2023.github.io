@@ -34,20 +34,6 @@ def render(site: dict) -> str:
             f"</p>"
         )
 
-    # Only real links. A dead LinkedIn is worse than no LinkedIn.
-    social = [
-        (label, href)
-        for label, href in (("GitHub", links["github"]), ("LinkedIn", links["linkedin"]))
-        if href.startswith("http")
-    ]
-
-    social_html = join(
-        f'<li><a class="hero__social" href="{esc(href)}"'
-        f'{" target=_blank rel=noopener" if href.startswith("http") else ""}>'
-        f"{esc(label)}</a></li>"
-        for label, href in social
-    )
-
     resume_btn = ""
     if site.get("showResume"):
         resume_btn = (
@@ -78,7 +64,7 @@ def render(site: dict) -> str:
       <div class="hero__top-right">
         <p class="hero__caption">
           <span class="hero__caption-rule" aria-hidden="true"></span>
-          Photograph mine — UD campus, in the rain.
+          Photograph mine. UD campus, in the rain.
         </p>
       </div>
     </div>
@@ -113,7 +99,6 @@ def render(site: dict) -> str:
           <span>{esc(site['email'])}</span>
         </a>
       </div>
-      <ul class="hero__socials">{social_html}</ul>
     </div>
   </div>
 

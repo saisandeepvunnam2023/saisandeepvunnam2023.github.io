@@ -43,7 +43,7 @@ def render(site: dict, base: str = "", active: str | None = None) -> str:
     return f"""
 <nav class="nav" id="nav" aria-label="Primary">
   <div class="nav__bar">
-    <a class="nav__brand" href="{esc(home)}" aria-label="{esc(site['name'])} — home">
+    <a class="nav__brand" href="{esc(home)}" aria-label="{esc(site['name'])}, home">
       <span class="nav__mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" focusable="false">
           <circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.4"/>

@@ -59,13 +59,10 @@ def render(site: dict, contact: dict) -> str:
 
 
 def render_footer(site: dict) -> str:
-    footer = site["footer"]
     return f"""
 <footer class="footer">
   <div class="shell footer__inner">
     <p class="footer__copy">© <span data-year>2026</span> {esc(site['name'])} · {esc(site['location'])}</p>
-    <p class="footer__signoff">{esc(footer['signoff'])}</p>
-    <p class="footer__colophon">{esc(footer['colophon'])}</p>
     <a class="footer__top" href="#top" data-magnetic>
       <span>Back to top</span>
       <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false">

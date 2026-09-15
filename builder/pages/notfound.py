@@ -30,8 +30,7 @@ def render(*, site, projects, css, scripts, base: str = "/") -> str:
     <p class="nf__code" aria-hidden="true">404</p>
     <h1 class="nf__title">Out of frame.</h1>
     <p class="nf__body">
-      This page does not exist — or it did, and the archive triage was right about it.
-      Here is everything that does.
+      This page does not exist. Here is everything that does.
     </p>
     <ul class="nf__links">{links}</ul>
     <p class="nf__sign">
@@ -45,7 +44,7 @@ def render(*, site, projects, css, scripts, base: str = "/") -> str:
     head_html = head(
         site=site,
         css=css,
-        title=f"Page not found — {site['name']}",
+        title=f"Page not found · {site['name']}",
         description="That page does not exist.",
         canonical=meta["siteUrl"] + "/404.html",
         base=base,

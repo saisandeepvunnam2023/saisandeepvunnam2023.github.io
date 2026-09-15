@@ -1,14 +1,14 @@
 {
   "_comment": [
-    "Photography section, About, playground and contact.",
+    "Photography section, About and contact copy.",
     "Photograph `id` values must exist in media.json. `span` controls the editorial",
     "grid: full | wide | half | tall. Captions should describe, not perform."
   ],
   "photography": {
     "eyebrow": "Frames",
     "sectionTitle": "Through another lens",
-    "intro": "Two years photographing a campus in every kind of weather. It is not a side interest that happens to sit next to the engineering — it is where I learned the engineering habits I actually rely on: watch longer than feels necessary, decide what to leave out, and know that the frame is the argument.",
-    "outro": "A large share of these ran in the University of Dayton Magazine — the same magazine I built the publishing system for.",
+    "intro": "Two years photographing a campus in every kind of weather. It is not a side interest sitting next to the engineering. It is where I learned the habits I actually rely on: watch longer than feels necessary, decide what to leave out, and know that the frame is the argument.",
+    "outro": "A large share of these ran in the University of Dayton Magazine, the same magazine I built the publishing system for.",
     "photographs": [
       {
         "id": "ph-corridor",
@@ -67,40 +67,11 @@
     "portraitAlt": "Portrait of Sai Sandeep Vunnam",
     "paragraphs": [
       "I am a web operations and full-stack engineer with a master's in computer science from the University of Dayton. I own websites end to end: building the front end, publishing through the CMS, and keeping the thing healthy once real people are using it.",
-      "Most engineers want the build and not the operations. I find the operations more interesting, because that is where you learn what you actually shipped — which pages nobody can find, which release broke a redirect, which template an editor quietly works around every week.",
+      "Most engineers want the build and not the operations. I find the operations more interesting, because that is where you learn what you actually shipped: which pages nobody can find, which release broke a redirect, which template an editor quietly works around every week.",
       "So what I build is mostly leverage. One issue template instead of seven hand-built magazines. One governed publishing path instead of a hundred departments improvising. One precomputed artefact instead of shipping a browser 273,000 rows.",
       "Photography is where that instinct came from, and it is still where I practise it. You cannot include everything; a frame is defined entirely by what you refuse to put in it. Two years of shooting a campus taught me to wait longer than feels comfortable and to accept that a technically perfect frame of the wrong moment is worthless.",
-      "What I want next is more of the hard half — production ownership of something large, where the questions are about traffic, reliability and what to do at 2am, not just what the component tree looks like."
+      "What I want next is more of the hard half. Production ownership of something large, where the questions are about traffic, reliability and what to do at 2am, not just what the component tree looks like."
     ]
-  },
-  "playground": {
-    "eyebrow": "Playground",
-    "sectionTitle": "Experiments",
-    "intro": "Small things, built to understand something. Nothing here is a product.",
-    "items": [
-      {
-        "title": "Skills readout",
-        "year": "2026",
-        "tech": "Vanilla JS",
-        "text": "The skills matrix further up. Every entry carries what I use it for and which project it appears in, and all of it is in the HTML — the readout only changes where a pointer user sees it. On a phone, or with JavaScript off, it renders as a plain list with nothing missing.",
-        "status": "live"
-      },
-      {
-        "title": "This site's build",
-        "year": "2026",
-        "tech": "Python · stdlib",
-        "text": "No framework and no npm. Content lives in JSON, a 400-line Python generator turns it into flat HTML, and a checker fails the deploy on a dead link, a broken heading outline or a missing alt attribute. Fast because there is nothing in it.",
-        "status": "live"
-      },
-      {
-        "title": "On-device post forecasting",
-        "year": "2025",
-        "tech": "ONNX · CoreML",
-        "text": "Converted a trained engagement model to ONNX and into a CoreML-powered iOS preview app, so a draft post could be scored on-device before publishing rather than round-tripping to a server.",
-        "status": "archived"
-      }
-    ],
-    "footnote": "This section is a list in content/story.json. Adding an experiment is adding an object to it."
   },
   "contact": {
     "eyebrow": "Contact",
@@ -111,6 +82,6 @@
     ],
     "body": "A publishing process that keeps breaking. A site nobody can safely deploy. A pile of pages nobody has looked at since 2019. That is the part I want.",
     "emailLabel": "Email me",
-    "availability": "Currently open to web operations, website management and full-stack engineering roles — and reading every message myself."
+    "availability": "Currently open to web operations, website management and full-stack engineering roles, and reading every message myself."
   }
 }

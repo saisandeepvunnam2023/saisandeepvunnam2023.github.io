@@ -19,7 +19,6 @@ def render(*, site, projects, skills_data, exp, story, css, scripts) -> str:
         experience.render(exp),
         frames.render(story["photography"]),
         about.render_about(story["about"]),
-        about.render_playground(story["playground"]),
         contact.render(site, story["contact"]),
         "</main>",
         contact.render_footer(site),

@@ -123,13 +123,13 @@ def render(*, site, project, projects, css, scripts) -> str:
 </main>
 {_footer(site)}"""
 
-    description = f"{p['title']} — {p['problem']} Case study by {site['name']}."
+    description = f"{p['title']}. {p['problem']} Case study by {site['name']}."
 
     return document(
         head_html=head(
             site=site,
             css=css,
-            title=f"{p['title']} — {site['name']}",
+            title=f"{p['title']} · {site['name']}",
             description=description[:300],
             canonical=f"{meta['siteUrl']}/work/{p['slug']}/",
             base=BASE,

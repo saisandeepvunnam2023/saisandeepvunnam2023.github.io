@@ -56,7 +56,7 @@ content/                 ALL editable content. You should rarely leave this fold
   projects.json          featured work + full case-study text
   skills.json            capabilities → technologies → the projects they appear in
   experience.json        roles, education, recognition
-  story.json             photography, about, field notes, playground, contact
+  story.json             photography, about and contact copy
   media.json             where your photograph originals live on disk
   media.derived.json     generated — sizes and blur placeholders. Do not edit.
 
@@ -101,6 +101,11 @@ change `links.resume` in the same file.
 
 It is in `content/*.json`. Rebuild. There is no other copy of it.
 
+**House style:** no em dashes in anything that renders. They are the clearest
+tell that a machine wrote the sentence, and this site is meant to read like a
+person. Use a full stop, a colon, or a comma instead. An en dash in a date range
+(`Nov 2023 – Dec 2025`) is fine; that is just typography.
+
 ### Add a project
 
 Add an object to `items` in `content/projects.json`. The required fields are
@@ -131,10 +136,6 @@ To invent a sixth layout, add a `_layout_*` function in
 
 Write real alt text. It is how the photographs reach anyone using a screen reader,
 and it is a ranking signal.
-
-### Add a playground experiment
-
-One object in `playground.items` in `content/story.json`. No layout code involved.
 
 ### Change the accent colour
 

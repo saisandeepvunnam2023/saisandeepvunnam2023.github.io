@@ -86,7 +86,7 @@ def _arrow(x1, y1, x2, y2, accent=False):
 
 def magazine() -> str:
     b = "".join([
-        '<text class="t" x="0" y="16">Template layer — mine</text>',
+        '<text class="t" x="0" y="16">Template layer, mine</text>',
         '<text class="t" x="300" y="16">Editor surface</text>',
         '<text class="t" x="600" y="16">Output</text>',
 
@@ -94,7 +94,7 @@ def magazine() -> str:
         _box(0, 106, 250, 60, "Structured data definition", "cover, features, departments, credits"),
         _box(0, 182, 250, 60, "Layout primitives", "shared CSS, no per-issue stylesheets"),
 
-        _box(300, 78, 230, 90, "Issue entry", "constrained fields only —\nno free-form markup", accent=True),
+        _box(300, 78, 230, 90, "Issue entry", "constrained fields only,\nno free-form markup", accent=True),
 
         _box(600, 30, 240, 60, "Issue pages", "one document outline each"),
         _box(600, 106, 240, 60, "Responsive images", "one upload, every size"),
@@ -122,7 +122,7 @@ def pipeline() -> str:
     # SVG text does not wrap. Every sub-line below is kept under ~21 characters
     # so it cannot run outside its box at the width the box is drawn.
     stages = [
-        ("Originals", "immutable —\nnever written to"),
+        ("Originals", "immutable,\nnever written to"),
         ("Normalise", "exposure + white\nbalance, from the\nhistogram"),
         ("Tone-map", "HDR across\nbracketed sets"),
         ("Frame", "content-aware crop,\nper ratio"),
@@ -140,14 +140,14 @@ def pipeline() -> str:
 
     last = 4 * (W + GAP)
     parts.append(_box(W + GAP, 162, 3 * W + 2 * GAP, 46, "Derivative store",
-                      "regenerate at will — a bad automated decision costs one re-run",
+                      "regenerate at will. a bad automated decision costs one re-run",
                       dashed=True))
     parts.append(_arrow(W + GAP + 76, TOP + H, W + GAP + 76, 158))
     parts.append(_arrow(last + 80, TOP + H, last + 80, 185))
     parts.append(f'<path class="arrow dash" d="M{last + 80} 185 L{4 * W + 3 * GAP} 185"/>')
     return _wrap(
         "Image pipeline stages",
-        "Five sequential stages — ingest of immutable originals, exposure and white balance "
+        "Five sequential stages: ingest of immutable originals, exposure and white balance "
         "normalisation, HDR tone mapping, content-aware framing, then emission of the responsive "
         "ladder. Every stage writes to a derivative store that can be regenerated, so originals "
         "are never modified.",
@@ -187,7 +187,7 @@ def triage() -> str:
     parts.append(_arrow(620, 172, 620, 196))
     return _wrap(
         "Archive triage decision flow",
-        "Four independent signals — layout, text density, visual freshness and usage — combine "
+        "Four independent signals (layout, text density, visual freshness and usage) combine "
         "into a relevance score, which produces a ranked recommendation list. A human gate stands "
         "between the recommendation and any deletion, and an audit record is written at every step.",
         "-4 0 848 252",

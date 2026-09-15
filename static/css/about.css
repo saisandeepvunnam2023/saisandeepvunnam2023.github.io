@@ -1,5 +1,5 @@
 /* ==========================================================================
-   About and playground.
+   About.
    ========================================================================== */
 
 .about {
@@ -54,73 +54,6 @@
 }
 
 .about__copy p:nth-child(3) { color: var(--fg); }
-
-/* --- Playground ----------------------------------------------------------- */
-.experiments {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-  gap: clamp(1rem, 0.7rem + 1.4vw, 1.8rem);
-  margin-top: var(--s-6);
-}
-
-.exp {
-  display: grid;
-  align-content: start;
-  gap: var(--s-3);
-  padding: clamp(1.2rem, 0.9rem + 1.2vw, 1.9rem);
-  border: 1px solid var(--rule);
-  border-radius: var(--r-2);
-  transition: border-color var(--dur-2) var(--ease), background-color var(--dur-2) var(--ease);
-}
-
-.exp:hover { border-color: var(--rule-strong); background: var(--surface); }
-
-.exp__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--s-3);
-}
-
-.exp__title {
-  font-size: var(--step-1);
-  font-weight: 600;
-  font-stretch: 92%;
-  letter-spacing: var(--tracking-tight);
-}
-
-.exp__status {
-  padding: 0.2em 0.6em;
-  border-radius: var(--r-pill);
-  border: 1px solid var(--rule);
-  color: var(--fg-faint);
-  flex: none;
-}
-
-.exp--live .exp__status { color: var(--accent); border-color: var(--accent-line); }
-
-.exp__text { color: var(--fg-dim); font-size: var(--step--1); line-height: 1.55; text-wrap: pretty; }
-
-.exp__meta {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--s-3);
-  padding-top: var(--s-3);
-  margin-top: auto;
-  border-top: 1px solid var(--rule);
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  letter-spacing: 0.04em;
-  color: var(--fg-faint);
-}
-
-.playground__footnote {
-  margin-top: var(--s-6);
-  color: var(--fg-faint);
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  letter-spacing: 0.03em;
-}
 
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 56rem) {

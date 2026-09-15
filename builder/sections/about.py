@@ -1,8 +1,6 @@
-"""About and the playground.
+"""About.
 
-The about copy is a short story with an argument in it, not a biography.
-Playground is deliberately a plain list so that adding an experiment later
-costs one object in story.json.
+A short story with an argument in it, not a biography.
 """
 
 from __future__ import annotations
@@ -33,30 +31,3 @@ def render_about(about: dict) -> str:
 </section>
 """
 
-
-def render_playground(playground: dict) -> str:
-    items = join(
-        f'<li class="exp exp--{esc(x["status"])}" data-reveal style="--i:{i}">'
-        f'<div class="exp__head">'
-        f'<h3 class="exp__title">{esc(x["title"])}</h3>'
-        f'<span class="exp__status">{esc(x["status"])}</span>'
-        f"</div>"
-        f'<p class="exp__text">{esc(x["text"])}</p>'
-        f'<p class="exp__meta"><span>{esc(x["tech"])}</span><span>{esc(x["year"])}</span></p>'
-        f"</li>"
-        for i, x in enumerate(playground["items"])
-    )
-
-    return f"""
-<section class="section section--playground" id="playground" aria-labelledby="playground-title">
-  <div class="shell">
-    <header class="section__head section__head--compact">
-      <p class="eyebrow"><span class="eyebrow__index">06</span><span>{esc(playground['eyebrow'])}</span></p>
-      <h2 class="section__title section__title--sm" id="playground-title">{esc(playground['sectionTitle'])}</h2>
-      <p class="section__intro">{esc(playground['intro'])}</p>
-    </header>
-    <ul class="experiments">{items}</ul>
-    <p class="playground__footnote">{esc(playground['footnote'])}</p>
-  </div>
-</section>
-"""

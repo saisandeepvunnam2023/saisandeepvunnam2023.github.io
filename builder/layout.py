@@ -115,7 +115,7 @@ def head(
 <meta property="og:image" content="{esc(og)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{esc(site['name'])} — {esc(site['role'])}">
+<meta property="og:image:alt" content="{esc(site['name'])}, {esc(site['role'])}">
 <meta property="og:locale" content="{esc(meta['locale'])}">
 
 <meta name="twitter:card" content="summary_large_image">
