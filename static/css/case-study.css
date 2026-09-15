@@ -195,11 +195,13 @@
 
 .diagram .dg { width: 100%; min-width: 40rem; height: auto; }
 
+/* --fg-faint measures 4.37:1 against --surface, which is under AA for text
+   this small. --fg-dim is 6.34:1 on the same ground. */
 .diagram__caption {
   margin-top: var(--s-4);
   padding-top: var(--s-3);
   border-top: 1px solid var(--rule);
-  color: var(--fg-faint);
+  color: var(--fg-dim);
 }
 
 /* --- Next ----------------------------------------------------------------- */

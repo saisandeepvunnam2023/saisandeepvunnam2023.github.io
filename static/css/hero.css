@@ -126,7 +126,7 @@
 
 /* The status wraps to two lines on a phone. Pin the dot to the first line
    rather than letting it float in the vertical centre of the block. */
-.hero__status > span:not(.hero__status-dot) { white-space: nowrap; }
+.hero__status > span:not(.hero__status-dot):not(.hero__status-open) { white-space: nowrap; }
 
 .hero__status-dot {
   width: 6px;
@@ -265,7 +265,12 @@
   .hero__foot { flex-direction: column; align-items: flex-start; }
   .hero__actions { width: 100%; }
   .hero__actions .btn { flex: 1 1 auto; justify-content: center; }
-  .hero__actions .btn--ghost { flex-basis: 100%; justify-content: flex-start; }
+  .hero__actions .btn--ghost {
+    flex-basis: 100%;
+    justify-content: flex-start;
+    white-space: normal;          /* the email address is 30 characters */
+    overflow-wrap: anywhere;
+  }
   .hero__scrim {
     background:
       linear-gradient(to top, var(--bg) 14%, color-mix(in srgb, var(--bg) 78%, transparent) 55%, color-mix(in srgb, var(--bg) 46%, transparent) 100%),

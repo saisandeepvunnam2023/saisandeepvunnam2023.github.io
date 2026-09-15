@@ -32,7 +32,6 @@
 /* An intro paragraph belongs to the heading above it, not to the content
    below. Close the gap when one follows. */
 .section__head:has(+ .section__intro) { margin-bottom: var(--s-5); }
-.section__head--compact { margin-bottom: var(--s-7); }
 
 /* --- Media ---------------------------------------------------------------
    Aspect ratio is always declared and width/height always emitted, so no
@@ -82,6 +81,7 @@
   font-weight: 500;
   letter-spacing: 0.01em;
   white-space: nowrap;
+  max-width: 100%;
   transition:
     border-color var(--dur-1) var(--ease),
     background-color var(--dur-1) var(--ease),

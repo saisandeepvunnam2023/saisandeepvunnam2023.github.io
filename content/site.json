@@ -13,7 +13,7 @@
     "AND I KEEP",
     "THEM RUNNING."
   ],
-  "positioning": "I own websites end to end. I build them in React, Next.js and TypeScript, publish through the CMS, and keep them healthy once real people are using them. Five years across Unity, the University of Dayton, KIMS Hospitals and BSCPL, and 175+ sites shipped.",
+  "positioning": "I own websites end to end. I build them in React, Next.js and TypeScript, publish through the CMS, and keep them healthy once real people are using them. Six years across Unity, the University of Dayton, KIMS Hospitals and BSCPL, and 175+ sites shipped.",
   "conceptNote": "Photography taught me the same thing operations did: notice what nobody else looked at.",
   "location": "Dayton, Ohio",
   "status": "Open to web operations & full-stack roles",
@@ -67,7 +67,9 @@
     "description": "Web operations and full-stack engineer. React, Next.js and TypeScript front ends, CMS publishing and production site health. 175+ sites shipped across Unity, the University of Dayton, KIMS Hospitals and BSCPL.",
     "ogImage": "media/og-image.jpg",
     "themeColor": "#0B0C0D",
-    "locale": "en_US"
+    "locale": "en_US",
+    "ogProof": "175+ sites shipped  ·  NFL Season Hub  ·  7 magazine issues",
+    "_ogProof": "The third line on the social preview card. Re-run optimize_images.py after changing it."
   },
   "footer": {},
   "_showPhone": "Renders the number as a second large contact link beside the email. Set false to hide it."

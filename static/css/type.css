@@ -7,7 +7,6 @@
    italic appears exactly twice, as punctuation rather than as a voice.
    ========================================================================== */
 
-.display,
 .hero__name,
 .contact__headline {
   font-family: var(--font-sans);
@@ -91,17 +90,4 @@
 }
 
 .section__intro--wide { max-width: var(--measure-wide); }
-
-/* --- Prose --------------------------------------------------------------- */
-.prose p + p { margin-top: var(--s-5); }
-.prose { max-width: var(--measure); text-wrap: pretty; }
-
-/* --- The serif accent ---------------------------------------------------- */
-.serif {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-}
 

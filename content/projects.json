@@ -27,7 +27,7 @@
       "caseStudy": true,
       "title": "NFL Season Hub",
       "kicker": "Six seasons, drillable to a single play",
-      "problem": "Football data exists in enormous, unfriendly tables. Finding the moment a game actually turned means reading a spreadsheet with 273,000 rows in it.",
+      "problem": "Football data exists in enormous, unfriendly tables. Finding the moment a game actually turned means reading a spreadsheet with over 273,000 rows in it.",
       "built": "A React and TypeScript application over six seasons of play-by-play data. League standings down to any team, any game, and a scrubbable replay of how that game's win probability actually moved.",
       "role": "Sole engineer",
       "year": "2026",

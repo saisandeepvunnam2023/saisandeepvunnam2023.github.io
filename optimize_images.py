@@ -194,8 +194,15 @@ def build_icons() -> None:
 
 
 def build_og_card(hero_src: str) -> None:
-    """1200x630 social preview: the hero photograph, the name, the claim."""
+    """1200x630 social preview, generated from content/site.json.
+
+    Everything on it is read from the same file the site reads, so the card
+    cannot drift out of step with the positioning the way a hardcoded one does.
+    """
     from PIL import Image, ImageDraw, ImageEnhance
+
+    site = json.loads((ROOT / "content" / "site.json").read_text())
+    meta = site["meta"]
 
     W, H = 1200, 630
     card = Image.new("RGB", (W, H), BG)
@@ -211,43 +218,53 @@ def build_og_card(hero_src: str) -> None:
         left = (photo.width - W) // 2
         top = (photo.height - H) // 2
         photo = photo.crop((left, top, left + W, top + H))
-        photo = ImageEnhance.Color(photo).enhance(0.35)
-        photo = ImageEnhance.Brightness(photo).enhance(0.52)
+        photo = ImageEnhance.Color(photo).enhance(0.45)
+        photo = ImageEnhance.Brightness(photo).enhance(0.5)
         card.paste(photo, (0, 0))
 
-        # Left-to-right scrim so the type always has something to sit on.
         scrim = Image.new("L", (W, 1))
         for x in range(W):
-            scrim.putpixel((x, 0), int(235 * max(0.0, 1 - (x / W) * 1.45)))
-        scrim = scrim.resize((W, H))
-        card = Image.composite(Image.new("RGB", (W, H), BG), card, scrim)
+            scrim.putpixel((x, 0), int(238 * max(0.0, 1 - (x / W) * 1.4)))
+        card = Image.composite(Image.new("RGB", (W, H), BG), card, scrim.resize((W, H)))
 
     d = ImageDraw.Draw(card)
     x = 76
 
     d.rectangle([x, 92, x + 46, 95], fill=ACCENT)
-    d.text((x + 62, 82), "SOFTWARE ENGINEER", font=_font("bold", 20), fill=ACCENT)
+    d.text((x + 62, 82), site["role"].upper(), font=_font("bold", 20), fill=ACCENT)
 
-    d.text((x, 150), "SAI SANDEEP", font=_font("display", 82), fill=FG)
-    d.text((x, 240), "VUNNAM", font=_font("display", 82), fill=FG)
+    parts = site["name"].rsplit(" ", 1)
+    d.text((x, 150), parts[0].upper(), font=_font("display", 78), fill=FG)
+    d.text((x, 236), parts[-1].upper(), font=_font("display", 78), fill=FG)
 
-    d.rectangle([x, 372, x + 210, 373], fill=(90, 88, 85))
+    d.rectangle([x, 364, x + 210, 365], fill=(90, 88, 85))
 
-    d.text((x, 404), "Web systems, content infrastructure", font=_font("bold", 30), fill=FG)
-    d.text((x, 444), "and Python image pipelines.", font=_font("bold", 30), fill=FG)
+    for i, line in enumerate(_wrap_text(site["discipline"], 40)[:2]):
+        d.text((x, 396 + i * 40), line, font=_font("bold", 29), fill=FG)
 
-    d.text(
-        (x, 506),
-        "175+ sites shipped  ·  7 magazine issues  ·  40% less manual editing",
-        font=_font("regular", 23),
-        fill=DIM,
-    )
+    d.text((x, 506), meta.get("ogProof", ""), font=_font("regular", 23), fill=DIM)
 
     d.ellipse([x, 556, x + 11, 567], fill=ACCENT)
-    d.text((x + 24, 549), "Dayton, Ohio — open to roles", font=_font("regular", 23), fill=DIM)
+    d.text((x + 24, 549), f"{site['location']} · {site['status']}",
+           font=_font("regular", 22), fill=DIM)
 
     card.save(OUT / "og-image.jpg", "JPEG", quality=88, optimize=True, progressive=True)
     print(f"  og-image.jpg                   {(OUT / 'og-image.jpg').stat().st_size // 1024:>5} KB")
+
+
+def _wrap_text(text: str, width: int) -> list[str]:
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        trial = f"{cur} {w}".strip()
+        if len(trial) <= width:
+            cur = trial
+        else:
+            lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
